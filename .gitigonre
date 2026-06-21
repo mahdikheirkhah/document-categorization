@@ -1,0 +1,36 @@
+.venv/
+*__pycache__
+*.pyc
+*.DS_Store
+poetry.lock
+# Python Virtual Environments
+.venv/
+env/
+venv/
+
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.ipynb_checkpoints
+
+# OS Generated Files
+.DS_Store
+Thumbs.db
+
+# Raw Data (Too large for Git)
+data/*.csv
+data/*.json
+
+# Machine Learning Models (If NOT using Git LFS)
+# *.pkl
+*.h5
+*.model
+
+# Secrets and Environment Variables
+.env
+
+#graphify
+graphify-out/
+.agents/
