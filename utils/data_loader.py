@@ -26,14 +26,14 @@ class HuggingFaceCorpusLoader(BaseDataLoader):
     Concrete class to load text corpora from the Hugging Face datasets hub.
     """
 
-    def __init__(self, dataset_name: str, subset: str, split: str) -> None:
+    def __init__(self, dataset_name: str, split: str, subset: str = None) -> None:
         """
         Initializes the HuggingFaceCorpusLoader with dataset parameters.
 
         Args:
             dataset_name (str): The name of the dataset on Hugging Face.
-            subset (str): The specific language or configuration subset to load.
             split (str): The dataset split (e.g., 'train', 'test') to load.
+            subset (str, optional): The specific language or configuration subset. Defaults to None.
         """
         try:
             self.dataset_name = dataset_name
@@ -52,9 +52,14 @@ class HuggingFaceCorpusLoader(BaseDataLoader):
             pd.DataFrame: The extracted dataset.
         """
         try:
-            logger.info(f"Downloading {self.dataset_name} ({self.subset}) split: {self.split}")
-            # We use amazon_reviews_multi as a robust MLDoc alternative with 5 distinct categories (stars)
-            dataset = load_dataset(self.dataset_name, self.subset, split=self.split)
+            logger.info(f"Downloading {self.dataset_name} split: {self.split}")
+            
+            # Added trust_remote_code=True to bypass new Hugging Face security restrictions
+            if self.subset:
+                dataset = load_dataset(self.dataset_name, self.subset, split=self.split)
+            else:
+                dataset = load_dataset(self.dataset_name, split=self.split)
+                
             dataframe = dataset.to_pandas()
             logger.info(f"Successfully loaded {len(dataframe)} English documents.")
             return dataframe
@@ -64,7 +69,6 @@ class HuggingFaceCorpusLoader(BaseDataLoader):
         except Exception as e:
             logger.error(f"Unexpected error loading Hugging Face dataset: {e}")
             raise
-
 
 class NordicCorpusLoader(BaseDataLoader):
     """
