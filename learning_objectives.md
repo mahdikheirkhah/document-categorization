@@ -32,3 +32,21 @@ Transitioning from frequency-based word counting to true semantic understanding.
 Selecting the correct tokenization algorithm based on the specific NLP task (Classification vs. Named Entity Recognition) and linguistic structure.
 * **WordPiece Algorithm (Classification):** Utilized Sub-word Tokenization for the core classification pipeline. Instead of splitting strictly by spaces, this breaks unknown or complex words into smaller, recognizable chunks (e.g., "unhappiness" into "un", "##happi", "##ness"). This is highly effective for processing agglutinative Finno-Ugric languages where meaning is derived from stacked suffixes rather than isolated words.
 * **Sentence Tokenization (Tagging/NER):** Deployed traditional sentence tokenizers via SpaCy specifically for the context-aware tagging phase. Named Entity Recognition (NER) requires strict analysis of exact grammatical structures and sentence boundaries to identify specific actors and actions, extracting accurate organizations, people, and locations as tags.
+
+
+## Issue #2: Multi-Language Data Preprocessing Pipeline
+
+### 4. Advanced Text Preprocessing (Custom Regex & Unicode Normalization)
+Raw text data contains structural noise (HTML, URLs, formatting artifacts) and encoding variations that must be standardized before vectorization.
+* **Regex Filtering with Clean Architecture:** Utilized Regular Expressions to identify and strip structural noise. Adhering to clean code principles, all Regex patterns are abstracted into explicitly named constant variables rather than being hardcoded inline, drastically improving pipeline readability and maintainability.
+* **Unicode Normalization & Observability:** Implemented strict UTF-8 parsing. To ensure data integrity, the pipeline includes an observability layer that actively detects, logs the count, and logs the character shape of non-ASCII UTF-8 characters, ensuring special linguistic characters are not corrupted during ingestion.
+
+### 5. Implementation of Automatic Language Detection Algorithms
+A single, robust pipeline requires dynamic routing to handle multiple languages autonomously.
+* **Algorithmic Routing:** Integrated a pre-trained language detection model to evaluate incoming raw text. This model analyzes character and sequence probabilities to classify the document's language, allowing the system to automatically route the document to the corresponding language-specific preprocessing and tokenization logic without human intervention.
+
+### 6. Linguistic Differences in Tokenization Strategies
+Applying uniform tokenization across distinct linguistic families destroys semantic value. The pipeline adapts its strategy based on the detected language:
+* **English (Analytic):** Utilizes standard tokenization strategies—removing whitespaces and punctuation, and extracting word roots.
+* **Swedish (Germanic/Compound):** Shares similarities with English but requires specialized tokenizer configurations to protect Swedish-specific alphabet characters (å, ä, ö) from being incorrectly parsed as delimiters or special symbols, while also preserving the structure of compound words.
+* **Finnish (Finno-Ugric/Agglutinative):** Because Finnish words represent entire complex phrases via stacked suffixes (e.g., one word containing the root, pluralization, and preposition), standard word-splitting is prohibited. The pipeline mandates **sub-word tokenization** to break these long, complex words down into their foundational semantic chunks to prevent vocabulary explosion.
