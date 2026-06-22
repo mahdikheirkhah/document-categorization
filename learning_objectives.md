@@ -50,3 +50,21 @@ Applying uniform tokenization across distinct linguistic families destroys seman
 * **English (Analytic):** Utilizes standard tokenization strategies—removing whitespaces and punctuation, and extracting word roots.
 * **Swedish (Germanic/Compound):** Shares similarities with English but requires specialized tokenizer configurations to protect Swedish-specific alphabet characters (å, ä, ö) from being incorrectly parsed as delimiters or special symbols, while also preserving the structure of compound words.
 * **Finnish (Finno-Ugric/Agglutinative):** Because Finnish words represent entire complex phrases via stacked suffixes (e.g., one word containing the root, pluralization, and preposition), standard word-splitting is prohibited. The pipeline mandates **sub-word tokenization** to break these long, complex words down into their foundational semantic chunks to prevent vocabulary explosion.
+
+ ## Issue #3: Transfer Learning Classification Model Development
+
+### 7. Baseline Machine Learning vs. Deep Learning in Text Classification
+Establishing a baseline model is critical to justify the computational cost of deep learning architectures.
+* **Baseline Constraints (Bag of Words):** Traditional ML baselines evaluate text frequency but fail to capture semantic meaning or word order, severely limiting their ability to parse complex linguistic patterns.
+* **Deep Learning Superiority:** By utilizing deep neural networks and backpropagation, the model converts text into dense vector embeddings. Hidden layers process these embeddings to understand sequence, context, and structural importance, identifying equivalent meanings across completely different vocabulary sets.
+
+### 8. Transfer Learning and Fine-Tuning (BERT/DistilBERT)
+Leveraging pre-trained models eliminates the need to train language fundamentals from scratch, drastically reducing computational overhead.
+* **Strategic Fine-Tuning:** The architecture involves loading a foundational model, freezing its base layers (to retain general language comprehension), and retraining the output layers specifically on the target document categories.
+* **Latency vs. Parameter Count Trade-off:** System latency in real-time inference is directly tied to the model's parameter count. DistilBERT was strategically selected over standard BERT; its distilled parameter count ensures high-throughput processing (critical for the ≥ 100 documents/second requirement) while retaining maximal predictive accuracy.
+
+### 9. Evaluating Performance: F1-Macro vs. The Accuracy Trap
+Applying standard accuracy metrics to heavily imbalanced text corpora results in deceptive model evaluation.
+* **The Accuracy Trap:** In datasets dominated by a majority category, models achieve artificially high accuracy simply by predicting the majority class by default, completely failing on minority classes.
+* **Robust Evaluation Metrics (F1-Score):** To prevent biased evaluation, the system is scored using the F1-Macro metric. This calculates a harmonic mean between **Precision** (True Positives / Predicted Positives) and **Recall** (True Positives / Actual Positives). 
+* **Macro-Averaging:** By using Macro-averaging, the evaluation treats every category with equal importance, ensuring that the model's predictive power is balanced across all classifications regardless of their sample size.
