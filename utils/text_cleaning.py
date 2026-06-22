@@ -130,3 +130,62 @@ class TextCleaningPipeline(BaseTextCleaner):
         except Exception as e:
             logger.error(f"TextCleaningPipeline execution failed: {e}")
             raise
+
+# utils/text_cleaning.py (Add these below your existing classes)
+
+class FinnishMorphologyCleaner(BaseTextCleaner):
+    """
+    Sanitizes Finnish text by preserving agglutinative suffixes.
+    Strictly avoids aggressive stemming that would destroy word roots.
+    """
+    def clean(self, text: str) -> str:
+        # Finnish relies on specific vowel harmony; avoid aggressive character stripping
+        # We only clean structural noise, never morphological suffixes
+        return text.strip()
+
+class SwedishCompoundCleaner(BaseTextCleaner):
+    """
+    Protects Swedish diacritics (å, ä, ö) and preserves compound structure
+    by preventing over-splitting.
+    """
+    def clean(self, text: str) -> str:
+        # Ensure we do not decompose combined diacritics into base chars + rings
+        return unicodedata.normalize("NFC", text)
+
+class LanguageSpecificSanitizer(BaseTextCleaner):
+    """
+    Polymorphic sanitizer that routes text to the correct linguistic cleaning strategy.
+    """
+    def __init__(self, lang_code: str) -> None:
+        self.lang_code = lang_code
+        self.cleaners = {
+            "en": [ArtifactCleaner(), DuplicationCleaner()],
+            "sv": [SwedishCompoundCleaner(), DuplicationCleaner()],
+            "fi": [FinnishMorphologyCleaner(), DuplicationCleaner()]
+        }
+
+    def clean(self, text: str) -> str:
+        strategy = self.cleaners.get(self.lang_code, self.cleaners["en"])
+        for cleaner in strategy:
+            text = cleaner.clean(text)
+        return text
+
+# utils/text_cleaning.py
+
+class CleaningObservabilityDecorator(BaseTextCleaner):
+    """
+    Decorator that logs the impact of the cleaning process (e.g., character count changes).
+    """
+    def __init__(self, cleaner: BaseTextCleaner) -> None:
+        self.cleaner = cleaner
+
+    def clean(self, text: str) -> str:
+        initial_len = len(text)
+        non_ascii = sum(1 for c in text if ord(c) > 127)
+        
+        result = self.cleaner.clean(text)
+        
+        logger.debug(f"Cleaner {type(self.cleaner).__name__}: "
+                     f"Removed {initial_len - len(result)} chars. "
+                     f"Initial Non-ASCII count: {non_ascii}")
+        return result
