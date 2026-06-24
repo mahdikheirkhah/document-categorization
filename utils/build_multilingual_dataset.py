@@ -30,18 +30,45 @@ from utils.data_fetcher import (
     SwedishTranslationFetcher,
     FinnishTranslationFetcher,
 )
+from utils.text_cleaning import LanguageSpecificSanitizer
+
+
+def _is_translatable(text: str) -> bool:
+    """
+    True only for genuinely linguistic documents. Filters out the non-text junk in
+    20 Newsgroups (ASCII art, symbol/separator lines, single giant tokens) that
+    makes the NMT model degenerate into repetition ("^ ^ ^", "# # #", "PRIMA PRIMA").
+
+    Args:
+        text (str): A (already cleaned) English document.
+
+    Returns:
+        bool: Whether the document is worth translating.
+    """
+    words = text.split()
+    if len(words) < 3:
+        return False
+    alpha_ratio = sum(c.isalpha() for c in text) / max(1, len(text))
+    uniq_ratio = len(set(words)) / len(words)
+    longest = max(len(w) for w in words)
+    return (
+        alpha_ratio >= 0.45
+        and uniq_ratio >= 0.3
+        and not (longest > 40 and len(words) < 5)
+    )
 
 OUTPUT_DIR: str = "data/processed_data"
 OUTPUT_PATH: str = os.path.join(OUTPUT_DIR, "multilingual_corpus.csv")
 
 
-def build(sample_size: int) -> pd.DataFrame:
+def build(sample_size: int = None) -> pd.DataFrame:
     """
     Builds and persists the English+Swedish+Finnish corpus.
 
     Args:
-        sample_size (int): Number of English documents to translate per language
-            (stratified by label so category balance is preserved).
+        sample_size (int, optional): Number of English documents to translate per
+            language (stratified by label so category balance is preserved). If
+            ``None``, the ENTIRE English corpus is translated ("everything").
 
     Returns:
         pd.DataFrame: The combined multi-language corpus (SCHEMA_COLUMNS).
@@ -50,23 +77,36 @@ def build(sample_size: int) -> pd.DataFrame:
         os.makedirs(OUTPUT_DIR, exist_ok=True)
 
         english = EnglishNewsgroupsFetcher().fetch()
-        fraction = min(1.0, sample_size / len(english))
-        en_sample = (
-            english.groupby("label", group_keys=False)
-            .sample(frac=fraction, random_state=42)
-            .reset_index(drop=True)
-        )
+        if sample_size is None:
+            # "Everything": translate the entire English corpus (slow, offline-scale).
+            en_sample = english.reset_index(drop=True)
+            logger.info(f"Using the ENTIRE English corpus ({len(en_sample)} docs).")
+        else:
+            # Stratified n-per-class sampling. (Using frac is fragile: for small
+            # sample sizes it rounds down to 0 per class and yields an empty set.)
+            n_classes = english["label"].nunique()
+            per_class = max(1, sample_size // n_classes)
+            en_sample = (
+                english.groupby("label", group_keys=False)
+                .sample(n=per_class, random_state=42)
+                .reset_index(drop=True)
+            )
 
-        # Drop NLP-missing docs BEFORE translating. An empty/whitespace ("ghost")
-        # or micro document makes the NMT model hallucinate (e.g. an empty input
-        # becomes Finnish "- Ei, ei, ei, ei..."), so we remove them up front. This
-        # also guarantees the saved corpus has no empty/NaN text on reload.
-        stripped = en_sample["text"].fillna("").astype(str).str.strip()
-        valid_mask = stripped.str.split().map(len) >= 3
+        # Clean the English source BEFORE translating: stripping headers, quoted
+        # replies, and signatures means they are never fed to the translator, so
+        # the SV/FI text is cleaner and the model degenerates far less.
+        sanitizer = LanguageSpecificSanitizer("en")
+        en_sample["text"] = en_sample["text"].fillna("").astype(str).map(sanitizer.clean)
+
+        # Then drop empty/micro AND non-linguistic ("garbage") docs up front, so we
+        # never waste translation on them or save degenerate output (ASCII art,
+        # symbol lines, single giant tokens that collapse into "^ ^ ^" / "# # #").
+        valid_mask = en_sample["text"].map(_is_translatable)
         dropped = int((~valid_mask).sum())
         en_sample = en_sample[valid_mask].reset_index(drop=True)
         logger.info(
-            f"Dropped {dropped} empty/micro docs; translating {len(en_sample)} documents..."
+            f"Cleaned + filtered: dropped {dropped} low-quality docs; "
+            f"translating {len(en_sample)} documents..."
         )
 
         # Same documents across languages -> one identical label space.
@@ -90,8 +130,8 @@ if __name__ == "__main__":
     parser.add_argument(
         "--sample-size",
         type=int,
-        default=300,
-        help="Number of English documents to translate per language.",
+        default=None,
+        help="Docs per language to translate. Omit to translate the ENTIRE corpus.",
     )
     args = parser.parse_args()
     build(args.sample_size)

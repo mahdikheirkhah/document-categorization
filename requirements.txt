@@ -1,0 +1,30 @@
+# Document Categorization & Tagging — dependencies
+# (mirrors pyproject.toml; pinned to the versions used in development)
+#
+# GPU training: on a Linux NVIDIA VM install TensorFlow with CUDA support, e.g.
+#     pip install "tensorflow[and-cuda]==2.21.0"
+# (or use a GCP Deep Learning VM image, which ships TF + CUDA preconfigured).
+
+# --- Core NLP / ML ---
+tensorflow==2.21.0
+tf-keras==2.21.0
+transformers==4.57.6
+datasets==5.0.0
+spacy==3.8.14
+scikit-learn==1.9.0
+pandas==3.0.3
+numpy==2.4.6
+langdetect==1.0.9
+loguru==0.7.3
+tqdm
+
+# --- Visualization / dashboard ---
+matplotlib==3.11.0
+seaborn==0.13.2
+streamlit==1.58.0
+
+# --- Data-build / translation step only (Opus-MT EN->SV/FI) ---
+# Needed to (re)build the multilingual corpus, NOT to train on an existing one.
+sentencepiece==0.2.1
+sacremoses==0.1.1
+# torch        # uncomment to run translation (utils/build_multilingual_dataset.py)
