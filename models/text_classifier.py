@@ -1,3 +1,5 @@
+from huggingface_hub.inference._generated.types import zero_shot_image_classification
+from huggingface_hub.inference._generated.types import zero_shot_image_classification
 import os
 # CRITICAL: Force TensorFlow to use Legacy Keras before importing Hugging Face
 os.environ["TF_USE_LEGACY_KERAS"] = "1"
@@ -12,7 +14,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import f1_score, roc_auc_score, accuracy_score
 from sklearn.preprocessing import LabelBinarizer
 from transformers import AutoTokenizer, TFAutoModelForSequenceClassification
-
+from utils.tokenization import TokenizerFactory
 # Regulatory Compliance: Set global seeds for reproducibility
 np.random.seed(42)
 tf.random.set_seed(42)
@@ -74,10 +76,17 @@ class BaselineClassifier(BaseTextClassifier):
     """
 
     def __init__(self, max_features: int = 10000) -> None:
-        self.vectorizer = TfidfVectorizer(max_features=max_features)
-        # random_state=42 enforced per CONTRIBUTING.md
+        self.tokenizer_factory = TokenizerFactory()
+        self.eng_tokenizer = self.tokenizer_factory.get_tokenizer("en")
+        
+        # Inject our custom tokenizer into TF-IDF
+        self.vectorizer = TfidfVectorizer(
+            max_features=max_features,
+            tokenizer=self.eng_tokenizer.tokenize,
+            token_pattern=None # Required by sklearn when using a custom tokenizer
+        )
         self.model = LogisticRegression(max_iter=1000, random_state=42, class_weight="balanced")
-        logger.info("Initialized BaselineClassifier (TF-IDF + Logistic Regression).")
+        logger.info("Initialized BaselineClassifier with custom TokenizerFactory.")
 
     def train(self, X_train: list[str], y_train: list[int], X_val: list[str] = None, y_val: list[int] = None) -> None:
         try:
@@ -122,11 +131,12 @@ class DistilBertClassifier(BaseTextClassifier):
             self.model = TFAutoModelForSequenceClassification.from_pretrained(
                 model_name, 
                 num_labels=num_classes, 
-                use_safetensors=False
+                use_safetensors=False,
+                trust_remote_code=False
             )
             
             # Using Adam optimizer with a learning rate of 3e-5 as required
-            optimizer = tf.keras.optimizers.Adam(learning_rate=3e-5)
+            optimizer = tf.keras.optimizers.legacy.Adam(learning_rate=3e-5)
             loss = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True)
             
             self.model.compile(optimizer=optimizer, loss=loss, metrics=["accuracy"])
@@ -137,7 +147,8 @@ class DistilBertClassifier(BaseTextClassifier):
 
     def _prepare_tf_dataset(self, texts: list[str], labels: list[int] = None, batch_size: int = 16) -> tf.data.Dataset:
         """Encapsulated helper to tokenize and format data for TensorFlow."""
-        encodings = self.tokenizer(texts, truncation=True, padding=True, max_length=self.max_length, return_tensors="tf")
+        # Changed padding to "max_length" to fix Apple Silicon Metal GPU recompilation bug
+        encodings = self.tokenizer(texts, truncation=True, padding="max_length", max_length=self.max_length, return_tensors="tf")
         
         if labels is not None:
             dataset = tf.data.Dataset.from_tensor_slices((dict(encodings), labels))
