@@ -17,6 +17,7 @@ OOP design:
     * Polymorphism -> MultilingualCorpusFetcher drives any list of BaseDatasetFetcher.
 """
 
+import os
 from abc import ABC, abstractmethod
 
 import pandas as pd
@@ -183,6 +184,7 @@ class BaseTranslationFetcher(BaseDatasetFetcher):
         sample_size: int = None,
         batch_size: int = 16,
         random_state: int = 42,
+        framework: str = None,
         translator=None,
     ) -> None:
         """
@@ -194,6 +196,8 @@ class BaseTranslationFetcher(BaseDatasetFetcher):
                 sample of this size to bound cost. Defaults to None (translate all).
             batch_size (int): Translation batch size for throughput.
             random_state (int): Seed for reproducible sampling.
+            framework (str, optional): Backend for the pipeline ('pt' or 'tf').
+                Defaults to None (auto-detect: PyTorch if available, else TensorFlow).
             translator (callable, optional): Pre-built translation callable for
                 dependency injection in tests. Defaults to None (lazy-loaded).
         """
@@ -207,11 +211,29 @@ class BaseTranslationFetcher(BaseDatasetFetcher):
             self.sample_size = sample_size
             self.batch_size = batch_size
             self.random_state = random_state
+            self.framework = framework
             # Optional dependency injection (testability); lazily loaded otherwise.
             self._translator = translator
         except Exception as e:
             logger.error(f"Failed to initialize {type(self).__name__}: {e}")
             raise
+
+    def _resolve_framework(self) -> str:
+        """
+        Selects the inference backend: an explicit override if provided, else
+        PyTorch when installed, otherwise TensorFlow (this project ships TF only).
+
+        Returns:
+            str: 'pt' or 'tf'.
+        """
+        if self.framework is not None:
+            return self.framework
+        try:
+            import torch  # noqa: F401
+
+            return "pt"
+        except Exception:
+            return "tf"
 
     def _load_translator(self):
         """
@@ -222,10 +244,22 @@ class BaseTranslationFetcher(BaseDatasetFetcher):
         """
         try:
             if self._translator is None:
+                framework = self._resolve_framework()
+                if framework == "pt":
+                    # macOS fix: stop transformers from importing TensorFlow next to
+                    # PyTorch (two OpenMP runtimes in one process -> "mutex lock
+                    # failed" abort). Run translation in a process that does NOT also
+                    # load the TF transformers classes (i.e. the offline build step,
+                    # not the same kernel that trains the TF classifier).
+                    os.environ.setdefault("USE_TF", "0")
                 from transformers import pipeline
 
-                logger.info(f"Loading OPUS-MT translation model '{self.model_name}'...")
-                self._translator = pipeline("translation", model=self.model_name)
+                logger.info(
+                    f"Loading OPUS-MT model '{self.model_name}' (framework={framework})..."
+                )
+                self._translator = pipeline(
+                    "translation", model=self.model_name, framework=framework
+                )
             return self._translator
         except Exception as e:
             logger.error(f"Failed to load translation model '{self.model_name}': {e}")
@@ -244,8 +278,9 @@ class BaseTranslationFetcher(BaseDatasetFetcher):
                 return self.source_dataframe
 
             fraction = self.sample_size / len(self.source_dataframe)
-            sampled = self.source_dataframe.groupby("label", group_keys=False).apply(
-                lambda group: group.sample(frac=fraction, random_state=self.random_state)
+            # GroupBy.sample keeps the grouping column (unlike groupby.apply in pandas 3).
+            sampled = self.source_dataframe.groupby("label", group_keys=False).sample(
+                frac=fraction, random_state=self.random_state
             )
             logger.info(
                 f"Sampled {len(sampled)} documents (stratified by label) for translation."

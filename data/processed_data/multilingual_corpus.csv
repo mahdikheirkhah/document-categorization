@@ -1,0 +1,2194 @@
+text,label,label_text,language
+"
+
+I am fairly sure that she could obtain citizenship by making an
+application for it. It might require immigration to Germany, but
+I am almost certain that once applied for citizenship is inevitable
+in this case.
+
+
+
+
+More interesting only for your propaganda purposes. I have said several
+times now that I don't consider Iran particularly exemplary as a good
+Islamic state. We might talk about the rights of people in ""capitalist
+secular"" third world countries to give other examples of the lack of
+rights in third world countries broadly. Say, for example, Central
+American secular capitalist countries whose govt's the US supports
+but who Amnesty International has pointed out are human rights vacua.
+",0,alt.atheism,en
+"
+: >EVER HEAR OF
+: >BAPTISM AT BIRTH?  If that isn't preying on the young, I don't know what
+: >is...
+: >
+: RB>   
+: RB>   No, that's praying on the young.  Preying on the young comes
+: RB>   later, when the bright eyed little altar boy finds out what the
+: RB>   priest really wears under that chasible.
+
+Does this statement further the atheist cause in some way, surely it's
+not intended as wit ...",0,alt.atheism,en
+"
+
+
+	Who does the categorizing?
+
+	
+---  
+
+  "" I'd Cheat on Hillary Too.""",0,alt.atheism,en
+"Hi, 
+
+the subject says it all. Is there a PD viewer for gl files (for X)?
+
+Thanks
+",1,comp.graphics,en
+"Please , I need the starting address (pointer) for the beginning 
+of the color information (RGB) on VGA mode 68h (that's 68 hex, gee, 
+duh!)...
+
+Thanks SOOOO much (hugs and kisses) in advance.....",1,comp.graphics,en
+"
+This sounds wonderful, but it seems no one either wants to spend time doing
+this, or they don't have the power to do so.  For example, I would like
+to see a comp.graphics architecture like this:
+
+comp.graphics.algorithms.2d
+comp.graphics.algorithms.3d
+comp.graphics.algorithms.misc
+comp.graphics.hardware
+comp.graphics.misc
+comp.graphics.software/apps
+
+However, that is almost overkill.  Something more like this would probably
+make EVERYONE a lot happier:
+
+comp.graphics.programmer
+comp.graphics.hardware
+comp.graphics.apps
+comp.graphics.misc
+
+It would be nice to see specialized groups devote to 2d, 3d, morphing,
+raytracing, image processing, interactive graphics, toolkits, languages,
+object systems, etc. but these could be posted to a relevant group or
+have a mailing list organized.
+
+That way when someone reads news they don't have to see these subject
+headings, which are rather disparate:
+
+System specific stuff ( should be under comp.sys or comp.os.???.programmer ):
+
+	""Need help programming GL""
+	""ModeX programming information?""
+	""Fast sprites on PC""
+
+Hardware technical stuff:
+
+	""Speed of Weitek P9000""
+	""Drivers for SpeedStar 24X""
+
+Applications oriented stuff:
+
+	""VistaPro 3.0 help""
+	""How good is 3dStudio?""
+	""Best image processing program for Amiga""
+
+Programming oriented stuff:
+
+	""Fast polygon routine needed""
+	""Good morphing alogirhtm wanted""
+	""Best depth sort for triangles?""
+	""Which C++ library to get?""
+
+I wish someone with the power would get a CFD and then a CFV going on
+this stuff....this newsgroup needs it.",1,comp.graphics,en
+"For some reason I never saw the original post on this thread, but if you are
+looking for fast polygon routines on vga on a PC, you really can't go past
+the mode X stuff from Dr Dobbs. This code is all p.domain (as far as I know),
+and in the original articles, the routines were all presented as dumb vga
+routines, and then optimised to modeX with some interesting discussion along
+the way.
+If you are interested, I could find out more details of the issues in question,
+(I have them at home).",1,comp.graphics,en
+"
+Yeah, Corel Draw and WordPerfect Presentations pretty limited here, too.
+	Since there's no (not really) such thing as a decent raster to
+vector conversion program, this ""tracing"" technique is about it.  Simple
+stuff, like b&w logos, etc. do pretty well, while more complicated stuff
+goes haywire.  I suspect (even though I don't write code) that a good
+bitmapped to vector conversion program would probably be as big as most
+of these application softwares we're using -- but even so, how come one
+hasn't been written? (to my knowledge).  I mean, even Hijaak, one of the
+commercial industry standards of file conversion, hasn't attempted it yet.",1,comp.graphics,en
+"
+
+I use the Diamond SpeedStar 24X in 1024X768X256 mode all of the time.  I 
+have NOT found distortions in the cursor.  The cursor is a little jumpy 
+from time to time (due to 32 bit access to the swap file), but it is never 
+distorted.",2,comp.os.ms-windows.misc,en
+"I'm trying to find Tom Haapanen, formerly tom@wes.on.ca
+who was the keeper of the FAQ for this newsgroup.
+He was working at Watrerloo Engineering Software,
+but netfind can't even find that (but it may have
+been a uucp connection).  If anyone knows how to
+contact Tom, please let me know.",2,comp.os.ms-windows.misc,en
+"I am using WFW 2.0c with a Canon BJ10e. The printer driver is that 
+which comes with Windows 3.1. Unfortatunately, I am having a problem with 
+printing page numbers on the bottom of the page. I can print page number 
+on the top of the page, but not on the bottom. Has anybody had a similar 
+problem and/or does anybody have a solution for such a problem.
+
+Thanks
+pwoodcoc@business.uwo.ca",2,comp.os.ms-windows.misc,en
+"Is anyone out there running a MS-DOS system with a LocalTalk board? I am on an
+Appletalk network, hooked up with a DayStar Digital LT200 MC LocalTalk
+Interface Board, running on a PS/2 Model 70. I'm using the AppleShare PC
+software for file server and network access. It works fine under DOS or the
+Window or OS/2 DOS box. But when I try to load it *before* Windows, so that
+every application I run could get access to it, the machine crashes hard as
+soon as I start up an application. And of course, things look pretty hopeless
+for OS/2 (but who knows). 
+
+So, does anyone have experience with this bizarre and obsolete setup?",2,comp.os.ms-windows.misc,en
+"
+DOS 5.0/6.0 cannot read the NTFS file system, although the NTFS file system
+can read the FAT file system of DOS.  I have WindowsNT on a seperate
+partition on my machine at home, and I can read my DOS disks from Windows NT,
+but not vice-versa.
+
+As far as the robustness of the file system, it seems to be very fast, and
+I have yet to have a single problem with it.  That doesn't prove it's better
+than the FAT system though.  Read the book 'Inside Windows NT,' it will give
+you all the info you're looking for.
+
+		Scott
+
+
+-- ",2,comp.os.ms-windows.misc,en
+"How about 250MB/s for 64-bit VLB or 350MB/s for QuickRing {Apple's
+implimentation of VLB (Byte 10/92:132)} QuickRing is interesting in that
+it allows interleaving with other card so that the 350MB/s can be divided 
+among many cards at the same time {NuBus 90 and MCA are about the only card 
+interfaces able to DO anything with that kind of speed and even NuBus 90
+ditzes around at ~30MB/s with a burst mode: 80MB/s.
+""MCA {Also called Micro Channel}
+ IBM's 16 and 32-bit bus; ""allows use of more than one CPU in a computer"" 
+ (DCT) and anything can talk to anything, >>as fast as the two components 
+ involved can handle it.<< Never took off because it was incompatible with ISA 
+ and EISA.  Planned to be bus interface of IBM PowerPC 601 (Carl Jabido).",3,comp.sys.ibm.pc.hardware,en
+"Hi Netters!
+
+I'm looking at purchasing some sort of backup solution.  After you read about
+my situation, I'd like your opinion.  Here's the scenario:
+
+1.  There are two computers in the house.  One is a small 286 (40MB IDE drive).
+    The other is a 386DX (213 SCSI drive w/ Adaptec 1522 controller).  Both 
+    systems have PC TOOLS and will use Central Point Backup as the backup / 
+    restore program.  Both systems have 3.5"" and 5.25"" floppies.
+
+2.  The computers are not networked (nor will they be anytime soon).
+
+From what I have seen so far, there appear to be at least 4 possible
+solutions (I'm sure there are others I haven't thought about).  For these 
+options, I would appreciate hearing from anyone who has tried them or sees 
+any flaws (drive type X won't coexist with device Y, etc.) in my thinking 
+(I don't know very much about these beasts):
+
+1.  Put 2.88MB floppy drives (or a combination drive) on each system.
+    Can someone supply cost and brand information?  What's a good brand?
+    What do the floppies themselves cost?
+
+
+2.  Put an internal tape backup unit on the 386 using my SCSI adapter, and
+    continue to back up the 286 with floppies.  Again, can someone recommend a
+    few manufacturers?  The only brand I remember is Colorado Memories.  Any
+    happy or unhappy users (I know about the compression controversy)?
+ 
+
+3.  Connect an external tape backup unit on the 386 using my SCSI adapter, and
+    (maybe?) connect it to the 286 somehow (any suggestions?)
+
+
+4.  Install a Floptical drive in each machine.  Again, any gotcha's or 
+    recommendations for manufacturers?  
+
+I appreciate your help.  You may either post or send me e-mail.  I will
+summarize all responses for the net.
+
+Thanks,",3,comp.sys.ibm.pc.hardware,en
+"
+
+Hmmmmmm...I got my comp with windows pre-installed, and stacks is still
+9,256.  if it was needed only for setup, wouldn't the morons take it
+off???  (also, I don't have the qemm manual, as verything came with the
+comp,  but not the qemm manual, so could anyone verify this???)
+
+Mickey",3,comp.sys.ibm.pc.hardware,en
+"Hi netters!
+	I'm looking for books that showing how to fix your own hardware problem.
+	Please let me know if you have any books in mind.  Thanks.
+",3,comp.sys.ibm.pc.hardware,en
+"I am trying to help a friend of mine get the second serial port on his DTK
+I/O Plus II card working and it does not want to cooperate. The documentation
+is no help at all. As an example, it says 'The serial port can be changed to
+COM2 from COM1 by moving jumpers.' but does not say what jumpers to move!! :-(
+
+There are 2 banks of jumpers. The first one is labeled as follows:
+C1
+C2
+S2
+P2
+P1
+G
+
+The second bank is labeled ""IRQ"" and has the following labels:
+5C
+5S
+4
+3
+3S
+2C
+2S
+
+I have determined that the C1 & C2 jumpers tell it to address the first
+serial port as COM1 or COM2. The P1,P2 jumpers tell it to use the printer
+port as LPT1 or LPT2. I am guessing that the ""G"" enables the game port and
+the ""S2"" SHOULD enable the second serial port, but I can't get it to work. I
+have tried numerous setting on the IRQ bank without success. I assume that
+this bank must tell the card which IRQ's to use for both ports, but I don;t
+know how.  Any suggestions would be greatly appreciated!!
+
+EBD
+-- 
+Elliot Dierksen   ""Is that a real poncho... I mean is that a Mexican poncho or
+                   is that a Sears  poncho?  Hmmm... no foolin'..."" -- F. Zappa",3,comp.sys.ibm.pc.hardware,en
+"
+
+Frankly, I think this model is a screwup.  It does not have PostScriptlevel
+2, only has 13 fonts, and does not even have  fine print or photograde, or
+grayshare.  Even the 300 model has this!  I am shocked by the kind of
+features you get for this printer.  I myself was hoping for some decent
+printer to replace the Personal Laser Writers.  
+-- 
+A motion picture major at the Brooks Institute of Photography, CA
+Santa Barbara and a foreign student from Kuala Lumpur, Malaysia.",4,comp.sys.mac.hardware,en
+"
+I'm having exactly the same problem.  Again, it's fine when I switch to 16
+colors or a smaller monitor.  My configuration is:
+
+Model: Centris 610 with 4 MB/80 HD, 512 VRAM, no cards
+Monitor: MAG MX15F with 16"" monitor adaptor (for resolution of 832*624)
+
+I just discovered the problem a little while ago after plugging in my
+new MAG monitor.  It seems to appear either when scrolling through a
+window or when using Alpha or Word and I enter <return>.
+
+My guess is bad VRAMs as well.  I really hope it isn't a design flaw.  Is
+anyone at Apple listening?",4,comp.sys.mac.hardware,en
+"
+That's fine, but would you name the ""industy experts"" so I can try to track
+this down?
+
+
+Yup.  That's why I'm kinda curious... most SCSI problems I've encountered
+are due to cabling.
+
+noah",4,comp.sys.mac.hardware,en
+"Could someone please do one of the following:
+1. Point to an init that allows me to turn off power management on my
+   Duo 210.
+1. Write an init that would allow me to turn off ALL power management on
+   Duo 210.
+2. Point me to documentation on power management so that I can write such
+   an init.
+3. Explain to me why such an init is totally or partially impossible.
+
+Ideally, of course, I would like to be able to turn in on and off on the
+fly.
+
+Surely such an init would be very helpful to Powerbook owners who want to
+do MIDI... I cannot imagine why it is not possible to do, unless it requires
+Apple to divluge some secret. And if that is the case, the surely APPLE
+could write the init. (Unless Apple brings out new models so fast these
+days that even THEY don't know how they work).",4,comp.sys.mac.hardware,en
+"I have a Laserwriter IIg that has disappeared completely from the
+Network, i.e. it's name doesn't show up in any zone.  (You can print
+to it from it's serial interface, tho!)  I have seen some discussion
+here about changing the zone a IIg is in... including some PS code
+that lets you change the zone.  Is there maybe some PS code you can
+use to have it go back to all its factory default settings?  I have
+a feeling that's what needed to heal ours.",4,comp.sys.mac.hardware,en
+"Xcursor version 4.1 is now on export as xcursor4.1.tar.Z. I've added 
+a new option to determine if a requested cursor size is OK. Of course,
+your server may lie!
+",5,comp.windows.x,en
+"
+It works on xterms. At least I have no problem with it. - Back to the original
+question:
+
+I usually start new xterms by selecting the proper menu entry in my desktop
+menu. Here is a sample command:
+
+	xterm -sl 999 -n ls12i -title ls12i -e rlogin ls12i &
+
+The -n and -title options give the text for window and icon. As I use the
+tcsh (a wonderful extension of the csh), I can do the following:
+
+I have an
+
+	alias precmd echo -n '^[]2\;${HOST}:$cwd^G'
+
+in my ~/.tcshrc. This is a special alias for tvtwm. It is executed each time
+before printing the prompt. So, I have the current host name and the current
+directory path in the title bar of my xterms.
+
+------------------------------------------------------------------------------
+      ____                                                                    
+  UniDo  /  Ingolf Markhof  University of Dortmund, LS Informatik XII         
+ ___/   /                   P.O. Box 500 500, D-4600 Dortmund 50, F.R. Germany
+ \  \  /                    Phone: +49 (231) 755 6142, Fax: +49 (231) 755 6555  
+  \__\/                     Email: markhof@ls12.informatik.uni-dortmund.de    
+                                                                              ",5,comp.windows.x,en
+"On export.lcs.mit.edu directory contrib, and avahi.inria.fr directory pub/xpm:
+xpm-3.2f-to-3.2g.patch.Z
+xpm-3.2g.tar.Z
+
+/* Copyright 1990-93 GROUPE BULL -- See license conditions in file COPYRIGHT */
+/**************************************************************************\
+* 									   *
+*  			HISTORY of user-visible changes			   *
+* 									   *
+\**************************************************************************/
+
+3.2g	(93/04/26)
+
+    ENHANCEMENTS:
+	- much faster close colors
+	- piping from/to compressed files now handles GNU's gzip (.z)  format
+	- added XpmColorKey attribute - ability to specify which visual's
+	  colors to use (ie: now it's possible to read in a pixmap in a
+	  color visual, but use the colors specified for monochrome).
+	- added -mono, -grey4, -grey and -color options to sxpm to demonstrate
+	  the XpmColorKey attribute.
+		- Jason Patterson <jasonp@fitmail.qut.edu.au>
+
+    BUGS CORRECTED:
+	- fixed bug where redefining ""None"" as a pixel stopped mask generation
+	- minor SVR4 defines for <string.h>
+	- fixed annoying closecolor bug related to read/write color cells
+	- fixed minor bug in color value -> pixel overloading
+	- manual updated to include new red/green/blue closeness attributes
+		- Jason Patterson <jasonp@fitmail.qut.edu.au>
+
+	- the top Imakefile was missing the depend target
+	- sxpm/Imakefile fixed so that -L../lib is set before the standard
+	  library location.
+		- Vivek Khera <khera@cs.duke.edu>
+
+	- lib/xpmP.h now defines bcopy as memcpy for VMS (required by recent
+	  versions of VMS)
+		- J. Daniel Smith <dsmith@ann-arbor.applicon.slb.com>
+
+	- the lib/Imakefile didn't work with X11R4.
+",5,comp.windows.x,en
+"X Window installation on a Sun4/470 with CG6 alone and with CG2 as
+screen:0.0 and CG6 as screen:0.1.
+
+Questions:
+1)  Are there any hardware configuration changes on the CG2 and/or
+CG6 devices that need to be made other than pulling out and inserting the
+CG2 frame buffer in the vme bus?
+
+2)  The CG6 is called a 'graphics accelerator' as apposed to a 'frame buffer'.
+What is the significance of this to the X server and how do we install
+the SunOS driver / X to be compatable.
+
+-----------------------
+I would appreciate any information on this. 
+I am posting this on the behalf of Dr. John Charlton (who does not have net
+access). Please reply to him directly at charlton@bme.unc.edu or just send
+it at this address and I will forward it. 
+
+Thank you for your help!",5,comp.windows.x,en
+"This may be an FAQ, but I dont know where to get the FAQ list!
+My OpenLook application has a few buttons. The first button turns
+red(gets highlighted?) as soon as the sprite(mouse) is moved into the
+application window. How do I suppress this?",5,comp.windows.x,en
+"
+)>>   ""The Catalog of Personal Computing Tools for Engineers and Scien-
+)>>   tists"" lists hardware cards and application software packages for 
+)>>   PC/XT/AT/PS/2 class machines.  Focus is on engineering and scien-
+)>>   tific applications of PCs, such as data acquisition/control, 
+)>>   design automation, and data analysis and presentation.  
+
+)>>   If you would like a free copy, reply with your (U. S. Postal) 
+)>>   mailing address.
+
+I have a copy of this catalog in front of me as I write this.
+It does have tons of qool stuff in it. 
+My impression is that they try not to send it out to ""browsers"". It
+appears that if your not a buyer or an engineer they do not want to
+waste a catalog on you. When you get a catalog there's a ""VIP Code"" you
+have to give them ""to ensure your continued subscription."".
+Anyway, if you want to get in touch with them, the company is
+
+Personal Computing Tools
+550 Division Street
+Campbell, CA 95008
+(408) 378-8400 
+(They also have fax #'s and toll free #'s for ordering and tech support)",6,misc.forsale,en
+"SOMEONE PLEASE BUY THESE BOOKS!!!!!  I AM NOT ASKING MUCH!!!!!!
+
+JUST MAKE ME AN OFFER AND I WILL PROBABLY TAKE IT!!!!!
+
+* Calculus w/ Analytic Geometry by Authur B. Simon (copyright date 1982), below avg condition but still readable! 
+
+* Writing good software in Fortran, Graham Smith. 
+
+* The Holt Handbook by Kirszner & Mandell (copyright 1986) 720+ page writing guide. 
+
+* Algebra & Trigonometry, A problem Solving Approach, 3rd edition by W. Flemming and D. Varberg.  Very good condition.
+
+* General Chemistry Principles & Modern Applications, R. Petrucci, fourth
+  edition.  Big Book! Very good condition!
+
+* Solutions manual for Chemistry book.  Paperback.
+
+* Study guide for Chemistry book.  Paperback.
+
+
+Send me your offers via email at 02106@chopin.udel.edu
+
+",6,misc.forsale,en
+"Hey,
+ 
+        I have a Color Watchman by SONY for sale. It is 6""x3""x1"" in total
+and the screen is 2.75"" diagonal, over 2"" wide, over 1.5"" tall. I got it 2
+years ago for $320, so I'm asking $160 obo.
+ 
+        * VHF and UHF switch for channels 2 through 69.
+        * slot for Audio/Video in from VCR (appropriate cord provided)
+        * slot for phones
+        * slot for A/C adaptor (A/C adaptor also provided)
+        * slot for external Antenna (internal antenna provided)
+        * On/Off switch
+        * Manual Tuning, Volume, Brightness and Hue
+        * Battery run as well (4 AA batteries provided)
+ 
+It's been used very little. Looks like new. Email if interested.",6,misc.forsale,en
+"BOY OH BOY, HAVE I GOT A DEAL FOR YOU !!!!!!!!!
+
+How does this sound.......
+
+	I have decided to sell all of this as a package deal,
+(unless someone really wants something seperate, then I'm open
+to that as well).....
+
+	Kramer Striker 100st electric guitar
+		Dark metallic blue...
+		Floyd Rose Tremlo...
+		Tuning lockers at the nut...
+		Great action, all-around great guitar!!
+
+			-plus-
+
+	Korg pme40x professional modular effects pedal board
+		Has flanger, chorus, and graphic equilizer...
+		Has a unique bonus...you can buy seperate pedal ""boxes""
+			that sort of slide into any of the 4 existing slots..
+		Mono input, STEREO output...
+		Perfect for the electric or acoustic guitars!!!
+
+			-plus-
+	
+	DOD American Metal distortion pedal
+		Durable, great sounding pedal...
+		Goes great with the Korg pedal board!!
+
+There you have it!  Everything you need for a great sound!!!
+Yours as a package deal for only........$300 o.b.o.!!!!!!!!!!!!!!!!!!
+
+Respond by email to  dietrijj@mentor.cc.purdue.edu  or by phone at
+(317) 495-4426 and ask for Jason.  Thanks in advance!!!",6,misc.forsale,en
+"Title just 'bout says it all:
+ 
+Grasshopper Remote Controlled Car for Sale/Trade
+ 
+Features:
+ -$75 racing engine installed (original included as well)
+ -2 sets of tires
+ -Futaba 2 channel radio with servos/receiver
+ -body completly refinished - great shape
+ -Battery and charger
+ -every thing you need to have it running right out of the box,
+  VERY fast
+ -everything 100%
+ 
+I haven't run this thing in a long time.  I had it out the other
+day just to check on it and everything is A-OK.
+ 
+I'd listen to ANY cash offers, but am more interested in trading
+for some extra storage for my computer.  If you have any of the
+following and are interested in a trade, drop me a line:
+ 
+IDE hard drive 50+ megs (MUST be 3.5"" wide, 1"" tall)
+SCSI hard drive 50+ megs (MUST be 3.5"" wide, 1"" tall)
+SCSI tape backup (any make/size)
+SCSI CD-ROM
+9600 baud modem (external)",6,misc.forsale,en
+"I need to bring on my VW Corrado for body work (I got hit). I was
+wondering if anyone has heard of any of these South Bay body shops:
+
+Akins Collision Center of Santa Clara - on Reed St
+Auto West Collision - in San Jose
+Los Gatos Acura
+Royal Auto Body - in Sunnyvale
+
+Thanks!",7,rec.autos,en
+"Hi from Australia,
+
+I am a car enthusiast in Australia.
+ 
+I am particularly interested in American Muscle cars of the 
+1960s and 1970s. ALL MAKES: AMC, Ford, Chrysler/Mopar, GM.
+
+I will be in the USA for 6 weeks from May 2nd to -June 14 1993.
+
+Chicago: Sun May 2 -Thursday May 6
+Denver:  Friday May 7 - Sunday May 9
+Austin, Texas: Monday May 10- Friday May 21
+Oklahoma City: Friday May 21 - Monday May 24
+Anaheim, California: Tuesday May 25-Thursday May 27
+Las Vegas, Nevada:  Friday May 28- Sunday May 30
+Grand Canion, Monday May 31 - Tuesday June 1
+Las Angeles, San Diego and vicinity: Wednesday June 3-Sunday June 6 June
+South Lake Tahoe, Cal: Sunday June 6 - Wednesday June 9
+Reno: Thursday June 10
+San Fransisco: Thursday June 10 - Sunday June 13
+
+
+I was wondering if anyone could send me any information of 
+car shows, swap meets, drag meets, model car shows etc. during this period.
+Can anybody tell me when the Pomona Swap meet is on this year?
+
+Also, any places to visit (eg. car museums, private collections, 
+your collection? etc. Any bit of information is appreciated!
+
+I am also interested in finding some model cars (scale Models). 
+I am intersted in 1968-1974 AMC cars. Of particular interest is:
+1968-1970 AMX
+1968-1974 Javelin
+1969 SCRAMBLER
+1970 Rebel Machine
+and others
+
+If you have any kits, plastics, diecast etc and are interested in selling them,
+tell me, I will be interested.
+
+I can also send/bring you models of Australian High performance cars if 
+you are interested.
+
+
+Please reply by email to: johnt@spri.levels.unisa.edu.au
+
+
+Thanks,",7,rec.autos,en
+"
+Had an '83 Alliance for a long time.  It was a comfortable but sluggish
+car.  I got very used to the horn on the stalk, after a couple months worth
+of getting used to it.  After I bought my next car, a Chevy, it took me
+for-EVER to get used to the horn on the steering wheel again!
+
+jim grey
+jwg@acd4.acd.com",7,rec.autos,en
+"
+Ok, I'll bite.  How is this supposed to work?",7,rec.autos,en
+"
+Personally, i wouldn't use the $1.29 product from KMart. I knew about
+this previously, but this past weekend on PBS's MotorWeek Pat Goss 
+(their resident tech type) discussed these products, and recommends
+not using them (i.e, the non-isopropyl alcohlo based injector cleaners).
+
+Supposedly only the isopropyl based cleaners actually remove moisture
+from your fuel tank as they clean your injectors.  And although the 
+others (ethyl based) do clean injectors they also cause rubber 
+components in the fuel system to deteriorate, and they don't mix well
+with water to help remove it from the fuel system.
+
+I use a product recommended by VW called 44K (by BG Products, Inc.).
+It cost more about $14.00, but it is supposed to do the job without
+the potential harmful side effects, and its results are supposed to 
+last from 2k to 4k miles. I have also used Chevron's Techtrolene (sp?).
+
+I can't say that i have noticed any difference using either, since i 
+only use these product as a preventative maintenance item.
+
+
+                                                  .  
+                                                 /                
+Larry                            __/    _______/_                 
+keys@csmes.ncsl.nist.gov       /                  \               
+                          _____     __     _____    \------- ===
+            ----------- / ____/   /  /   /__  __/              \
+         /     ___    /  / ___   /  /      / /    ____          |
+        |    /      \/ /__ /  | /  /__  __/ /__ /       \      / 
+        /___         \_______/ /_____/ /______/            ====OO
+            \       /                           \       /         
+                -            1990 2.0 16v           -
+
+
+       ---------------- FAHRVERGNUGEN FOREVER! --------------------            
+            The fact that I need to explain it to you indicates
+            that you probably wouldn't understand anyway!",7,rec.autos,en
+"Does anyone have a rear wheel for a PD they'd like to part with?
+
+Does anyone know where I might find one salvage?
+
+As long as I'm getting the GIVI luggage for Brunnhilde and have
+the room, I thought I'd carry a spare.
+
+Ride Free,
+
+Bill
+___________________________________________________________________             
+johnsw@wsuvm1.csc.wsu.edu  prez=BIMC  KotV KotRR                                
+DoD #00314  AMA #580924   SPI = 7.18   WMTC #0002  KotD #0001             
+Yamabeemer fj100gs1200pdr650 Special and a Volvo.  What more could anyone ask? ",8,rec.motorcycles,en
+"Interesting.  I'd fight the ticket.  First off, there's a 50/50 chance
+the cop won't show up.  Secondly, if he does show up, you should point
+out that he lied (purgered) on the ticket.  Why 70+?  I beleive that if
+yo're charged with going more than 15mph that the posted speed it's a
+more severe ticket.  You couldn't have p[ossibly been going 70+, right?!
+",8,rec.motorcycles,en
+"
+
+Yep...I think it's the only CB750 with a 630 chain.
+After 14 years, it's finally stretching into the ""replace"" zone.
+
+
+<Sigh> I know .... I know.",8,rec.motorcycles,en
+"
+  Well, you can accomplish both goals, actually, if you have a definite
+physical type in mind when you go to these (cough) church meetings..  If
+your tastes tend to smaller, more petite (cough) churchgoers, it is more
+likely that they will have a smaller head, and you can safely get a medium
+or small helmet.
+
+  This works for me, and I traded my spare large helmet with my best friend,
+who, at 6'9"", tends to look more for women that are over 6'0"", and can't
+usually fit into the medium size helmet he previously had...
+
+  Of course, if you aren't picky what size (*cough*) churchgoers you give
+helpful motorcycle rides to, then Ed's advice will hopefully cover any
+eventuality as far as legality is concerned, and a spare handtowel in the
+tankbag makes acceptable padding so the passenger can see out of the viewport
+(rather than the padding above the viewport) in the cases of extreme mismatch.
+
+Randy Davis                            Email: randy@megatek.com
+ZX-11 #00072 Pilot                            {uunet!ucsd}!megatek!randy
+DoD #0013",8,rec.motorcycles,en
+"For Sale 1988 Honda CBR600 (Hurricane).  I bought the bike at the end of
+last summer and although I love it, the bills are forcing me to part with
+it.  The bike has a little more than 6000 miles on it and runs very strong.
+It is in nead of a tune-up and possibly break pads but the rubber is good.
+I am also tossing in a TankBag and a KIWI Helmet.  Asking $3000.00 or best
+offer.  Add hits newspaper 04-20-93 and Micronews 04-23-93.  Interested 
+parties can call 206-635-2006 during the day and 889-1510 in the evenings
+no later than 11:00PM.  
+",8,rec.motorcycles,en
+"I am looking for a source of American League baseball stats for
+individual players in the same format as printed in newspapers, ie. I do
+not want to provide a list of players and get back nice printed reports
+for $35 a week.
+
+Does anyone know of such statistics availability and an idea of the
+cost?",9,rec.sport.baseball,en
+"
+After reading my local paper today, I found out that the Phillies
+started the 1964 season at 10-2.  I am not as old as 1964, but I've
+heard many talk about the serious choke job the Phillies did that
+season. They were ahead of the Cardinals by 15 games that season in
+mid-August.  They managed to lose a bunch from then on and the
+Cardinals took the division.  15!!! games ahead and lost it.... I
+hope this season is MUCH different.
+
+",9,rec.sport.baseball,en
+"Sherri Nichols writes
+
+Or a young Don Bordello...
+
+
+There's a strong possibility that the Bucs have absolutely no other catching  
+prospects in the minors at this point -- at least nobody ready for any serious  
+AAA/majors duty.  The main reason they might have stayed with Prince could be  
+just age, especially if Spanky was creeping toward his mid-30s or something.
+ 
+All things considered, though, I'd be a lot more comfortable with Spanky behind  
+the plate than Prince.  Isn't there decent backup backstop out there looking  
+for work?
+
+",9,rec.sport.baseball,en
+"
+
+
+
+
+Maybe I can help you. He's a major league coach with the Rockies.
+So above prediction is doubly wrong.
+
+My prediction: The Red Sox-Cubs Series and Vikings-Broncos SuperBore will
+occur at the end of the world.
+
+And one Rockie will finish in the top 10 of an offensive catagory this 
+year.
+
+And no Rockie starter will have an ERA below 3.50.
+
+And the Rangers fade will not begin until...August. They'll give way
+to the Angels. But still challenge to the end.
+
+Really. Not making any of this up. If I am, may God strike me down *ZZZZZZT*
+
+",9,rec.sport.baseball,en
+"
+
+
+
+
+
+If I remember correctly (Which is always in doubt), Horner's signing
+with the Braves was contingent on starting in Atlanta.  I think
+he could have gone back to Arizona St. for one more year if he hadn't
+signed.  Anyhow, the Braves did try to send him to Richmond once;
+it lead to a week-long walkout.  Methinks Horner had no work ethic
+before he was drafted, and minor league play wouldn't have helped.
+But his raw talent would have gotten him into the ML, and it did
+keep him there for a while, until he started falling on his wrists.
+
+",9,rec.sport.baseball,en
+": >                         MVP           Biggest       Biggest
+: >                                       Suprise       Disappointment
+: 
+: >Los Angeles Kings       Robitaille     Donnelly      Hrudey
+: 
+: 
+: I would have chosen Alex Zhitnik for biggest suprise.  They
+: did expect that he would become a great defenseman, but I don't
+: think anyone knew that he was going to be this impressive in his 
+: rookie year.  His speed, skating ability, and puck control is
+: exceptional -- he is the one to watch on the Kings.
+: 
+
+I agree, with Marty McSorely and Warren Rychel running a close second and 
+third. I am surprised more people have not noted Knickle as the biggest
+surprise, even though I personally do not really rate him well. The biggest 
+disappointment has to be Carson. Though this is really unfair, since too much 
+was expected of him. The second biggest disappointment is Melrose, with his 
+adolescent handling of the goaltending problems. Putting Hrudey on the bench 
+for a month is just stupid. It did not contribute to the team coming out of 
+its slump. MVP is surely Robitaille.",10,rec.sport.hockey,en
+"
+Since everybody wants to see Pittsburgh players not playing, the
+Stanley cup would be devaluated.
+
+-- 
+_____________________________________________________
+
+  Iskander AYARI",10,rec.sport.hockey,en
+"	Ah, so now we're into European player bashing?  What next?  
+No more French Canadiens?  Yeah, there's an idea!  Let them French-
+speaking Canadiens have their own hockey league!  We don't want them!
+	Are you _CRAZY_?  The NHL is one of the true international
+leagues, and yes, there _ARE_ many Europeans who deserve to play in
+the NHL and are better than some North Americans, look at Teemu!!!
+I, for one, am glad to see Europeans in the NHL and I hope the
+NHL soon expands to Europe.  Its nice to see all these different
+people come together to form the (soon to be) 26 hockey teams.
+	
+
+Darryl Brooks                    University at Buffalo
+                __                 ______                        ///
+       | |     /  \  \ \     / /  / _____          / /         ////
+       | |    / /\ \  \ \___/ /  (  \          ---/-/---       ///
+       | |   / /__\ \   \   /      \  \       ---/-/---       ///
+ \______/  / /      \ \  | |     ______/                  ///////",10,rec.sport.hockey,en
+"#21	PETER AHOLA		Season: 2nd
+Acquired:	'92-93, trade with Pittsburgh for future considerations
+Grade:		I (B)
+
+It is way too early to tell about Ahola, who was acquired probably because the
+Penguins figured that they would lose him in the expansion draft.  Ahola had
+only played 50 games this season (I think it's actually less; the San Jose
+Mercury News may be in err here), 20 of them with the Sharks.  In the games he
+has played, he appeared quite solid defensively, although he hasn't been
+spectacular, and his offense isn't anything to write home about (8 points);
+it's even possible that the trade may be for future considerations which turn
+out to be ... Peter Ahola.
+
+#24	DOUG WILSON		Season: 16th
+Acquired:	'91-92, trade with Chicago for RW Kerry Toporowski and
+		2nd round pick in '92 entry draft
+Grade:		I (B)
+
+I have often been accused of overly down on Wilson; I may have had too high
+expectations for him, but his legs, knees, et al., are giving out.
+Nevertheless, when he was playing, he exhibited a strong shooting and
+playmaking abilities, even if he has lost a step on defense, which,
+unfortunately, he demonstrated this year as well, as at times he was slow to
+catch the opponent forwards, and his offensive output was only good enough for
+2nd place on the team (20 points in 42 games).  But next year, which may be
+Wilson's last, if he can stay healthy, he can still be a contributor.
+
+#29	DEAN KOLSTAD		Season:	2nd
+Acquired:	'91-92, from Minnesota in dispersal draft
+Grade:		I (C-/D+)
+
+It's probably somewhat unfair for me to judge Kolstad on just a handful of
+games (forgetting exact number, but no more than 15), but at age 25 he's
+quickly running out of time if he wants to make it to the NHL.  In those games,
+he did not impress anyone; after generating 7 shots in the first period of
+the first game he played, he scored just 2 points in his tenure up here with
+the Sharks, and was even less impressive defensively, as he appeared awkward
+with his movement and was prone to giveaways.  He needs to make a leap in
+his level of performance to have any chance of making the team.
+
+#38	PAT MACLEOD		Season: 2nd
+Acquired:	'91-92, from Minnesota in dispersal draft
+Grade:		I (?)
+
+MacLeod was on the roster a lot longer than Kolstad, but it appears to my
+memory that he played less than Kolstad, because the Sharks were reluctant to
+use him, but were even more reluctant to send him to the minors, figuring that
+he wouldn't clear waivers; in fact, he has played the past 4-5 weeks with
+Kansas City, but is still technically there on a rehabilitation assignment,
+a ""rehab assignment"" that will include him playing in the Turner Cup playoffs.
+Since he has played so little, I can't even give a tentative grade on him, but
+he demonstrated last year excellent offensive skills but terrible defensive
+skills.
+
+#41	TOM PEDERSON		Season: 1st
+Acquired:	'91-92, from Minnesota in dispersal draft
+Grade:		I (B+)
+
+Called up in the middle of the season when the defensive corps was decimated
+by injuries, Pederson impressed many Sharks fan here on net, including yours
+truly.  He demonstrated very good offensive skills, scoring 20 points in
+43 games.  However, his size (5' 9"", 165 lbs.) is of concern, and soon after
+he began to shine offensive did teams begin to push him around physically,
+on both sides of the ice, although he had appeared fearless in his approach.
+But to be successful, he probably needs to bulk up to have a fighting chance
+on surviving against some of the bigger players in the league.
+
+#45	CLAUDIO SCREMIN		Season: 1st
+Acquired:	'91-92, from Minnesota in dispersal draft
+Grade:		I (D+/D)
+
+He played all of ~5 games in the league this year, but was thoroughly
+umimpressive, just as he was at the end of last season; again, it may be a
+small sample, but just as in the case of Kolstad, Scremin, at age 25, is
+quickly running out of time.  He was not a contributor on either offense or
+defense in the games he played with the Sharks.  The only notable thing that
+will go down in Scremin's entry of league stats is probably the fact that he
+was once traded for now Capitals goaltender Don Beaupre.",10,rec.sport.hockey,en
+"
+
+
+
+
+
+
+How can you assume it was a sarcastic remark?",10,rec.sport.hockey,en
+":tarnold@vnet.IBM.COM (Todd W. Arnold) said in article <19930322.101356.617@almaden.ibm.com>:
+:>It's OK as long as you trust the end-user to stay out of your application
+:>program - or as long as it runs in a system where the user can't get to it.
+:>Otherwise, you can't stop him from finding the ""load a module"" code in your
+:>program, and simply bypassing the check for a valid module.  The devious user
+:>can either modify the object code before running the program, or he can run
+:>the program under a debugger and change the instructions in memory.
+:There is a way to foil debuggers, by clearing the single step 
+:interrupt, on which a debugger depends, every few instructions in 
+:the sensitive areas of the code.
+
+This assumes the person is using the hardware debug instruction of an X86
+type processor.  It can be negated by NOP'ing the clear debug instruction,
+or by running the code on a machine simulator, like one I wrote as a senior
+project in college.  It can bypass and trace practically anything one could
+write in software.  Kind of like being on a Star Trek Holideck :-).
+",11,sci.crypt,en
+"
+This way to detect pre-encryption may be defeated ; one can do  
+transformation of the spectrum of encrypted signal just by adding some 
+pre-arranged (in the beginning of communication) function.
+I think so. Say, you can do FFT of your encrypted signal.
+Just thinking ... 
+
+-- 
+--------------------------------------------------------------------------------
+      For PGP2.1 public key finger mkagalen@lynx.dac.northeastern.edu",11,sci.crypt,en
+"
+Without real technical details, it's hard to answer this question. But
+suppose they already *are* XORing the two 40-bit parts to produce only
+40 bits of real key material? Maybe they're using the exportable version
+of RC2...? :-)",11,sci.crypt,en
+"
+No thanks.  This topic is of interest to a much wider audience.
+
+
+""In making this decision, I intend to prevent the private sector from
+developing, except with the government's approval, other microcircuits
+or algorithms that are more effective in assuring privacy.""",11,sci.crypt,en
+": At the company I worked for previously, I received a file that was des encryped
+: and the person that had sent it, went on vaction.  Rather than wait two weeks
+: I set up a straight frontal attack with one key at a time.  It only took two(2)
+: days to crack the file.  No, I don't have any faith in DES.
+
+: A.G.
+
+Fun!  Three questions:
+
+1) What hardware did you use?
+2) When you found the key, was there anything about it that was special
+   that meant you had been lucky to find it early? (Like the first 30 bits
+   all being 0)
+3) ... or did you mean a dictionary attack rather than a binary key attack?",11,sci.crypt,en
+"could 
+convenient
+then
+and
+called Global
+earth. 
+get
+meters (on
+
+Thought it means Global Positioning System. There are two precision levels, one  
+for army applications (killing has to be very accurate today) and one for civil  
+ones. The civil precision is about 20 to 30m (correct me, if I'm wrong),  
+though, it may be insufficiant for mapping buildings. But there is a way with  
+an additional reference point (e.g. one fixed GPS system in a house) to get the  
+same high precision as the military version, but it gets pretty complicated  
+then. If You use a microwave system (actually this means some type of radar),  
+You need quite a lot of number crunching to get accurate vectorized data out of  
+Your original signals. So the GPS system seems to be the better (and running)  
+idea for Your application(there have been discussions in this newsgroup, don't  
+know of an address anymore).
+
+Cheers    Robert   (HB9NBY) ",12,sci.electronics,en
+"
+First of all, realize that Tesla invented AC power generators, motors,
+transformers, conductors, etc. Technically, *ALL* transformers are Tesla
+coils.  In general though when someone refers to a Tesla coil, they mean
+an ""air core resonant transformer"". The TV flyback version Tesla
+coil (see the _Encyclopedia_of_Electronic_Circuits_ V3, 106-1 for
+diagram) has NOT an air core. It is of a class of circuit called
+""Oscillating Shuttle Circuit"" (OSC). Generally OSC's are highly
+efficient, but this version uses transistors and resistors,
+which are very lossy devices. Typically Tesla used active
+reactances instead of passive resistors, so that he could achieve
+efficiencies of 99.5%, and better. The usual application of an air-core
+resonant transformer, or of an OSC, is to produce strong EMI
+for wireless broadcasts. How well do you think your computer
+screen would work if we removed the HF HV Tesla (flyback) coil
+from it? If we were to remove from our homes and industries all
+Tesla coils, our lights would go dark, our cars would sputter
+and die, our radios would go silent, our industries would grind
+to a halt, and we would have to go back to using coal for heat,
+gas for lamps, horses for transportation, steam for power, and
+telegraph for communication. Is that real world enough for you???????
+
+GET THE MESSAGE! WE WOULD NOT HAVE 1/100 THE CONVIENIENCES WE HAVE
+TODAY IF NOT FOR TESLA. GIVE CREDIT WHERE CREDIT IS DUE!
+
+If it had been up to Edison, we'd still be in the 19th century.
+(flame me at your own peril. I'm very good at putting edison down).
+
+----
+ ET   ""Tesla was 100 years ahead of his time. Perhaps now his time comes"".",12,sci.electronics,en
+"oops, that's KNX 1070. KNBR is up in 'Frisco, and down at 680.",12,sci.electronics,en
+"For an upcoming project I want to use 4 Megs of DRAM configured as two 2
+Meg banks of 16 bit data.  I was wondering if anyone out there knows of a
+DRAM controller which will handle refreshing the data.  It's ok if the
+controller doesn't handle bank switching - that part is easy.
+
+The only controllers I know of are the ones out of the National
+Semiconductor DRAM Management Handbook (1988 edition) eg. DP8429.  I would
+like to know if another manufacturer produces one which may be easier to
+implement in my circuit.
+
+BTW, if anyone is wanting to hook up DRAM to a microcontroller, Dallas
+Semiconductor makes a neat chip: the DS1262 Serial DRAM Nonvolatizer
+Chip.  It uses the SPI (I2C) bus and refreshes/controls up to 16Mx1 of DRAM
+memory.  It can use an external battery to refresh the DRAM when the
+power is off.  Price is $11.75 from Dallas (quan 1).  I wish I could use
+this chip but its maximum SPI clock rate is 1 MHz (too slow for me...).
+
+Thanks in advance,
+
+Wayne Schellekens
+<schellew@wu2.wl.aecl.ca>",12,sci.electronics,en
+"GREAT post Martin.  Very informative, well-balanced, and humanitarian
+without neglecting the need for scientific rigor.
+
+
+(Cross-posted to alt.psychology.personality since some personality typing
+will be discussed at the beginning - Note: I've set all followups to sci.med
+since most of my comments are more sci.med oriented and I'm sure most of the
+replies, if any, will be med-related.)
+
+
+
+
+They are just responding in their natural way:  Hyper-Choleric Syndrome (HCS).
+Oops, that is not a recognized ""illness"" in the psychological community,
+better not say that since it therefore must not, and never will, exist.  :^)
+
+Actually, it is fascinating that a disproportionate number of physicians
+will type out as NT (for those not familiar with the Myers-Briggs system,
+just e-mail me and I'll send a summary file to you).  In the general
+population, NT's comprise only about 12% of the population, but among
+physicians it is much much higher (I don't know the exact percentage -
+any help here a.p.p.er's?)
+
+One driving characteristic of an NT, especially an NTJ, is their obvious
+choleric behavior (driver, type A, etc.) - the extreme emotional need to
+control, to lead, and/or to be the best or the most competent.  If they are
+also extroverted, they are best described as ""Field Marshalls"".  This trait
+is very valuable and essential in our society - we need people who want to
+lead, to strive to overcome the elements, to seek and thirst for knowledge,
+to raise the level of competency, etc.  The great successes in science and
+technology are in large part due to the vision (an N trait) and scientifically-
+minded approach (T trait) of the NT personality (of course, the other types
+and temperaments have their own positive contributions as well).  However,
+when the NT person has self-image challenges, the ""dark-side"" of this
+personality type usually comes out, which should be obvious to all.
+
+A physician who is a strong NT and who has not learned to temper their
+temperament will be extremely business-like (lack of empathy or feeling),
+and is very compelled to have total control over their patient (the patient
+must be obedient to their diagnosis and prescription without question).  I've
+known many M.D.'s of this temperament and suffice to say I don't oblige them
+with a followup visit, no matter how competent I think they are (and they
+usually are very competent from a knowledge viewpoint since that is an
+extreme drive of theirs - to know the most, to know it all).
+
+Maybe we need more NF doctor's.  :^)
+
+Enough on this subject - let's move on to candida bloom.
+
+
+
+You've helped me already by your post.  Of course, I believe that I have
+been misdiagnosed on the net as suffering from 'anal retentivitis', but being
+the phlegmatic I am, maybe I was just a little too harsh on a few people
+myself in past posts.  Let's all try to raise the level of this discussion
+above the level of anal effluent.
+
+
+
+In my well-described situation (in prior posts), I definitely was immune
+stressed.  Blood tests showed my vitamin A levels were very low.  My sinuses
+were a mess - no doubt the mucosal lining and the cilia were heavily damaged.
+I also was on antibiotics 15 times in 4 years!  In the end, even two weeks
+of Ceftin did not work and I had confirmed diagnoses of a chronic bacterial
+infection of the sinuses via cat-scans, mucus color (won't get into the
+details), and other symptoms.  Three very traditional ENT's made this
+diagnosis (I did not have any cultures done, however, because of the
+difficulty of doing this right and because my other symptoms clearly showed
+a bacterial infection).  Enough of this background (provided to help you
+understand where I was when I make comments about my Sporanox anti-fungal
+therapy below).
+
+
+The first question I have is this.  Can fungus penetrate a little way into poor
+mucus membrane tissue, maybe via hyphae, thus causing symptoms, without being
+considered 'systemic' in the classic sense?  It is sort of an inbetween
+infection.
+
+
+
+I was concerned, too, because of the toxicity of vitamin A.  My doctor, after
+my blood tests, put me on 75,000 IU of vitamin A for one week only, then
+dropped it down to 25,000 IU for the next couple of weeks.  I also received
+zinc and other supplementation, since all of these interrelate in fairly
+complex ways as my doctor explained (he's one of those 'evil' orthomolecular
+specialists).  I had a blood test three weeks later and vitamin A was normal,
+he then stopped me on all vitamin A (except for some in a multi-vitamin)
+supplement), and made sure that I maintain a 50,000 IU/day of beta carotene.
+Call me carrot face.  :^)
+
+Hopefully, Elaine's doctor will take a similar, careful approach and to
+all supplements.  I'm even reevaluating some supplements I'm taking, for
+example, niacin in fairly large dosages, 1 gram/day, which Steve Dyer had
+good information about on sci.med.nutrition.  If niacin only has second-order
+improvement in symptomatic relief of my sinus allergies, then it probably is
+not worth taking such a large dose long-term and risking liver damage.
+
+
+
+Though I do now believe, based on my successful therapy with Sporanox, that
+I definitely had some excessive growth of fungus (unknown species) in my
+sinuses, I still want to ask the question:  have there been any studies that
+demonstrate candida ""blooms"" in the sinuses with associated sinus irritation
+(sinusitis/rhinitis)?  (My sinus irritation reduced significantly after one
+week of Sporanox and no other new treatments were implemented during this
+time - I did not have any noticeable GI track problems before starting on
+Sporanox, but some for a few days after which then went away - considered
+normal).
+
+BTW, my doctor dug out one of his medical reference books (sorry, can't
+remember which one), and found an obscure comment dating back into the 1950's
+which stated that people can develop contained (non-lethal or non-serious)
+aspergillis infestations (aspergiliosis) of the sinuses leading to sinus
+inflammation symptoms.  I'll have to dig out that reference again since it
+is relevant to this discussion.
+
+
+
+My doctor tested me (I believe a RAST or RAST similar test) for allergic
+response to specificially Candida albicans, and I showed a strong positive.
+Another question, would everybody show the same strong positive so this test
+is essentially useless?  And, assuming it is true that Candida can grow
+part-way into the mucus membrane tissue, and the concentration exceeds a 
+threshold amount, could not a person who tests as having an allergy to
+Candida definitely develop allergic symptoms, such as mucus membrane
+irritation due to the body's allergic response?  As I said in an earlier post,
+one does not need to be a rocket scientist, or have a M.D. degree or a 
+Ph.D. in biochemistry to see the plausibility of this hypothesis.
+
+BTW, and I'll repost this again.  Dr. Ivker, in his book, ""Sinus Survival"",
+has routinely given, before anything else, Nizoral (a pre-Sporanox systemic
+anti-fungal, not as safe and not as good as Sporanox) to his new chronic
+sinusitis patients IF they have been on antibiotics four or more times in
+the last two years.  He claims that out of 2000 or so patients, well over
+90% notice some relief of sinus inflammation and other symptoms, but it
+doesn't cure it by any means, implying the so-called yeast/fungus infection
+is not the primary cause, but a later complication.  He's also found that
+nystatin, whether taken internally, or put into a sinus spray, does not help.
+
+This implies (of course assuming that excessive yeast/fungus bloom is
+aggravating the sinus inflammation) that the yeast/fungus has grown partway
+into the tissue since nystatin will not kill yeast/fungus other than by
+direct contact - it is not absorbed into the blood stream.  Again, I admit,
+lots of 'ifs', and 'implies', which doesn't please the hard-core NT who
+has to have the double-blind study or it's a non-issue, but one has to start
+with some plausible hypothesis/explanation, a strawman, if you will.
+
+
+
+This brings up an interesting observation used by those who will deny
+and reject any and all aspects of the 'yeast hypothesis' until the
+appropriate studies are done.  And that is if you can't observe or culture
+the yeast ""bloom"" in the gut or sinus, then there's no way to diagnose or
+even recognize the disease.  And I know they realize that it is virtually
+impossible to test for candida overbloom in any part of the body that cannot
+be easily observed since candida is everywhere in the body.
+
+It's a real Catch-22.
+
+Another Catch-22:  Those who totally reject the 'yeast hypothesis' say that
+no studies have been done (actually studies have been done, but if it's not
+up to a certain standard then it is, from their perspective, a non-study which
+should not even be considered).  I agree that the appropriate studies should
+be done, and that will take big $ to do it right.  However, in order to
+convince the funding agencies in these austere times to open their wallets,
+you literally have to give them evidence, and the only acceptable evidence to
+compete with other proposals is paradoxically to do almost the exact study
+needed funding.  That is, you have to do 90% of the study before you even get
+funding (as a scientist at a National Lab, I'm very aware of this for the
+smaller funded projects).  I'm afraid that even if Dr. Ivker and 100 other
+doctors got together, pooled their practice's case histories and anecdotes
+into a compelling picture, and approach the funding agencies, they would get
+nowhere, even if they were able to publish their statistical results.
+
+It is obvious from the comments by some of the doctors here is that they have
+*decided* excessive yeast colonization in the gut or sinuses leading to
+noticeable non-lethal symptoms does not exist, and is not even a tenable
+hypothesis, so any amount of case histories or compiled anecdotal evidence
+to the contrary will never change their mind, and not only that, they would
+also oppose the needed studies because in their minds it's a done issue - 
+excessive yeast growth leading to diffuse allergic symptoms does not, will
+not, and cannot exist.  Period.  Kind of tough to dialog with those who hold
+such a viewpoint.  Kind of reminds me of Lister...
+
+
+
+Aren't there also other nutrients necessary to the proper working of the
+sinus mucus membranes and cilia?
+
+
+
+Again, the evidence from mycological studies indicate that many yeast/fungus
+species can grow hyphae (""roots"") into deep tissue, similar to mold growing
+in bread.  You can continue to kill the surface, such as nystatin does, but
+you can't kill that which is deeper in the tissue without using a systemic
+anti-fungal such as itraconazole (Sporanox) or some of the older ones such
+as Nizoral which are more toxic and not as effective.  This is why, as has
+been pointed out by recent studies (sent to me by a doctor I've been in
+e-mail contact with - thanks), that nystatin is not effective in the long-
+term treatment of GI tract ""candidiasis"".  It's like trying to weed a garden
+by cutting off what's above the ground but leaving the roots ready to come
+out again once you walk away.
+
+The $60000 question is whether a contained candida ""bloom"" can partially
+grow into tissue through the mucus membranes, causing some types of symptoms
+in susceptible people (e.g., allergy), without becoming ""systemic"" in the
+classical sense of the word - something in between strictly an excessive
+bloom not causing any problems and the full-blown systemic infection that
+is potentially lethal.
+
+
+
+Also, if one is an 'anal retentive', like I've been diagnosed in a prior
+post, that can also provide more sites for excessive candida growth.  ;^)
+
+
+
+As I've said in private e-mail, there are flaws in our current medical system
+that make it difficult or even impossible for a physician to attempt
+alternative therapies AFTER the approved/proven/accepted therapies don't work.
+For example, I went to three ENT's, who all said that I will just have to live
+with my acute/chronic sinusitis after the ab's failed (they did mention
+surgery to open up the ostia, but my ostia weren't plugged and it would not
+get to the root cause of my condition).  After three months of aggressive and
+fairly non-standard therapy (Sporanox, body nutrient level monitoring and
+equalization, vitamin C, lentinen, echinacea, etc.), my health has vastly
+improved to where I was two years ago, before my health greatly deteriorated.
+Of course, skeptics would say that maybe if I did nothing I would have
+improved anyway, but that view is stretching things quite far because of the
+experience of the three ENT's I saw who said that I'd just have to ""live with
+it"".  I'm confident I will reach what one could call a total ""cure"".  The
+anti-fungal program I undertook was one necessary step in that direction
+because of my overuse of ab's for the last four years.  (Note:  for those
+having sinus problems, may I suggest the book by Dr. Ivker I mention above.
+Be sure to get the revised edition.)
+
+
+
+Dr. Ivker started off having chronic and severe sinus problems, and his
+visits to several ENT's totally floored him when they said ""you'll just have
+to live with it"".  He spent several years trying everything - standard and
+non-standard, until he was essentially cured of chronic sinusitis.  He now
+shares his approach in his book and I can honestly say that I am on the road
+to recovery following some parts of it.  His one recommendation to take a
+systemic anti-fungal at the beginning of treatment IF you have a history of
+anti-biotic overuse has been proven to him time and time again in his own
+practice.  I'm sure if I commented to him of the hard-core beliefs of the anti-
+""yeast hypothesis"" posters that he would have definite things to say, such as,
+""it's worked wonders for me in almost two thousand cases"", to put it mildly.
+I also would not be surprised if he would say that they are the ones violating
+their moral obligations to help the patient.
+
+Maybe those doctors who are reading this who have a practice and are
+confronted by a patient having symptoms that could be due to the ""hypothetical
+yeast overgrowth"" (e.g., they fit some of the profiles the pro-yeast people
+have identified), should consider anti-fungal therapy IF all other avenues
+have been exhausted.  Remember, theory and practice are two different things -
+you cannot have one without the other, they are synergistic.  If a doctor does
+something non-standard yet produces noticeable symptomatic relief in over a
+thousand of his patients, shouldn't you at least sit up and take notice?
+Maybe you ought to trust what he says and begin hypothesizing why it works
+instead of why it shouldn't work.  I'm afraid a lot of doctors have become
+so enamored with ""scientific correctness"" that they are ignoring the patients
+they have sworn to help.  You have to do both;  both have to be balanced, which
+we don't see from some of the posters to this group.  There comes a point when
+you just have to use a little common sense, and maybe an empirical approach
+(such as trying a good systemic anti-fungal such as Sporanox) after having
+exhausted all the other avenues.  I was one of those who the traditional
+medical establishment was not able to help, so I did the natural thing:  I
+went to a couple of doctor's who are (somewhat) outside this establishment,
+and as a result I have found significant relief.
+
+Would it not be better if the traditional medical establishment can set up
+some kind of mechanism where any doctor, without fear of being sued or having
+his license pulled, can try experimental and unproven (beyond a doubt)
+therapies for his/her patients that finally reach the point where all the
+accepted therapies are ineffective?  I'd like to hear a doctor tell me:
+""well, I've tried all the therapies that are approved and accepted in this
+country, and since they clearly don't work for you, I now have the authority
+to use experimental, unproven techniques that seem to have helped others.  I
+can't promise anything, and there are some risks.  You will have to sign
+something saying you understand the experimental and possibly risky nature of
+these unproven therapies, and I'll have to register your case at the State
+Board.""  Anyway, if my ENT had suggested this to me, I would've jumped on this
+pronto instead of going to one of those doctors who, for either altruistic
+reasons, or for greed, is practicing these alternative therapies with much
+risk to him/her (risk meaning losing their license) and possibly to the
+patient.  Such a mechanism would keep control in the more mainstream medicine,
+and also provide valuable data that would essentially be free.  It also would
+be morally and ethically better than the current system by showing the
+compassion of the medical community to the patient - that it's doing everything
+it can within reason to help the patient.  It is the lack of such a mechanism
+that is leading large numbers of people to try alternative therapies, some of
+which seem to work (like my case), and others of which will never work at all
+(true quackery).
+
+I better get off my soapbox before this post reaches 500K in size.
+
+
+
+What dosage of B6 appears to be necessary to promote the healing and proper
+working of the mucos memebranes?
+
+
+
+I'd like to see the role of complex carbohydrates, such as starch.
+
+
+
+Brave soul you are.  The venom on Usenet can be quite toxic unless one
+develops an immunity to it.  One year ago, my phlegmatic self would have
+backed down right away from an attack of cholericitis.  But my immune
+system, and my computer system, have been hardened from gradual
+desensitization.  I now kind of like being called ""anal retentive"" - it has
+a nice ring to it.  I also was very impressed by how it just flowed into the
+post - truly classic, worthy of a blue (or maybe brown) ribbon.  I might
+even cross-post it to alt.best.of.internet.  Hmmm...
+
+
+
+Thanks again for a great and informative post.  I hope others who have
+researched this area and are lurking in the background will post their
+thoughts as well, no matter their views on this subject.
+
+Jon Noring
+
+
+-- 
+
+Charter Member --->>>  INFJ Club.",13,sci.med,en
+"
+The FDA, I believe.  Rules say no blood or blood products donations
+from anyone who has been in a malarial area for 3 years.  I was a platelet
+donor until my Thailand trip and my blood bank was very disappointed
+to find out they couldn't use me for 3 years.
+
+Not necessarily.  The same rules may not apply to organ donation
+as to blood donation.  In fact, I'm sure they don't.
+
+
+
+-- 
+----------------------------------------------------------------------------
+Gordon Banks  N3JXP      | ""Skepticism is the chastity of the intellect, and
+geb@cadre.dsl.pitt.edu   |  it is shameful to surrender it too soon."" ",13,sci.med,en
+"Thanks to aldridge@netcom.com, I now know a bit more about Stargardt's
+disease, aka juvenile macular distrophy, but I would like to learn more.
+
+First, what is the general prognosis - is blindness the result?
+Second, what treatments, if any, are available?
+
+",13,sci.med,en
+"
+Glad to see Griffin is spending his time on engineering rather than on
+ritual purification of the language.  Pity he got stuck with the turkey
+rather than one of the sensible options.",14,sci.space,en
+"How about transferring control to a non-profit organisation that is
+able to accept donations to keep craft operational.",14,sci.space,en
+"I just got out of the Army. Go signal corps or Intelligence; 
+photointelligence interpretation. If you go ADA you might get to play with 
+rockets but space will look pretty far away dug in the mud next to a grunt 
+protecting the foward troops from low flying objects. Good Luck  
+ ",14,sci.space,en
+"
+
+
+
+It may be that they just didn't mention it, or that they actually haven't 
+thought about it.  I got the vague impression from their mission proposal
+that they weren't taking a very holistic aproach to the whole thing.  They
+seemed to want to land people on the Moon by the end of the decade without 
+explaining why, or what they would do once they got there.  The only application
+I remember from the Av Week article was placing a telescope on the Moon.  That's
+great, but they don't explain why it can't be done robotically. 
+
+
+
+But I'm a _member_.  Besides Bill, I hang out with you :) 
+",14,sci.space,en
+"
+
+Also would maybe get the Russians Involved. After all they do have the resources
+to do it in part.. But they need the capital and the goal..
+
+I wonder if renting the russians resources would be a disqualification?
+",14,sci.space,en
+"i have a question for you all related to this.  jesus condemns divorce
+several times in the new testament, and i have a hard time with this.
+the catholic church (as far as i can tell) does grant annulments with
+the statement that the marriage never really existed in God's eyes.
+(please, if i am mistinterpreting, correct me.)  however, i have
+witnessed marriages where two people were very much in love but
+recognized that they were destroying themselves and each other by
+staying in a marriage, and that the problems were due to personal
+childhood issues that had never been resolved.  i ask you, is divorce
+justified in such a case?  they knew who they were, what they were
+doing, they were deeply in love, but in the end, it did not work out.
+i must admit that i don't see jesus forcing them to live together, or
+even condemning that they go and seek happiness with someone else
+later on.  opinions?
+
+vera
+*******************************************************************************
+I am your CLOCK!     |  I bind unto myself today    | Vera Noyes
+I am your religion!  |  the strong name of the	    | noye@midway.uchicago.edu
+I own you!	     |  Trinity....		    | no disclaimer -- what
+	- Lard	     |	- St. Patrick's Breastplate | is there to disclaim?
+*******************************************************************************",15,soc.religion.christian,en
+"
+Woah...The context is about God's calling out a special people (the Jews) to
+carry the ""promise.""  To read the meaning as literal people is to miss Paul's
+entire point.  I'd be glad to send anyone more detailed explanations of this
+passage if interested.",15,soc.religion.christian,en
+"
+
+First of all, ""ceremonial law"" is an extraScriptural term.  It is sometimes
+used as a framework to view Scripture.  But if you look at Collosions,
+without going into it with the assumption that the Sabbath cannot be 
+a ceremonial law, you will see that it does refer to the sabbath.
+
+against us to His cross, and therefore we should not be judged in what
+what food we eat, what we drink, the keeping of new moons and holy days,
+or the keeping of the sabbath.
+
+The word for sabbath in this verse is ""sabbaton"" and is used throughout the
+New Testament to refer to the 7th day.  If there is any Scripture from
+which we get the idea of the ceremonial law, this is one of them, and the
+sabbath is listed among the ceremonial laws.
+
+If one goes into this with the fundamental assumption ""the sabbath cannot
+be a ceremonial law"" then he will have to find some way around it, like
+saying that this can only refer to the other sabbath holy days besides the
+7tH day, Because ""the sabbath cannot be a ceremonial law.""  But
+Paul is very careful in his letters to add some kind of parenthetcal 
+statement if there is anything that can be seen as a liscence to sin
+in his writings.
+
+Also, why is the sabbath absent from the epistles (except for Hebrews 4, which
+talks about the rest that comes through faith?)  Surely it would have
+been a big problem for first century Christians living in a society
+that did not rest on the 7th day.  Especially slaves. Many new converst were
+slaves.  It would have been difficult for slaves to rest on the sabbath
+if it had been mandatory.  Why is there no mention of this in the epistles?",15,soc.religion.christian,en
+"Michael Bushnell writes;
+
+
+Which is exactly what I pointed out.  (Though I was wrong about your use
+of the Creed, the 1913 Catholic Encylcopedia in which I read about it
+said the Orthodox do use the Creed minus the filioque.  Apparently that
+has changed.)  The Athanasian Creed has always had the Filioque, the
+Nicene - Constantinopolitan did not.
+	Of course the Orthodox did not delete the Filioque from the Nicene
+Creed (it wasn't there to begin with), but they certainly did from the
+Athanasian Creed, which did have it from the beginning.
+	I might point out that the whole problem started over the difference in
+ways of explaining the generation of the Blessed Trinity, the East
+emphasizing the idea of the Holy Spirit proceeding from the Father
+through the Son, and the West using proceeding from the Father and the
+Son.  In fact, some, such as Tertullian, used both formulations (see
+below)
+
+	""Following, therefore, the form of these examples, I profess that I do
+call God and His Word, - the Father and and His Son, - two.  For the
+root and the stem are two things, but conjoined; the fountain and the
+river are two kinds, but indivisible; the sun and the ray are two forms,
+but coherent ones.  Anything which proceeds from another must
+necessarily be a second to that from which it proceeds; but it is not on
+that account separated from it.  Where there is second, however, there
+are two; and where ther is third, there are three.  The Spirit, then, is
+third from God and the Son, just as the third from the root is the fruit
+of the stem, and third from the fountain is the stream from the river,
+and thrid from the sun is the apex of the ray.""
+	-Tertullian, Against Praxeas, 8, 5 (about 213 AD)
+
+and
+
+	""I believe that the Spirit proceeds not otherwise than from the Father
+through the Son""
+	-Tertullian, Against Praxeas, 4, 1 (about 213 AD)
+
+And as St. Thomas showed in his Summa Theologica Part 1, Question 36,
+Articles 2 and 3, there is no contradiction between the two methods of
+generation, and in fact, the two methods of reckoning the procession
+emphasize what St. Augustine, among others taught, that the Holy Spirit
+proceeds from the Father and the Son, but He proceeds from the Father in
+a more preeminent way.
+
+	""For whatever the Son has, He has from the Father, certainly He has it
+from the Father that the Holy Spirit proceeds from Him ... For the
+Father alone is not from another, for which reason He alone is called
+unbegotten, not, indeed, in the Scriptures, but in the practice of
+theologians, and of those who employ such terms as they are able in a
+matter so great.  The Son, however, is born of the Father; and the Holy
+Spirit proceeds principally from the Father, and since the Father gives
+to the Son all that He has without any interval of time, the Holy Spirit
+proceeds jointly from both Father and Son.  He would be called Son of
+the Father and of the Son if, which is abhorent to everyone of sound
+mind, they had both begotten Him.  The Spirit was not begotten by each,
+however, but proceeds from each and both.""
+	-St. Augustine of Hippo, The Trinity, 15, 26, 47 (400 to 416 AD)
+
+So, in a sense, all of the formulations are correct (to the West at
+least), because the Holy Spirit proceeds from both Father and Son, but
+in proceeding from the Son, the orgin of that procession is the
+procession from the Father, so the Holy Spirit is proceeding from the
+Father through the Son, but as all that the Son has is from the Father,
+the Holy Spirit can be said to proceed from the Father, without any
+mention of the Son being necessary.
+	In any case, I am happy to know that I follow in the beliefs of Pope
+St. Leo I, St. Fulgence of Ruspe, St. Cyril of Alexandria, Pope St.
+Damsus I, St. Augustine of Hippo, St. Epiphanius of Salamis, St. Ambrose
+of Milan, St. Hilary of Poitiers, Tertullian, and others among the
+Fathers, who all have very quotable quotes supporting the Catholic
+position, which I enunciated above.
+	As for the issue of the adoption of another Creed being forbidden, I
+will point out that the Holy Fathers of Ephesus and Chalcedon both spoke
+of the Creed of Nicea in their statement forbidding anyone ""to produce,
+write, or compose a confession of faith other than the one defined by
+the Fathers of Nicea.""  That Creed is a different Creed than that of
+Constantinople, which is commonly called the Nicene Creed.  Not of
+course in that they were condemning the adoption of the
+Constantinopolitan Creed, which is but an enlargement upon the Creed of
+Nicea, but that they were condemning the impious opinions of Nestorious,
+who had adopted a radically different Creed from the one used by the
+Church, which among other things denied the procession of the Holy
+Spirit form the Son.  Thus, the additions of the Constantinopolitan
+Creed were not thought to be in violation of this, and as the Council
+Chalcedon also affirmed the doctrine of the procession of the Holy
+Spirit from the Son, which Nestorius denied, they could hardly have been
+against explaining in a fuller way the Creed, for they themselves
+approved of previous additions to it.  And if the further explanations
+of the Creed made in Constantinople were not denigrating of the work
+done by the Holy Fathers of Nicea or in any way heretical, it follows
+that the Council of Toledo was fully able to add what was not disputed
+by the faithful to the Creed so as to combat the impieties of the Arians
+in Spain, because the filioque was not in dispute in the Church until
+many years later under Photius and others.  And that the filioque was
+not disputed, I provide more quotes below.
+
+	""Since the Holy Spirit when he is in us effects our being conformed to
+God, and he actually proceeds from the Father and Son, it is abundantly
+clear that He is of the divine essence, in it in essence and proceeding
+from it.""
+	-St. Cyril of Alexandria, The Treasury of the Holy and Consubstantial
+Trinity, Thesis 34, (423-425 AD)
+
+	""The Holy Spirit is not of the Father only, or of the Son only, but he
+is the Spirit of the Father and the Son.  For it is written: `If anyone
+loves the world, the Spirit of the Father is not in him'; and again it
+is written: `If anyone, however, does not have the Spirit of Christ, he
+is none of His.'  When the Father and the Son are named in this way, the
+Holy Spirit is understood, of whom the Son himself says in the Gospel,
+that the Holy Spirit `proceeds from the Father,' and that `He shall
+receive of mine and shall announce it to you.'""
+	-Pope St. Damasus I, The Decree of Damasus, 1 (382 AD)
+
+	""The only-begotten Holy Spirit has neither the name of the Son nor the
+appelation of Father, but is called Holy Spirit, and is not foreign to
+the Father.  For the Only-begotten Himself calls Him: `the Spirit of the
+Father,' and says of Him the `He proceeds from the Father,' and `will
+receive of mine,' so that He is reckoned as not being foreign to the
+Son, but is of their same substance, of the same Godhead; He is Spirit
+divine, ... of God, and He is God.  For he is Spirit of God, Spirit of
+the Father, and Spirit of the Son, not by some kind of synthesis, like
+soul and body in us, but in the midst of Father and Son of the Father
+and of the Son, a third by appelation....
+	""The Father always existed and the Son always existed, and the Spirit
+breathes from the Father and the Son; and neither is the Son created nor
+is the Spirit created.""
+	-St. Epiphanius of Salamis (which is on Cyprus), The Man Well-Anchored,
+8 and 75 (374 AD)
+
+	""Concerning the Holy Spirit, I ought not to remain silent, nor yet is
+it necessary to speak.  Still, on account of those who do not know Him,
+it is not possible for me to be silent.  However it is necessary to
+speak of Him who must be acknowledged, who is from the Father and the
+Son, His Sources.""
+	-St. Hilary of Poitiers, The Trintiy, 2, 29 (356 to 359 AD)
+
+	Thus, as I have pointed out before, Gaul, Spain, Italy, Africa, Egypt,
+Palastine, and the lands of the Greeks, all of Christnedom at that time,
+all have Fathers who can be cited to show that they confess the doctrine
+expressed by the filioque.  I suggest to those of the Orthodox Church
+that they come up with some of the Fathers, besides St. John of Damascus
+who all will admit denied the filioque, to support their views.  It is
+not enough to bring up the ""proceeds from the Father"" line of the Creed
+or the Gospel of John, for that says what we believe also.  But it does
+not say the Holy Spirit does not proceed from the Son, only that He does
+proceed from the Father.",15,soc.religion.christian,en
+"
+If I believed in the God of the bible I would be very fearful of making
+this statement. Doesn't it say those who judge will be judged by the
+same measure? 
+
+
+A God who must motivate through fear is not a God worthy of worship.
+If the God Jesus spoke of did indeed exist he would not need hell to
+convince people to worship him.
+
+
+It was the myth of hell that made me finally realize that the whole thing
+was untrue. If it hadn't been for hell I would still be a believer today.
+The myth of hell made me realize that if there was a God that he was not
+the all knowing and all good God he claimed to be. Why should I take such
+a being at his word, even if there was evidence for his existance?
+",15,soc.religion.christian,en
+"[ ... ]
+
+Then it also supports basing such regulations on ignorance.
+
+Miller had disappeared, and nobody bothered to present _his_
+side to the Supreme Court -- in particular, that sawed-off
+shotguns were used in the World War I trenches, and in other
+tight spots ever since guns had been invented.  Would _you_
+turn one down if you had to ""clean"" an alley in E. St. Louis?",16,talk.politics.guns,en
+"
+And, had not these citizens accepted the moral responsibility to
+protect their own lives, there could well have been at least
+13 innocent victims lying dead and several criminals still out 
+walking the streets perpetrating their crimes on others.
+
+
+",16,talk.politics.guns,en
+"
+And, I might add, vitamin C has been endorsed by a Nobel Laureate as a
+panacea for almost everything from the common cold to cancer.  
+
+
+Wait a minute. S&K did NOT compare trends.  If they did, they would
+have seen that the advent of Canada's gun law had no effect on
+homicides, total or handgun.  Without a pre- vs. post comparison, one
+cannot speculate as to the utility of anything.  All they have is a
+correlation, and correlation DOES NOT prove causality.
+
+
+
+Hold it again. You dismiss a point about demographics, then you ask
+about socio-economic demographics? Very slick.
+
+Once again, correlation does not prove causality.  Looking at pre-vs.
+post data, the Canadian gun law had no effect.
+
+
+Sir, if you were a Canadian, and owned a gun before the restrictive
+gun laws were passed, and decided to hide it rather than turn it in,
+would you answer truthfully a question about gun ownership from
+someone who calls, writes, or asks you on the street?  That is one
+problem with surveys.  Nobody will answer an incriminating question.
+Another is that people will often tell you what they THINK you want to
+here.
+
+
+Does that mean no Vancouver citizens have handguns? I think not. You
+are discounting guns purchased beforehand, and guns purchased for
+purposes other than self-defense, which can also be used for defense.
+
+
+He makes valid points about demographic differences.  You then resort
+to the kind of argument that the ""Politically Correct"" movement often
+uses to stifle any debate.  Nice, real nice.
+
+
+
+One doesn't have to produce his own data in order to point out the
+flaws in the methodology and conclusions of another's study. Again,
+you resort to PC tactics.
+",16,talk.politics.guns,en
+": >NEWSPAPER AD CENSORSHIP
+: >
+: >San Fran. Independent	San Fran. Examiner	San Jose Mercury News
+: >1201 Evans Ave		110 5th St.		750 Ridder Park Dr.
+: >San Fran., CA 94124	San Fran., CA 94103	San Jose, CA 95190
+: 
+Hmmm, the SJ Merc. carries Targemasters West, National Shooting club,
+ Reeds sportshop, Sportsmens supply and Big 5 ads. They all sell guns.
+No they don't have any adds like in Shotgun news.  If they won't at least
+run the current adds I swear I'll cancel my subscription and end to cash
+to the CRPA.",16,talk.politics.guns,en
+"
+
+
+
+
+Yes, I am pro-gun, and yes, I do disagree with this statement.
+Nuclear weapons in and of themselves are dangerous.  Radioactive
+decay of plutonium and uranium, as well as the tritium in the
+weapon, tends to be somewhat dangerous to living things.
+(Can you say ""neutron flux""?)  Plus these things have no self-
+defense purposes.  It's kinda hard to justify their use as
+a militia weapon when at best they are meant for battlefield use
+(low-yield weapons) or at worst for industrial target obliteration
+(translation:  cities and population centers).  Not to mention that
+for it to be used as a militia weapon and expect the user to live
+requires some sort of launch vehicle . . .",16,talk.politics.guns,en
+"... deleted
+
+I am not in the business of reading minds, however in this case it would not
+be necessary.  Israelis top leaders in the past and present, always come across
+as arrogant with their tough talks trying to intimidate the Arabs.  
+
+The way I see it, Israelis and Arabs have not been able to achieve peace
+after almost 50 years of fighting because of the following two major reasons:
+
+ 1) Arab governments are not really representative of their people, currently
+    most of their leaders are stupid, and/or not independent, and/or
+    dictators.",17,talk.politics.mideast,en
+"
+
+Of course, it hasn't.  Besides Egypt, the rest of the Arab world still
+officially denies that Israel exists.
+
+
+Kick out Syria?
+
+
+American-Occupied Lebanon?  That's a new one on me!
+",17,talk.politics.mideast,en
+"
+It is more appropriate to address netters with their names as they appear in
+their signatures (I failed to do so since you did not bother to sign your
+posting). Not only because it is the polite thing to do, but also to avoid
+addressing ladies with ""Mr."", as you have done.
+
+Secondly, the island of which the name is more correctly spelled as Cyprus has
+never been Greek, but rather, it has been home to a bi-communal society formed
+of Greeks and Turks. It seems that you know as little about the history and
+the demography of the island, as you know about the essence of Turkey's 
+military intervention to it under international agreements.
+
+Be that as it may, an analogy between an act of occupation in history and what
+is going on today on Azerbaijani land, can only be drawn with the expansionist
+policy that Armenia is now pursuing.
+
+But, I could agree that it is not for us to issue diagnoses to the political
+conduct of countries, and promulgate them in such terminology as
+""itchy-bitchy""... 
+
+Onur Yalcin
+",17,talk.politics.mideast,en
+"The Orders for the Turkish Extermination of the Armenians #17
+    To the children of genocide: ""Send them away into the Desert""
+
+This is part of a continuing series of articles containing official Turkish 
+wartime (WW1) governmental telegrams, in translation, entailing the orders 
+for the extermination of the Armenian people in Turkey. Generally, these
+telegrams were issued by the Turkish Minister of the Interior, Talaat Pasha,
+for example, we have the following set regarding children:
+
+	""To the Government of Aleppo.
+
+	 November 5, 1915. We are informed that the little ones belonging to
+	 the Armenians from Sivas, Mamuret-ul-Aziz, Diarbekir and Erzeroum
+	 [hundreds of km distance from Aleppo] are adopted by certain Moslem
+	 families and received as servants when they are left alone through
+	 the death of their parents. We inform you that you are to collect
+	 all such children in your province and send them to the places of
+	 deportation, and also to give the necessary orders regarding this to
+	 the people.
+
+				Minister of the Interior,
+
+						Talaat"" [1]
+
+	""To the Government of Aleppo.
+
+	 September 21, 1915. There is no need for an orphanage. It is not the
+	 time to give way to sentiment and feed the orphans, prolonging their
+	 lives. Send them away to the desert and inform us.
+
+				Minister of the Interior,
+						Talaat"" [2]
+
+	""To the General Committee for settling and deportees.
+
+	 November 26, 1915. There were more than four hundred children in the
+	 orphanage. They will be added to the caravans and sent to their
+	 places of exile.
+
+	 				Abdullahad Nuri. [3]
+
+
+	""To the Government of Aleppo.
+
+	 January 15, 1916. We hear that certain orphanages which have been
+	 opened receive also the children of the Armenians. Whether this is
+	 done through the ignorance of our real purpose, or through contempt
+	 of it, the Government will regard the feeding of such children or
+	 any attempt to prolong their lives as an act entirely opposed to it
+	 purpose, since it considers the survival of these children as
+	 detrimental. I recommend that such children shall not be received
+	 into the orphanages, and no attempts are to be made to establish
+	 special orphanages for them.
+
+				Minister of the Interior,
+
+						Talaat."" [4]
+
+	""To the Government of Aleppo.
+
+
+	 Collect and keep only those orphans who cannot remember the tortures
+	 to which their parents have been subjected. Send the rest away with
+	 the caravans.
+
+				Minister of the Interior,
+
+						Talaat"" [5]
+
+	""From the Ministry of the Interior to the Government of Aleppo.
+
+	 At a time when there are thousands of Moslem refugees and the widows
+	 of Shekid [fallen soldiers] are in need of food and protection, it is
+	 not expedient to incur extra expenses by feeding the children left by
+	 Armenians, who will serve no purpose except that of giving trouble
+	 in the future. It is necessary that these children should be turned
+	 out of your vilayet and sent with the caravans to the place of
+	 deportation. Those that have been kept till now are also to be sent
+	 away, in compliance with our previous orders, to Sivas.
+
+				Minister of the Interior,
+
+						Talaat"" [6]
+
+In 1926, Halide Edip (a pioneer Turkish nationalist) wrote in her memoirs
+about a conversation with Talaat Pasha, verifying and ""rationalizing"" this
+ultra-national fascist anti-Armenian mentality, the following:
+
+	""I have the conviction that as long as a nation does the best for
+	 its own interest, and succeeds, the world admires it and thinks
+	 it moral. I am ready to die for what I have done, and I know I
+	 shall die for it."" [7]
+
+
+These telegrams were entered as unquestioned evidence during the 1923 trial of
+Talaat Pasha's, assassin, Soghomon Tehlerian. The Turkish government never
+questioned these ""death march orders"" until 1986, during a time when the world
+was again reminded of the genocide of the Armenians.
+
+For reasons known to those who study the psychology of genocide denial, the
+Turkish government and their supporters in crime deny that such orders were
+ever issued, and further claim that these telegrams were forgeries based on a
+study by S. Orel and S. Yuca of the Turkish Historical Society.
+
+If one were to examine the sample ""authentic text"" provided in the Turkish 
+Historical Society study and use their same forgery test on that sample, it 
+too would be a forgery!. In fact, if any of the tests delineated by the 
+Turkish Historical Society are performed an any piece of Ottoman Turkish or 
+Persian/Arabic script, one finds that anything handwritten in such language is
+a forgery. 
+
+Today, the body of Talaat Pasha lies in a tomb on Liberty Hill, Istanbul,
+Turkey, just next to the Yildiz University campus. The body of this genocide 
+architect was returned to Turkey from Germany during WW2 when Turkey was in a 
+heightened state of proto-fascism. Recently, this monument has served as a
+focal point for anti-Armenianism in Turkey.
+
+This monument represents the epitome of the Turkish government's pathological
+denial of a clear historical event and is an insult to a people whose only
+crime was to be born Armenian.
+
+			- - - references - - -
+
+[1] _The Memoirs of Naim Bey_, Aram Andonian, 1919, pages 59-60
+
+[2] ibid, page 60
+
+[3] ibid, page 60
+
+[4] ibid, page 61
+
+[5] ibid, page 61
+
+[6] ibid, page 62
+
+[7] _Memoirs of Halide Edip_, Halide Edip, The Century Press, New York (and
+    London), 1926, page 387
+
+",17,talk.politics.mideast,en
+"I guess Hasan finally revealed the source of his claim that Israel
+diverted water from Lebanon--his imagination.",17,talk.politics.mideast,en
+"Rich Thompson posts some blather about the Libertarian Party:
+
+
+
+What pray tell do the Libertarians know about winning elections?
+
+Bob
+
+
+--",18,talk.politics.misc,en
+"William December Starr writes...
+
+in a typical lawyer baiting fashion, as usual. 
+
+(All the while ignoring every principle of the ACLU.)
+
+Good to see your still out there WDS. Surely we've
+been around the ring enough by now, that you know 
+you can't spin me up with expletives. 
+
+Let's see if there's anything left worth responding to...
+
+
+E for effort. Heard about the folks who live around foghorns and 
+airports?
+
+
+Seems right in character to me -- creature of the state. 
+Btw, are you still happy with your presidents?
+
+
+See the part about the children following the ""and"" in the first line
+above. 
+
+As to a connection, your ""cult"" is ""faith in rules"". 
+
+
+Sure. My concern is the well being of the children.  
+
+
+{Interesting that you would respond ""emotionally"" in defense of the 
+government. Maybe there is a beating heart there.}
+
+For the record though, the biggest-baddest goverment on earth claims 
+the most sovereignty over man. Best I can tell God allows anyone to
+go to hell who wants to. Omnipotency logically determines that ""allowing""
+and ""sending"" mean the same thing.  (Mere human concepts of course.)
+
+So come on WDS. Why bother to try some flimsy facade of logic. Waco
+proves it's not needed -- the demonstration that government can walk
+over it's own rules in the name of justice has been made. No problem 
+by me. Noted and announced -- for the record. Just giving the govern-
+ment it's due, and getting back to more worthwhile non-government 
+concerns. ",18,talk.politics.misc,en
+"
+
+If this doesn't beat all I ever heard!  The above certainly says a
+mouthful about the mindset of Ted Frank, and also of statists
+everywhere.",18,talk.politics.misc,en
+"
+Oh yeah, and men just haaaaate to brag about ""how many woman they've had.""",18,talk.politics.misc,en
+"
+No.  There are two problems here:
+
+(1) Peter died two millenia ago.  The original letters he wrote have
+long since decayed into dust.  If he were alive today and I could
+question him, then this might lend credibility to your claims (but
+probably not much, because after all, I've heard people claim with all
+sincerity that they've spoken with Elvis recently).  But after his
+death, Peter's writings were transcribed by monks for centuries, and I
+find it hard to believe that one of them somewhere didn't decide to
+change the wording of something to make it (in his opinion) a little
+easier to understand.
+
+(2) Even if Peter did witness the miracles of Jesus two millenia ago,
+that doesn't mean that your deity is what the Bible says it is (God
+might just be Satan, trying to convince everyone that he's a nice
+guy), or even that your deity is still alive and active in the world
+today.
+
+Nice try, but it just isn't enough to convince me, especially since
+your wild claims about your deity seem to fly in the face of the way
+I've observed the world to work.  Please find something more compelling.
+",19,talk.religion.misc,en
+"
+
+OK: So you were a naive teen.
+
+
+	Wrong: 1915 and if you do your homework, 1909.
+But he was born LAST century (1883).
+",19,talk.religion.misc,en
+"
+     Now doesn't this sound a lot like the ""colorful (or otherwise) story 
+     from antiquity that somehow tries to (or does) explain natural pheno-
+     mena""?  I think I hear what you're saying, but I'm not convinced that
+     I know what you mean.  The possibility exists that what _looks_ like
+     ""myth"" on the surface may be after all much more than ""just"" a story.
+     
+      
+
+     * * * * * * * * * * * * * * * * * * * * *",19,talk.religion.misc,en
+"Jag är ganska säker på att hon kunde få medborgarskap genom att göra en ansökan om det. Det kan kräva invandring till Tyskland, men jag är nästan säker på att en gång ansökt om medborgarskap är oundvikligt i detta fall. Mer intressant bara för era propaganda syften. Jag har sagt flera gånger nu att jag inte anser Iran särskilt exemplarisk som en god islamisk stat. Vi kan tala om rättigheterna för människor i ""kapitalistiska sekulära"" tredje världens länder att ge andra exempel på bristen på rättigheter i tredje världen i stort. Säg till exempel, Centralamerikanska sekulära kapitalistiska länder vars govt är USA stöder men som Amnesty International har påpekat är mänskliga rättigheter vacua.",0,alt.atheism,sv
+"Om det inte är att jaga på de unga, vet jag inte vad : > är... : > : RB> : RB> Nej, det är att be på de unga. För att jag ska hinna med de unga kommer senare, när den ljusögde lille altarpojken får reda på vad den : RB> prästen verkligen bär under den kyskheten. Gör detta uttalande vidare den ateistiska orsaken på något sätt, säkert är det inte tänkt som kvickt ...",0,alt.atheism,sv
+"Vem kategoriserar? ""Jag skulle fuska på Hillary också.""",0,alt.atheism,sv
+Finns det en PD-tittare för gl-filer (för X)?,1,comp.graphics,sv
+"Snälla , Jag behöver startadressen (pekare) för början av färginformation (RGB) på VGA läge 68h (det är 68 hex, gee, duh!)... Tack SOOOO mycket (hugs och kyssar) i förväg .....",1,comp.graphics,sv
+"Detta låter underbart, men det verkar inte vara någon som vill spendera tid med att göra detta, eller så har de inte makten att göra det. Till exempel skulle jag vilja se en comp.graphics arkitektur som denna: comp.graphics.algorithms.2d comp.graphics.algorithms.3d comp.graphics.algorithms.misc comp.graphics.hardware comp.graphics.misc comp.graphics.software/apps Men det skulle vara trevligt att se specialiserade grupper ägna sig åt 2d, 3d, morfering, raytracing, bildbehandling, interaktiv grafik, språk, objektsystem, etc. men dessa skulle kunna postas till en relevant grupp eller ha en e-postlista. Det sättet när någon läser nyheter de inte har för att se dessa ämne, vilket snarare är window thoris?",1,comp.graphics,sv
+"Av någon anledning såg jag aldrig det ursprungliga inlägget på denna tråd, men om du letar efter snabba polygon rutiner på vga på en PC, du kan verkligen inte gå förbi läget X grejer från Dr Dobbs. Denna kod är alla p.domain (så vitt jag vet), och i de ursprungliga artiklarna, rutinerna presenterades alla som dumma vga rutiner, och sedan optimeras till modeX med några intressanta diskussioner längs vägen. Om du är intresserad, Jag kan ta reda på mer detaljer om de frågor i fråga, (Jag har dem hemma).",1,comp.graphics,sv
+"Ja, Corel Draw och WordPerfect Presentations ganska begränsad här också. Eftersom det inte finns någon (inte riktigt) sådan sak som en anständig raster till vektor konverteringsprogram, är denna ""tracing"" teknik om det. Enkelt, som b&w logotyper, etc. gör ganska bra, medan mer komplicerade saker går höwire. Jag misstänker (även om jag inte skriver kod) att en bra bitmapped till vektor konverteringsprogram skulle förmodligen vara lika stor som de flesta av dessa program programvaror vi använder - men trots det, varför har man inte skrivit? (så vitt jag vet). Jag menar, även Hijaak, en av de kommersiella branschstandarderna för filkonvertering, har inte försökt det ännu.",1,comp.graphics,sv
+"Jag använder Diamond SpeedStar 24X i 1024X768X256 läge hela tiden. Jag har INTE hittat förvrängningar i markören. Markören är lite hoppig från tid till annan (på grund av 32 bit tillgång till bytesfilen), men det är aldrig förvrängd.",2,comp.os.ms-windows.misc,sv
+"Jag försöker hitta Tom Haapanen, tidigare Tom@wes.on.ca som var väktare av FAQ för denna diskussionsgrupp. Han arbetade på Watrerloo Engineering Software, men netfind kan inte ens hitta det (men det kan ha varit en uucp-anslutning). Om någon vet hur man kontaktar Tom, vänligen meddela mig.",2,comp.os.ms-windows.misc,sv
+"Jag använder WFW 2.0c med en Canon BJ10e. Skrivardrivrutinen är den som kommer med Windows 3.1. Tyvärr har jag problem med att skriva ut sidnummer längst ner på sidan. Jag kan skriva ut sidnummer på toppen av sidan, men inte på botten. Har någon haft ett liknande problem och / eller har någon en lösning på ett sådant problem. Tack pwoodcoc@business.uwo.ca",2,comp.os.ms-windows.misc,sv
+"Är det någon där ute som kör ett MS-DOS-system med en LocalTalk-tavla? Jag är på ett Appletalk-nätverk, ansluten med en DayStar Digital LT200 MC LocalTalk Interface Board, kör på en PS/2 Model 70. Jag använder AppleShare PC-programvara för filserver och nätverksåtkomst. Det fungerar bra under DOS eller fönstret eller OS/2 DOS-rutan. Men när jag försöker ladda den *före* Windows, så att varje program jag kör kan få tillgång till den, kraschar maskinen hårt så snart jag startar ett program. Och naturligtvis, saker ser ganska hopplöst ut för OS/2 (men vem vet). Så, har någon erfarenhet av denna bisarra och föråldrade inställning?",2,comp.os.ms-windows.misc,sv
+"DOS 5.0/6.0 kan inte läsa NTFS-filsystemet, även om NTFS-filsystemet kan läsa FAT-filsystemet av DOS. Jag har WindowsNT på en separat partition på min maskin hemma, och jag kan läsa mina DOS-skivor från Windows NT, men inte vice versa. När det gäller robustheten i filsystemet, verkar det vara mycket snabbt, och jag har ännu inte haft ett enda problem med det. Det bevisar inte att det är bättre än FAT-systemet dock. Läs boken ""Inside Windows NT"", det kommer att ge dig all information du letar efter. Scott --",2,comp.os.ms-windows.misc,sv
+"Vad sägs om 250MB/s för 64-bit VLB eller 350MB/s för QuickRing {Apples impliment av VLB (Byte 10/92:132)} QuickRing är intressant i att det tillåter interleating med andra kort så att 350MB/s kan delas mellan många kort på samma gång {NuBus 90 och MCA är ungefär de enda kortgränssnitt som kan göra något med den typen av hastighet och även NuBus 90 ditzes runt på ~30MB/s med en sprängning läge: 80MB/s. ""MCA {även kallad Micro Channel} IBM: s 16 och 32-bitars buss; ""tillåter användning av mer än en CPU i en dator"" (DCT) och vad som helst kan tala till vad som helst, > > > lika snabbt som de två komponenter som kan hantera det. < < Aldrig tog av eftersom det var oförenligt med ISA och EISA. Planerat att vara bussgränssnittet för IBM PowerPC 601 (Carl Jabido).",3,comp.sys.ibm.pc.hardware,sv
+"Jag skulle vilja ha din åsikt. Här är scenariot: 1. Det finns två datorer i huset. En är en liten 286 (40MB IDE- enhet). Den andra är en 386DX (213 SCSI- enhet w/ Adaptec 1522 styrenhet). Båda systemen har PC TOOLS och kommer att använda Central Point Backup som säkerhetskopiering / återställningsprogram. Båda systemen har 3,5"" och 5,25"" disketter. 2. Datorerna är inte nätverksanslutna (eller kommer de att vara när som helst snart). Från vad jag har sett hittills, det verkar finnas minst 4 möjliga lösningar (Jag är säker på att det finns andra jag inte har tänkt på). För dessa alternativ, Jag skulle uppskatta att höra från någon som har provat dem eller ser några brister (drive typ X kommer inte coexist med enhet Y, etc.) i mitt tänkande (jag vet inte mycket om dessa djur): 1. Put 2.88MB floppy enheter (eller en kombination enhet) på varje system. Kan någon få information om var och en windows window to thewn? Hur kan jag fortsätta att använda en dator?",3,comp.sys.ibm.pc.hardware,sv
+"Hmmmmmm...Jag fick min comp med fönster förinstallerade, och stackar är fortfarande 9,256. om det behövdes bara för installation, skulle inte idioterna ta bort det??? (även, Jag har inte qemmanualen, eftersom mycket kom med komp, men inte qemmanualen, så kan någon verifiera detta??) Mickey",3,comp.sys.ibm.pc.hardware,sv
+Hej netters! Jag letar efter böcker som visar hur man löser dina egna hårdvaruproblem. Vänligen meddela mig om du har några böcker i åtanke. Tack.,3,comp.sys.ibm.pc.hardware,sv
+"Jag försöker hjälpa en vän till mig att få den andra seriella porten på hans DTK I/O Plus II-kort fungerar och det vill inte samarbeta. Dokumentationen är ingen hjälp alls. Som ett exempel, det står ""Den seriella porten kan ändras till COM2 från COM1 genom att flytta hoppare."" men säger inte vilka hoppare att flytta!! :-( Det finns 2 banker av hoppare. Den första är märkt enligt följande: C1 C2 S2 P2 P1 G Den andra banken är märkt ""IRQ"" och har följande etiketter: 5C 5S 4 3S 2C 2S Jag har bestämt att C1 & C2 hoppare talar om för den första seriella porten som COM1 eller COM2. P1,P2 hopparna berätta det att använda skrivaren port som LPT1 eller LPT2. Jag gissar att ""G"" möjliggör spelporten och ""S2"" SHOULD gör det möjligt för den andra seriella port, men jag kan inte få det att fungera. Jag har provat många inställning på IRQ utan framgång.",3,comp.sys.ibm.pc.hardware,sv
+"Uppriktigt sagt tycker jag att den här modellen är ett misstag. Den har inte PostScriptlevel 2, har bara 13 teckensnitt, och har inte ens finstilt eller fotograd, eller greyshare. Även den 300 modellen har detta! Jag är chockad över vilken typ av funktioner du får för denna skrivare. Jag själv hoppades på någon anständig skrivare att ersätta Personal Laser Writers. -- En film major på Brooks Institute of Photography, CA Santa Barbara och en utländsk student från Kuala Lumpur, Malaysia.",4,comp.sys.mac.hardware,sv
+"Jag har exakt samma problem. Återigen, det är bra när jag byter till 16 färger eller en mindre bildskärm. Min konfiguration är: Modell: Centris 610 med 4 MB/80 HD, 512 VRAM, inga kort Övervaka: MAG MX15F med 16"" monitor adapter (för upplösning av 832*624) Jag upptäckte just problemet för en liten stund sedan efter att ha pluggat in min nya MAG monitor. Det verkar visas antingen när rulla genom ett fönster eller när du använder Alpha eller Word och jag skriver <retur>. Min gissning är dåliga VRAMs också. Jag hoppas verkligen att det inte är en designbrist. Är någon på Apple lyssnar?",4,comp.sys.mac.hardware,sv
+"Det är okej, men skulle du namnge de ""industy experterna"" så att jag kan försöka spåra detta? Det är därför jag är ganska nyfiken ... de flesta SCSI problem jag har stött på beror på kablage. noah",4,comp.sys.mac.hardware,sv
+"Skulle någon kunna göra något av följande: 1. Peka på en init som gör att jag kan stänga av strömhantering på min Duo 210. 1. Skriv en init som skulle tillåta mig att stänga av ALL power management på Duo 210. 2. Peka mig till dokumentation om power management så att jag kan skriva en sådan init. 3. Förklara för mig varför en sådan it är helt eller delvis omöjligt. Helst, naturligtvis, skulle jag vilja kunna slå in och av på flugan. Säkert en sådan it skulle vara mycket hjälpsamma för Powerbook ägare som vill göra MIDI... Jag kan inte föreställa mig varför det inte är möjligt att göra, om det inte kräver Apple att divluge någon hemlighet. Och om så är fallet, säkert apple skulle skriva it. (Om inte Apple tar fram nya modeller så snabbt dessa dagar att inte ens De vet hur de fungerar).",4,comp.sys.mac.hardware,sv
+"Jag har en Laserwriter IIg som har försvunnit helt från nätverket, det vill säga namnet dyker inte upp i någon zon. (Du kan skriva ut till den från dess seriella gränssnitt, tho!) Jag har sett en del diskussioner här om att ändra zonen en IIg är i... inklusive en PS-kod som låter dig ändra zonen. Finns det kanske någon PS-kod som du kan använda för att få den att gå tillbaka till alla sina fabriksinställningar? Jag har en känsla av att det är vad som behövs för att läka vår.",4,comp.sys.mac.hardware,sv
+"Xcursor version 4.1 är nu på export som xcursor4.1.tar.Z. Jag har lagt till ett nytt alternativ för att avgöra om en begärd markörstorlek är OK. Naturligtvis, din server kan ljuga!",5,comp.windows.x,sv
+"Det fungerar på xtermer. - Tillbaka till den ursprungliga frågan: Jag brukar starta nya xtermer genom att välja rätt menyalternativ i min skrivbordsmeny. Här är ett kommandot xterm -sl 999 -n ls12i -title ls12i -e rlogin ls12i & the -n and -title options ge texten för fönster och ikon. När jag använder tcsh (en underbar förlängning av csh), kan jag göra följande: Jag har ett alias precmd echo -n '^[]2\;${HOST}:$cwd^G' i min ~/.tcshrc. Detta är ett särskilt alias för tvtwm. Det utförs varje gång innan du skriver ut prompt. Så, Jag har den nuvarande värddatornamnet och den nuvarande katalogsökvägen i min xterms. ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",5,comp.windows.x,sv
+På export.lcs.fr katalog pub/xpm: xpm-3.2f-to-3.2g.patch.Z xpm-3.2g.patch.Z/******************************************************** * * * ***************************************************************************************************************************************************************************************/ 3.2g (93/04/26) ENHANSIONER: - mycket snabbare nära färger - rörledningar från/till komprimerade filer.,5,comp.windows.x,sv
+"X Fönsterinstallation på en Sun4/470 med CG6 ensam och med CG2 som skärm:0.0 och CG6 som skärm:0.1. Frågor: 1) Finns det några maskinvarukonfigurationsändringar på CG2- och/eller CG6-enheter som behöver göras annat än att dra ut och infoga CG2-rambufferten i vmebussen? 2) CG6 kallas en ""grafikaccelerator"" som läggs till en ""rambuffert"". Vad är betydelsen av detta för X-servern och hur installerar vi SunOS-drivrutinen / X för att vara kompatibel. ----------------------- Jag skulle uppskatta all information om detta. Jag postar detta på dr John Charltons vägnar (som inte har nätåtkomst). Svara honom direkt på charlton@bme.unc.edu eller bara skicka den till den här adressen och jag kommer att vidarebefordra den. Tack för din hjälp!",5,comp.windows.x,sv
+"Detta kan vara en FAQ, men jag vet inte var jag kan få tag på FAQ- listan! Mitt OpenLook- program har några knappar. Den första knappen blir röd (blir markerad?) så fort sprite( muse) flyttas in i programfönstret. Hur trycker jag under detta?",5,comp.windows.x,sv
+") > > "" Katalogen av personliga datorverktyg för ingenjörer och Scien- ) > > > > tist"" listar hårdvarukort och programpaket för ) > > > PC/XT/AT/PS/2 klass maskiner. Fokus ligger på ingenjörskonst och scien- ) > > > tific applikationer av datorer, såsom datainsamling/kontroll, ) > > > designautomation, och dataanalys och presentation. > > > > > > Om du vill ha en gratis kopia, svara med din (U. S. Postal) > > > > > e-postadress. Jag har en kopia av denna katalog framför mig när jag skriver detta. Det har massor av qool saker i det. Mitt intryck är att de försöker att inte skicka ut den till ""browsers"". Det verkar som om din inte en köpare eller en ingenjör de inte vill slösa bort en katalog på dig. När du får en katalog det finns en ""VIP Code"" du måste ge dem ""för att säkerställa din fortsatta prenumeration."". Hur som helst, om du vill komma i kontakt med dem, är företaget Personal Computer Tools Division 550 # 400, C. De har också (308)",6,misc.forsale,sv
+"Köp gärna dessa böcker!!!!!! JAG ANSER INTE MYCKET!!!!! Gör mig bara till en OFFER, och jag kommer förmodligen att ta det!!!! * Analys w/ Analytic Geometri by Auhur B. Simon (copyright date 1982), nedan avg villkor men fortfarande läsbar! * Skriva bra programvara i Fortran, Graham Smith. * Holt handbok av Kirszner & Mandell (copyright 1986) 720+ sida skrivguide. * Algebra & Trigonometri, Ett problem Solving Approach, 3: e upplagan av W. Flemming och D. Varberg. Mycket bra skick. * Allmän kemi Principer & moderna tillämpningar, R. Petrucci, fjärde upplagan. Stor bok! Mycket bra skick! * Lösningar handbok för kemi bok. Paperback. * Studieguide för kemi bok. Paperback. Skicka dina erbjudanden via e-post 02106@chopin.udel.edu",6,misc.forsale,sv
+"Hej, Jag har en Color Watchman av SONY till salu. Det är 6""x3""x1"" totalt och skärmen är 2,75"" diagonal, över 2 ""bred, över 1,5"" lång. Jag fick det 2 år sedan för $320, så jag ber $160 obo. * VHF och UHF switch för kanaler 2 till 69. * slits för Audio/Video i från VCR (lämplig sladd tillhandahålls) * slits för telefoner * slits för A/C adapter (A/C adaptor också tillhandahålls) * fack för externa Antenna (intern antenn tillhandahålls) * On/Off switch * Manuell Tuning, volym, ljusstyrka och färg * Batteri körs också (4 AA batterier tillhandahålls) Det har använts mycket lite. Ser ut som nytt. E-post om intresserad.",6,misc.forsale,sv
+"BOY OH BOY, har jag fått en DEAL för dig!!!!!!!!!!!! Hur låter det här.......... Jag har beslutat att sälja allt detta som en paket affär, (om inte någon verkligen vill ha något separat, då är jag öppen för det också).... Kramer Strike 100st elektrisk gitarr Mörk metallisk blå... Floyd Rose Tremlo... Tuning skåp på nöten... Bra action, all-around bra gitarr! -plus- Korg pme40x professionella modulära effekter pedal styrelse Har flänsar, kör, och grafisk likriktare... Har en unik bonus... du kan köpa seperate pedal ""boxar"" som typ av glida in i någon av de 4 befintliga slots.. Mono ingång, STEREO utgång... Perfekt för elektriska eller akustiska gitarrer!! -plus- DOD American Metal distorsion pedal Durable, bra ljudande pedal... går bra med Korg pedalen! Där har du det! Allt du har för ett bra ljud!!! Yours som ett paket affär för bara .....$ 300 o.o.!!!!!!!!!!!",6,misc.forsale,sv
+"Titel bara 'om säger allt: Grasshopper Fjärrstyrd bil till salu / handel Funktioner: -$75 racing motor installerad (original ingår också) -2 uppsättningar av däck -Futaba 2 kanalradio med servos / mottagare -kropp komplett refärdig - bra form -Battery och laddare -varje sak du behöver för att ha det körs direkt ur lådan, MYCKET snabbt -allt 100% Jag har inte köra denna sak på länge. Jag hade det ute häromdagen bara för att kolla på det och allt är A-OK. Jag skulle lyssna på ANY cash offers, men är mer intresserad av att handla för några extra lagring för min dator. Om du har någon av följande och är intresserad av en handel, släpp mig en linje: IDE hårddisk 50+ megs (MUST vara 3,5"" lång) SCSI hårddisk 50+ megs (MUST vara 3,5"" bred, 1"" hög) SCSI band backup (någon göra / storlek) SCSI CD-ROM 9600 boud modem (extern)",6,misc.forsale,sv
+Jag måste ta med mig min VW Corrado för kroppsarbete (jag blev träffad). Jag undrar om någon har hört talas om någon av dessa South Bay kropp butiker: Akins Collision Center i Santa Clara - på Reed St Auto West Collision - i San Jose Los Gatos Acura Royal Auto Body - i Sunnyvale Tack!,7,rec.autos,sv
+"Hej från Australien, jag är en bilentusiast i Australien. Jag är särskilt intresserad av amerikanska Muscle bilar av 1960- och 1970-tal. ALL MAKES: AMC, Ford, Chrysler/Mopar, GM. Jag kommer att vara i USA i 6 veckor från 2 maj till - 14 juni 1993. Chicago: Sun maj 2 -Thursday maj 6 Denver: Fredag 7 maj - söndag 9 maj Austin, Texas: Måndag 10 maj maj 21 Oklahoma City: Fredag 21 - måndag 24 maj Anaheim, Kalifornien: tisdag 25 maj-torsdag 27 Las Vegas, Nevada: fredag 28 juni - söndag 30 maj Grand Canion, måndag 31 - tisdag 1 juni Las Angeles, San Diego och närhet: onsdag 3 juni 6 juni South Lake Tahoe, Cal: söndag 6 juni - onsdag 9 juni Reno: torsdag 10 juni San Fransisco: torsdag 31 juni - tisdag 1 juni Las Angeles, San Diego och så vidare: onsdag 6 juni juni South Lake Tahoe, Cal: söndag 6 - onsdag 9 juni Reno: torsdag 1 juni är du välkommen!",7,rec.autos,sv
+"Hade en '83 Allians under en lång tid. Det var en bekväm men trög bil. Jag blev mycket van vid hornet på stjälken, efter ett par månader värt att vänja sig vid det. Efter att jag köpte min nästa bil, en Chevy, det tog mig för-EVER att vänja sig vid hornet på ratten igen! jim grå jwg@acd4.acd.com",7,rec.autos,sv
+Hur ska det här fungera?,7,rec.autos,sv
+"Jag har också använt Chevron's Techtrolene (sp?). Jag kan inte säga att jag har märkt någon skillnad genom att använda endera, eftersom jag/__________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________",7,rec.autos,sv
+"Har någon ett bakhjul för en PD de vill skiljas med? Vet någon var jag kan hitta en bärgning? Så länge jag får GIVI bagage för Brunnhilde och har rummet, tänkte jag att jag skulle bära en reserv. Rida gratis, Bill _____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________",8,rec.motorcycles,sv
+"Intressant. Jag skulle slåss biljetten. För det första, det finns en 50-50 chans att polisen inte kommer att dyka upp. För det andra, om han dyker upp, bör du påpeka att han ljög (purgered) på biljetten. Varför 70+? Jag tror att om du är anklagad för att gå mer än 15mph att den upplagda hastigheten det är en svårare biljett. Du kunde inte ha p[ossiblely varit på 70+, eller hur?!",8,rec.motorcycles,sv
+"Ja...Jag tror att det är den enda CB750 med en 630 kedja. Efter 14 år, det äntligen sträcker sig in i den ""replace"" zonen. <Sign> Jag vet .... Jag vet.",8,rec.motorcycles,sv
+"Tja, du kan uppnå båda målen, faktiskt, om du har en bestämd fysisk typ i åtanke när du går till dessa (cough) kyrkomöten.. Om din smak tenderar att mindre, mer petite (cough) kyrkobesökare, är det mer troligt att de kommer att ha ett mindre huvud, och du kan säkert få en medium eller liten hjälm. Detta fungerar för mig, och jag bytte min reserv stora hjälm med min bästa vän, som på 6'9"", tenderar att leta mer efter kvinnor som är över 6'0"", och kan vanligtvis inte passa in i den medelstora hjälm han tidigare hade... Naturligtvis, om du inte är kräsen vilken storlek (*cough*) kyrkobesökare du ger hjälpsamma motorcykel rider till, då Ed råd kommer förhoppningsvis att täcka någon eventualitet när det gäller laglighet, och en extra handtowel i tankväskan gör acceptabel stoppning så att passageraren kan se ut ur utsiktsporten (större än stoppning ovanför vynporten) i fall av extrem missmatchning. Randy Davis Email: randy@megatek.com ZX-11000 Pilot!uunet!",8,rec.motorcycles,sv
+"Till salu 1988 Honda CBR600 (Hurricane). Jag köpte cykeln i slutet av förra sommaren och även om jag älskar det, räkningarna tvingar mig att skiljas med det. Cykeln har lite mer än 6000 miles på det och körs mycket stark. Det är i nead av en låt-up och eventuellt break pads men gummi är bra. Jag är också kasta i en TankBag och en KIWI Helmet. Begär $3000.00 eller bästa erbjudande. Lägg hits tidningen 04-20-93 och Micronews 04-23-93. Intresserade parter kan ringa 206-635-2006 under dagen och 889-1510 på kvällarna inte senare än 11:00PM.",8,rec.motorcycles,sv
+"Jag letar efter en källa till American League baseball statistik för enskilda spelare i samma format som tryckt i tidningar, dvs. jag vill inte ge en lista över spelare och få tillbaka fina tryckta rapporter för $35 i veckan. Känner någon till sådan statistik tillgänglighet och en uppfattning om kostnaden?",9,rec.sport.baseball,sv
+"Efter att ha läst min lokala tidningen idag, fick jag reda på att Phillies började 1964 säsongen på 10-2. Jag är inte så gammal som 1964, men jag har hört många prata om den allvarliga kvävning jobb Phillies gjorde den säsongen. De var före kardinalerna med 15 matcher som säsongen i mitten av augusti. De lyckades förlora ett gäng från då och kardinalerna tog divisionen. 15!!! spel framåt och förlorade den... . Jag hoppas att den här säsongen är MYCKET annorlunda.",9,rec.sport.baseball,sv
+"Sherri Nichols skriver eller en ung Don Bordello... Det finns en stark möjlighet att Bucs har absolut inga andra fångstmöjligheter i minderåriga vid denna tidpunkt -- åtminstone ingen redo för någon allvarlig AAA / stories plikt. Den främsta anledningen till att de kan ha stannat hos Prince kan vara bara ålder, särskilt om Spanky var krypande mot hans i mitten av 30-talet eller något. Allt som anses, men, Jag skulle vara mycket mer bekväm med Spanky bakom plattan än Prince. Finns det inte anständig backup backstop ute letar efter arbete?",9,rec.sport.baseball,sv
+"Kanske jag kan hjälpa dig. Han är en stor liga tränare med Rockies. Så ovan förutsägelse är dubbelt fel. Min förutsägelse: Red Sox-Cubs Series och Vikings-Broncos SuperBore kommer att inträffa i slutet av världen. Och en Rockie kommer att sluta i topp 10 av en offensiv katagori i år. Och ingen Rockie starter kommer att ha ett ERA under 3.50. Och Rangers bleknar kommer inte att börja förrän ... Augusti. De kommer att ge vika för Änglarna. Men fortfarande utmana till slutet. Verkligen. Inte göra något av detta. Om jag är, må Gud slå ner *ZZZZT *",9,rec.sport.baseball,sv
+"Om jag minns rätt (vilket alltid är tveksamt), Horners signering med Braves var beroende av att starta i Atlanta. Jag tror att han kunde ha gått tillbaka till Arizona St. för ett år till om han inte hade undertecknat. Hur som helst, Braves försökte skicka honom till Richmond en gång; det ledde till en vecka lång promenad ut. Jag tror Horner hade inget arbete etik innan han skrevs, och mindre ligan spel skulle inte ha hjälpt. Men hans råa talang skulle ha fått honom i ML, och det höll honom där ett tag, tills han började falla på handlederna.",9,rec.sport.baseball,sv
+": > MVP Biggest Biggest : > Suprise Disappointment : : > Los Angeles Kings Robitaille Donnelly Hrudey : : : Jag skulle ha valt Alex Zhitnik för största suprise. De : förväntade sig att han skulle bli en stor back, men jag tror inte : tror att någon visste att han skulle vara detta imponerande i hans : rookie år. Hans hastighet, skridskoförmåga, och puck kontroll är : exceptionell - han är den att titta på Kings. : Jag håller med, med Marty McSorely och Warren Rychel kör en nära andra och tredje. Jag är förvånad att fler människor inte har noterat Knickle som den största överraskning, även om jag personligen inte verkligen ranka honom väl. Den största besvikelsen måste vara Carson. Även om detta är verkligen orättvist, eftersom alltför mycket förväntade av honom. Den andra största besvikelsen är Melrose, med sin tonåring hantering av målvaktsproblem.",10,rec.sport.hockey,sv
+"Eftersom alla vill se Pittsburgh-spelare som inte spelar, skulle Stanley-cupen devalveras -- ______________________________________________________________________________________________________________________________________________________________________________________________",10,rec.sport.hockey,sv
+"Ah, så nu är vi inne i europeisk spelare bashing? Vad härnäst? Inga fler franska Canadiens? Ja, det finns en idé! Låt dem fransktalande Canadiens har sin egen hockey ligan! Vi vill inte ha dem! Är du _CRAZY_? NHL är en av de verkliga internationella ligor, och ja, det _ARE_ många européer som förtjänar att spela i NHL och är bättre än vissa nordamerikaner, titta på Teemu!!!!!! Jag, för en, är glad att se européer i NHL och jag hoppas att NHL snart expanderar till Europa. Det är trevligt att se alla dessa olika människor komma tillsammans för att bilda (snart) 26 hockey lag. Darryl Brooks University på Buffalo __________________________________________________/______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________",10,rec.sport.hockey,sv
+"#21 how whatsthing how: Jag (B) Det är alldeles för tidigt att berätta om Ahola, som förvärvades förmodligen eftersom Penguins tänkte att de skulle förlora honom i expansionen utkast. Ahola hade bara spelat 50 matcher den här säsongen (Jag tror att det faktiskt är mindre; San Jose Mercury News kan vara i fel här), 20 av dem med Sharks. I de spel han har spelat, han verkade ganska solid defensivt, även om han inte har varit spektakulär, och hans brott är inte något att skriva hem om (8 poäng); det är även möjligt att handeln kan vara för framtida överväganden som visar sig vara ... Peter Ahola. #24 DOUG WILSON Säsong: 16th Acquired: '91-92, handel med Chicago för RW Kerry Toporowski och 2nd round pick i '92 bidragsgrad: Jag (B) Jag har ofta anklagas för alltför stora förväntningar på Wilson. #24 DOUG WILSON Säsong: 16th Acquired.",10,rec.sport.hockey,sv
+Hur kan du anta att det var en sarkastisk kommentar?,10,rec.sport.hockey,sv
+":tarnold@vnet.IBM.COM (Todd W. Arnold) sade i artikel <19930322.101356.617@almaden.ibm.com>: :> Det är OK så länge du litar på att slutanvändaren håller sig utanför din applikation :> program - eller så länge det körs i ett system där användaren inte kan komma till det. :> Annars kan du inte hindra honom från att hitta ""ladda en modul"" koden i ditt :> program, och helt enkelt kringgå checken för en giltig modul. Den försåtliga användaren :> kan antingen ändra objektkoden innan du kör programmet, eller han kan köra :> programmet under en debugger och ändra instruktionerna i minnet. : Det finns ett sätt att folie debuggers, genom att rensa det enda steget :interrupt, på vilket en debugger beror på, alla känsliga områden i koden. Detta antar att personen använder hårdvaruavlusning instruktioner av en X86 typ processor. Det kan negated av NOP bybug instruction : Det är en dator som en dator som helst.",11,sci.crypt,sv
+"Detta sätt att upptäcka förkryptering kan besegras; man kan göra omvandling av spektrum av krypterad signal bara genom att lägga till några förarrangerade (i början av kommunikationen) funktion. Jag tror det. Säg, du kan göra FFT av din krypterade signal. Bara tänka ... --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",11,sci.crypt,sv
+Utan riktiga tekniska detaljer är det svårt att besvara denna fråga. Men anta att de redan *är* XORing de två 40-bitars delar att producera bara 40 bitar av verkliga nyckelmaterial? Kanske de använder den exporterbara versionen av RC2 ...? :-),11,sci.crypt,sv
+"Nej tack. Detta ämne är av intresse för en mycket bredare publik. ""När jag fattar detta beslut, avser jag att förhindra den privata sektorn från att utvecklas, utom med regeringens godkännande, andra mikrokretsar eller algoritmer som är mer effektiva för att säkerställa integritet.""",11,sci.crypt,sv
+": På företaget jag arbetade för tidigare, Jag fick en fil som var descryped : och personen som hade skickat det, gick på vaction . I stället för att vänta två veckor : Jag satte upp en rak frontal attack med en nyckel i taget . Det tog bara två (2) : dagar att knäcka filen . Nej , Jag har inte någon tro på DES . : A.G. Kul ! Tre frågor : 1) Vilken hårdvara använde du? 2) När du hittade nyckeln , var det något om det som var speciellt som innebar att du hade tur att hitta det tidigt ? (Som de första 30 bits alla är 0) 3) ... eller menade du en ordbok attack snarare än en binär nyckel attack ?",11,sci.crypt,sv
+"Det finns två precisionsnivåer, en för arméapplikationer (avlivning måste vara mycket exakt idag) och en för civila. Den civila precisionen är ungefär 20 till 30m (korrigera mig, om jag har fel), men det kan vara insufficiant för att kartlägga byggnader. Men det finns ett sätt med en ytterligare referenspunkt (t.ex. ett fast GPS-system i ett hus) för att få samma höga precision som den militära versionen, men det blir ganska komplicerat då. Om du använder ett mikrovågssystem (det betyder faktiskt någon typ av radar), behöver du en hel del talknäppning för att få exakt vektoriserad data från dina ursprungliga signaler. Så GPS-systemet verkar vara bättre (och kör) idé för din applikation (det har varit diskussioner i denna nyhetsgrupp, vet inte en adress längre). Skål Robert (HB9NBY)",12,sci.electronics,sv
+"För det första, om vi skulle använda oss av vår VHV-gas till VHV-gas, skulle vi kunna använda oss av VHV-gas till VHV-värme. Men när någon hänvisar till en Tesla-spol, betyder de inte en luftkärna. Tesla-spolen (se _ Encyklopedia_of_Electronic_Circuits_ V3, 106-1 för diagram). Den är av en klass som kallas ""Oscillating Shuttle Circuit"" (OSC). Generellt sett är OSC-tiden mycket effektiv, men den här versionen använder transistorer och motstånd, som är mycket förlustbringande enheter. Typiskt Tesla använde aktiva reflexer i stället för passiva resistorer, så att han skulle kunna uppnå effektivitet 99.5%, och bättre. Den vanliga tillämpningen av en air-core resonant transformator, eller av en OSC, är att producera starka EMI för trådlösa sändningar. Hur bra tror du att din datorskärm skulle fungera om vi tog bort vår VHV-gas till VV-gas för att ta bort vår VH-gas?",12,sci.electronics,sv
+Det är KNX 1070. KNBR är uppe i Frisco och nere vid 680.,12,sci.electronics,sv
+"För ett kommande projekt vill jag använda 4 Megs av DRAM konfigurerad som två 2 Meg banker med 16 bitars data. Jag undrar om någon där ute känner till en DRAM- styrenhet som kommer att hantera uppfriskande data. Det är ok om styrenheten inte hanterar bankbyte - den delen är lätt. De enda styrenheter jag känner till är de som är ute ur den nationella Semiconductor DRAM Management Handbook (1988 års utgåva) t.ex. DP8429. Jag skulle vilja veta om en annan tillverkare producerar en som kan vara lättare att genomföra i min krets. BTW, om någon vill koppla upp DRAM till en mikrocontroller, Dallas Semiconductor gör ett snyggt chip: DS1262 Serial DRAM Nonvolatizer Chip. Det använder SPI (I2C) buss och fräschar upp / kontroller upp till 16Mx1 av DRAM minne. Det kan använda ett externt batteri för att uppdatera DRAM när strömmen är avstängd. Pris är $11.75 från Dallas (quan 1). Jag önskar att jag kan använda detta chip men dess maximala SPI klocka är 1 MHz (för sakta för mig.). Tack",12,sci.electronics,sv
+"GREAT stor fysiologisk nivå som kan användas för att behandla neurologisk sjukdom. Mycket informativt, välbalanserat och humanitärt utan att försumma behovet av vetenskaplig rigid (Cross-posted to alt.psychology.personality eftersom vissa personlighetstyper kommer att diskuteras i början - Obs: Jag har satt alla uppföljningar till sci.med eftersom de flesta av mina kommentarer är mer sci.med-orienterade och jag är säker på att de flesta svar, om några, kommer att vara med-relaterade.) De är bara svarar på sitt naturliga sätt: Hyper-Choleric Syndrome (HCS). Oops, det är inte en erkänd ""sjukdom"" i det psykologiska samhället, bättre inte säga att eftersom det inte, och aldrig kommer att, existera. ^) Det är fascinerande att ett oproportionerligt antal läkare kommer att skriva ut som NT (de inte är bekanta med Myers-Briggs system, bara e-posta mig och jag ska skicka en sammanfattning fil till dig).",13,sci.med,sv
+"FDA, jag tror. Regler säger inga blod eller blodprodukter donationer från någon som har varit i ett malariaområde i 3 år. Jag var en trombocytdonator till min Thailand resa och min blodbank var mycket besviken över att ta reda på att de inte kunde använda mig i 3 år. Inte nödvändigtvis. Samma regler kan inte gälla för organdonation som för bloddonation. I själva verket, jag är säker på att de inte -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",13,sci.med,sv
+"Tack vare aldridge@netcom.com, vet jag nu lite mer om Stargardts sjukdom, även kallad juvenil macular distrophy, men jag skulle vilja lära mig mer. För det första, vad är den allmänna prognosen - är blindhet resultatet? För det andra, vilka behandlingar, om några, finns tillgängliga?",13,sci.med,sv
+Griffin spenderar sin tid på ingenjörskonst snarare än på rituell rening av språket. Synd att han fastnade med kalkonen snarare än ett av de förnuftiga alternativen.,14,sci.space,sv
+Vad sägs om att överföra kontrollen till en ideell organisation som kan ta emot donationer för att hålla farkosten i drift?,14,sci.space,sv
+Jag kom precis ut ur armén. Gå signal kår eller intelligens; fotointelligens tolkning. Om du går ADA du kanske får spela med raketer men rymden kommer att se ganska långt bort grävt i leran bredvid en grunt skydda de födosamma trupper från lågt flygande föremål.,14,sci.space,sv
+"Det kan vara att de bara inte nämnde det, eller att de faktiskt inte har tänkt på det. Jag fick det vaga intrycket från deras uppdrag förslag att de inte tog en mycket holistisk proach till hela saken. De verkade vilja landa människor på månen i slutet av årtiondet utan att förklara varför, eller vad de skulle göra när de kom dit. Den enda ansökan jag minns från Av Week artikeln var att placera ett teleskop på månen. Det är bra, men de förklarar inte varför det inte kan göras robotiskt. Men jag är en _member_. Förutom Bill, jag umgås med dig :)",14,sci.space,sv
+Även skulle kanske få ryssarna inblandade. Efter allt de har resurser för att göra det delvis.. Men de behöver kapitalet och målet.. Jag undrar om hyra ryska resurser skulle vara en diskvalificering?,14,sci.space,sv
+"Jag har en fråga till dig alla relaterade till detta. jesus fördömer skilsmässa flera gånger i det nya testamentet, och jag har en svår tid med detta. den katolska kyrkan (så vitt jag kan berätta) beviljar annulleringar med påståendet att äktenskapet aldrig verkligen existerade i Guds ögon. (snälla, om jag misstolkar, rätta mig.) Jag har dock bevittnat äktenskap där två människor var mycket förälskade men insåg att de förstörde sig själva och varandra genom att stanna i ett äktenskap, och att problemen var på grund av personliga barndomsfrågor som aldrig hade lösts. jag frågar dig, är skilsmässa berättigad i ett sådant fall? de visste vilka de var, vad de gjorde, de var djupt förälskade, men i slutändan, det fungerade inte. Jag måste erkänna att jag inte ser Jesus tvinga dem att leva tillsammans, eller ens fördöma dem att de går och söka lycka med någon senare. åsikter? vera************************************************************************************************************************************************************************************************************************************************************** Jag C . Jag Cock",15,soc.religion.christian,sv
+"I sammanhanget handlar det om att Gud kallar ut ett speciellt folk (judarna) för att bära ""löftet"". Att läsa innebörden som bokstavliga människor är att missa Paulus hela poäng. Jag skulle vara glad att skicka någon mer detaljerade förklaringar av detta avsnitt om intresserade.",15,soc.religion.christian,sv
+"För det första används det som en ram för att betrakta Skriften. Men om du tittar på Collosions, utan att gå in i den med antagandet att sabbaten inte kan vara en ceremoniell lag, kommer du att se att det hänvisar till sabbaten. mot oss till hans kors, och därför bör vi inte bedömas i vilken mat vi äter, vad vi dricker, hålla nya månar och heliga dagar, eller hålla sabbaten. Ordet för sabbat i denna vers är ""sabbaton"" och används i hela Nya Testamentet för att hänvisa till den 7: e dagen. Om det finns någon skrift som vi får idén om ceremoniell lag, detta är en av dem, och sabbaten är uppräknad bland ceremoniella lagar. Om man går in i detta med det grundläggande antagandet ""sabbaten kan inte vara en ceremoniell lag"" då kommer han att finna någon väg runt det, som att säga att detta bara kan hänvisa till de andra sabbatsdagarna förutom den 7tH dag, som skulle ha varit en viktig slav att skriva i den heliga världen.",15,soc.religion.christian,sv
+"För den tredje skalan, men den andra skalan ska vara den andra. Det är precis vad jag påpekade. (Trots att jag hade fel om din användning av Creed, den katolska Encylcopedia 1913 där jag läste om det sade den ortodoxa använda Creed minus filioque. Tydligen har det förändrats.) Den Athanasian Creed har alltid haft Filioque, den Nicene - Constantinopolitan gjorde inte. Naturligtvis tog den ortodoxa inte bort Filioque från Nicene bland Creed (det var inte där för att börja med), men de gjorde verkligen från Athanasian Creed, som gjorde det från början. Jag kan påpeka att hela problemet började över skillnaden i sätt att förklara generationen av den välsignade Treenigheten, den östra betona idén om den Helige Ande som går vidare från Fadern, och den västra använder från Fadern och Sonen. I själva verket, som Tertullianus, används båda formuleringar (se nedan) ""Följa, vad form av dessa exempel, som jag tror på och den tredje donda som jag är det enda sättet.",15,soc.religion.christian,sv
+"Om jag trodde på Bibelns Gud skulle jag vara mycket rädd för att göra detta uttalande. Säger det inte att de som dömer kommer att dömas med samma mått? En Gud som måste motivera genom rädsla är inte en Gud värdig att dyrka. Om den Gud Jesus talade om verkligen existerade skulle han inte behöva helvetet för att övertyga människor att dyrka honom. Det var myten om helvetet som fick mig att äntligen inse att hela saken var osann. Om det inte hade varit för helvetet skulle jag fortfarande vara troende idag. Myten om helvetet fick mig att inse att om det fanns en Gud som han inte var den allvetande och all gode Gud han påstod sig vara. Varför skulle jag ta en sådan varelse på hans ord, även om det fanns bevis för hans existens?",15,soc.religion.christian,sv
+"Miller hade försvunnit, och ingen brydde sig om att presentera _hans sida för Högsta domstolen -- särskilt det sågade geväret användes i första världskrigets skyttegravar, och på andra trånga ställen ända sedan vapnen uppfanns. Skulle _you_ slå ner en om du var tvungen att ""städa"" en gränd i E. St Louis?",16,talk.politics.guns,sv
+"Och om inte dessa medborgare hade accepterat det moraliska ansvaret att skydda sina egna liv, kunde det mycket väl ha funnits minst 13 oskyldiga offer som låg döda och flera brottslingar fortfarande ute på gatorna och fortsatte att begå sina brott mot andra.",16,talk.politics.guns,sv
+"Och, Jag kan tillägga, vitamin C har fått stöd av en Nobelpristagare som ett universalmedel för nästan allt från den gemensamma kylan till cancer. Vänta lite. S&K jämförde INTE trender. Om de gjorde det, skulle de ha sett att tillkomsten av Kanadas vapenlag inte hade någon effekt på mord, total eller pistol. Utan en pre- vs. post jämförelse, man kan inte spekulera om nyttan av något. Allt de har är en korrelation, och korrelation DOES inte bevisa kausalitet. Håll det igen. Du avfärdar en punkt om demografi, då du frågar om socio-ekonomisk demografi? Mycket slick. Än en gång, korrelation inte bevisa kausalitet. Tittar på pre-vs. post data, den kanadensiska vapenlagen hade ingen effekt. Sir, om du var en kanadensare, och ägde en riktig pistol innan de restriktiva vapen lagar antogs, och beslutade att dölja det snarare än vända det i, skulle du svara sanningsenligt en fråga om vapen ägande från någon som ringer, skriver, eller frågar dig på gatan? Det är ett problem med undersökningar. Ingen kommer att svara på en inkränkt . ""En annan sak som inte är chandist chandist chandistry..",16,talk.politics.guns,sv
+": > NEWSPAPER AD CENSORSHIP : > : >San Fran. Independent San Fran. Examinator San Jose Mercury News : >1201 Evans Ave 110 5th St. 750 Ridder Park Dr. : >San Fran., CA 94124 San Fran., CA 94103 San Jose, CA 95190 : Hmmm, SJ Merc. bär Targemasters West, National Shooting Club, Reeds Sportshop, Sportsmens leverans och Big 5 annonser. De säljer alla vapen. Nej de har inga tillägg som i Shotgun nyheter. Om de inte åtminstone kör den aktuella lägger jag svär Jag kommer att avbryta min prenumeration och sluta till kontanter till CRPA.",16,talk.politics.guns,sv
+"Ja, jag är pro-gun, och ja, jag håller inte med detta uttalande. Kärnvapen i och av sig själva är farliga. Radioaktiv nedbrytning av plutonium och uran, liksom tritium i vapnet, tenderar att vara något farligt för levande saker. (Kan du säga ""neutronflöde""?) Plus dessa saker har inga självförsvarssyften. Det är ganska svårt att motivera deras användning som milis vapen när de i bästa fall är avsedda för slagfältsbruk (lågavkastade vapen) eller i värsta fall för industriell mål utplånande (translation: städer och befolkningscentra). För att det ska användas som milis vapen och förvänta sig att användaren ska leva kräver någon form av av avfyrning fordon . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .",16,talk.politics.guns,sv
+"... borttagna Jag är inte i fråga om att läsa tankar, men i detta fall skulle det inte vara nödvändigt. Israeler toppledare i det förflutna och nu, alltid framstå som arrogant med sina tuffa samtal försöker skrämma araberna. Som jag ser det, Israeler och araber har inte kunnat uppnå fred efter nästan 50 år av strider på grund av följande två viktiga skäl: 1) Arabiska regeringar är inte riktigt representativa för sitt folk, för närvarande är de flesta av deras ledare dumma, och / eller inte oberoende, och / eller diktatorer.",17,talk.politics.mideast,sv
+Förutom Egypten förnekar resten av arabvärlden fortfarande officiellt att Israel existerar. Sparka ut Syrien? Amerikansk-ockuperade Libanon? Det är en ny en på mig!,17,talk.politics.mideast,sv
+"Det är mer lämpligt att ta upp nätters med deras namn som de visas i sina underskrifter (jag misslyckades med att göra det eftersom du inte bry sig om att underteckna din utstationering). Inte bara för att det är artigt sak att göra, men också för att undvika att rikta till damer med ""Mr."", som du har gjort. För det andra, ön som namnet är mer korrekt stavas som Cypern har aldrig varit grekiska, utan snarare, det har varit hem för ett bikommunalt samhälle som bildats av greker och turkar. Det verkar som om du vet så lite om historien och demografi på ön, som du vet om kärnan i Turkiets militära ingripande till det enligt internationella avtal. Vare sig det kan, en analogi mellan en ockupation i historien och vad som pågår i dag på Azerbajdzjans land, bara kan dras med expansionistiska politik som Armenien nu bedriver. Men, Jag kan hålla med om att det inte är för oss att utfärda diagnoser till länders politiska beteende, och promulgate dem i en sådan terminologi som ""itchy-bitchy"" ... Onur Yalcininicnicy policy",17,talk.politics.mideast,sv
+"De order för den turkiska extermineringen av armenierna #17 Till barnen av folkmord: ""Skicka bort dem i öknen"" Detta är en del av en fortsatt serie artiklar som innehåller officiella turkiska krigstid (WW1) statliga telegram, i översättning, som innebär order för utrotning av det armeniska folket i Turkiet. Generellt, dessa telegram utfärdades av den turkiska inrikesministern, Talaat Pasha, till exempel, vi har följande uppsättning om barn. ""Till regeringen i Aleppo. November 5, 1915. Vi har informerats om att de små som tillhör armenierna i Sivas, Mamuret-ul-Aziz, Diarbekir och Erzeroum [hundreds of km avstånd från Aleppo] är antagna av vissa Mosem verkliga familjer och tas emot som tjänare när de är kvar genom döden av sina föräldrar. Vi informerar dig om att du är att samla alla sådana barn i din provins och skicka dem till platser för deportation, och även att ge nödvändiga order om detta till folket.",17,talk.politics.mideast,sv
+Jag antar att Hasan äntligen avslöjade källan till hans påstående att Israel avled vatten från Libanon - hans fantasi.,17,talk.politics.mideast,sv
+Rich Thompson lägger upp något blather om Libertarian Party: Vad be berätta Libertarians vet om att vinna val? Bob --,18,talk.politics.misc,sv
+"William December Starr skriver... i en typisk advokat lockbete mode, som vanligt. (Alltid ignorera varje princip i ACLU.) Bra att se din fortfarande ute WDS. Visst har vi varit runt ringen nog nu, att du vet att du inte kan spinna upp mig med expletives. Låt oss se om det finns något kvar värt att svara på... E för ansträngning. Hört om de människor som bor runt dimhorns och flygplatser? Verkar rätt karaktär för mig -- varelsen i staten. Btw, är du fortfarande nöjd med dina presidenter? Se delen om barnen som följer ""och"" i den första raden ovan. När det gäller en koppling, är din ""kult"" ""tro på regler"". Visst. Min oro är välbefinnandet av barnen. {Interesting att du skulle svara ""emotionally"" till försvar för regeringen. Kanske finns det en slå hjärtat där.} För rekordet men, den största-badest goverment på jorden hävdar den mest suveränitet över människan.",18,talk.politics.misc,sv
+"Om detta inte slår allt jag någonsin hört! Ovanstående säger verkligen en munfull om Ted Franks tänkesätt, och även av statister överallt.",18,talk.politics.misc,sv
+Och män skryter om hur många kvinnor de har haft.,18,talk.politics.misc,sv
+"Nej. Det finns två problem här: (1) Peter dog två millenier sedan. De ursprungliga brev han skrev har länge sedan förfallit till stoft. Om han var vid liv idag och jag kunde ifrågasätta honom, då kan detta ge trovärdighet åt dina påståenden (men förmodligen inte mycket, eftersom jag trots allt, jag har hört människor hävdar med all uppriktighet att de har talat med Elvis nyligen). Men efter hans död, Peters skrifter transkriberades av munkar i århundraden, och jag har svårt att tro att en av dem någonstans inte bestämde sig för att ändra ordalydelsen i något för att göra det (i sin mening) lite lättare att förstå. (2) Även om Petrus bevittnade mirakel Jesus två millenien för länge sedan, det betyder inte att din gudom är vad Bibeln säger att det är (Gud kanske bara vara Satan, försöker övertyga alla att han är en trevlig kille), eller ens att din gud är fortfarande levande och aktiv i världen idag. Nice försök, men det är bara inte tillräckligt att övertyga mig, särskilt eftersom din vilda anspråk om din gudom verkar flyga i ansiktet av det sätt som jag har observerat något.",19,talk.religion.misc,sv
+"Okej: Så du var en naiv tonåring. Fel: 1915 och om du gör dina läxor, 1909. Men han föddes i det sista århundradet (1883).",19,talk.religion.misc,sv
+"Nu låter inte detta mycket som den ""färgstarka (eller annars) historien från antiken som på något sätt försöker (eller gör) förklara naturliga feno-mena""? Jag tror att jag hör vad du säger, men jag är inte övertygad om att jag vet vad du menar. Möjligheten finns att vad _looks_ som ""myth"" på ytan kan vara trots allt mycket mer än ""bara"" en historia. * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *",19,talk.religion.misc,sv
+"Olen melko varma, että hän voisi saada kansalaisuuden tekemällä sitä koskevan hakemuksen. Se voi edellyttää maahanmuuttoa Saksaan, mutta olen lähes varma, että kansalaisuuden hakeminen on tässä tapauksessa väistämätöntä. Kiinnostavampaa vain propagandan kannalta. Olen sanonut useita kertoja, etten pidä Irania erityisen esimerkillisenä hyvänä islamilaisena valtiona. Voisimme puhua ""kapitalististen maallisten"" kolmansien maiden kansalaisten oikeuksista antaa muita esimerkkejä oikeuksien puutteesta kolmannen maailman maissa laajasti. Esimerkiksi Keski-Amerikan maallistuneet kapitalistiset maat, joiden hallitus tukee Yhdysvaltoja, mutta jotka Amnesty International on todennut, ovat ihmisoikeusvakuoita.",0,alt.atheism,fi
+": > AIKAISEMPI KUULEMINEN : >PAPPISMI BIRTH:SSA? Jos se ei ole nuorten saalistamista, en tiedä mitä : > on... > : RB> : RB> : RB> Ei, se on nuorten rukoilemista. Nuoria odottaa: RB> myöhemmin, kun kirkassilmäinen pikkualttaripoika saa selville, mitä RB>-pappi todella pukeutuu tämän mukavuuden alle. Onko tämä lausunto ateistien syy jollain tavalla, ei varmaankaan ole tarkoitettu älykkyyteen ...",0,alt.atheism,fi
+"Kuka luokittelee? - ""Minä huijaisin Hillaryakin.""",0,alt.atheism,fi
+"Hei, aihe kertoo kaiken. Onko PD:n katsojalla Gl-tiedostoille (X:lle)? Kiitos",1,comp.graphics,fi
+"Pyydän, tarvitsen aloitusosoitteen (pointer) väritietojen (RGB) alkuun VGA-tilassa 68h (se on 68 hex, gee, duh!)... Kiitos SOOOO paljon (haleja ja suukkoja) etukäteen....",1,comp.graphics,fi
+"Tämä kuulostaa hienolta, mutta vaikuttaa siltä, että kukaan ei halua käyttää aikaansa tähän, tai heillä ei ole siihen valtaa. Esimerkiksi tällainen kompakti graafinen arkkitehtuuri: comp.graphics.algorithms.algorithms.algorithms.algorithms.algorithms.algorithms.algorithms.algorithms.algorithms.algorithms.algorithms.com.com.ware comp.graphics.misc comp.grams.apps.apps.apps.apps.apters.apters.apters.apters.apters.apters.apters.apters.apters.apters.apters.apters.apters.apters.apters.apters.apters.apters.apters.apters.apters.s.apters.apters.ap.apters.coms.ap.ap.coms.coms.apters.ayrys.ap.ap.ap.ap.s.ap.ap.ap.s.ap.s.s.ap.ap.s.s.s.s.s.s.s.s.s.s.s.s.s.s.ap.c.s.ap.ap.ap.c.c.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.c.c.c.c.c.c.s.c.c.c.c.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s.s",1,comp.graphics,fi
+"Jos jostain syystä en ole koskaan nähnyt tämän langan alkuperäistä postausta, mutta jos etsit nopeaa monikulmiorutiinia vgalla tietokoneella, et todellakaan voi ohittaa tohtori Dobbsin X-moodin juttuja. Tämä koodi on kokonaan p.domain (mikäli tiedän), ja alkuperäisissä artikkeleissa rutiinit esiteltiin tyhminä vga-rutiineina, minkä jälkeen ne optimoitiin modeX-modeX-versioon. Jos olet kiinnostunut, voisin saada lisää yksityiskohtia kyseessä olevista asioista, (minulla on ne kotona).",1,comp.graphics,fi
+"Corel Draw ja WordPerfect Presentations ovat aika rajallisia täälläkin. Koska ei ole olemassa (ei oikeastaan) kunnon vektorimuunnosohjelmaa, tässä ""jäljitys"" -tekniikassa on kyse siitä. Yksinkertaiset jutut, kuten b&w-logot, jne., tekevät aika hyvin, kun taas monimutkaisemmat jutut menevät pilalle. Epäilen (vaikka en kirjoitakaan koodia), että hyvä bittikartta vektorimuunnosohjelmaan olisi luultavasti yhtä suuri kuin suurin osa näistä sovellusohjelmista, joita käytämme – mutta silti, miksi sellaista ei ole kirjoitettu? (tietoni mukaan). Jopa Hijaak, yksi tiedoston muuntamisen kaupallisista standardeista, ei ole vielä kokeillut sitä.",1,comp.graphics,fi
+"Käytän Diamond SpeedStar 24X:ää 1024X768X256-moodissa koko ajan. En ole löytänyt kursorista vääristymiä. Kursori on aika ajoin hieman säikky (johtuen 32-bittisestä pääsystä vaihtoon), mutta se ei ole koskaan vääristynyt.",2,comp.os.ms-windows.misc,fi
+"Yritän löytää Tom Haapanen, joka oli aiemmin tom@wes.on.ca, tämän uutisryhmän FAQ:n pitäjä. Hän työskenteli Watrerloo Engineering Softwaressa, mutta Netfind ei edes löydä sitä (mutta se saattoi olla uusi yhteys). Jos joku tietää, miten ottaa yhteyttä Tomiin, ilmoita minulle.",2,comp.os.ms-windows.misc,fi
+"Käytän WFW 2.0c:tä Canon BJ10e -koneen kanssa. Tulostinohjain on se, joka tulee Windows 3.1:n mukana. Valitettavasti minulla on ongelmia sivun alalaidassa olevien sivunumeroiden painamisessa. Voin tulostaa sivun numeron sivun yläosaan, mutta en alalaidalle. Onko jollakulla ollut samanlainen ongelma ja/tai onko kenelläkään ratkaisua tällaiseen ongelmaan. Kiitos pwoodcoc@business.uwo.ca",2,comp.os.ms-windows.misc,fi
+"Olen Appletalk-verkossa, kytkettynä DayStar Digital LT200 MC LocalTalk Interface Boardiin, käynnissä PS/2-mallilla 70. Käytän AppleShare PC -ohjelmistoa tiedostopalvelimeen ja verkkoon. Se toimii mainiosti DOS:n tai OS/2 DOS-laatikon alla. Mutta kun yritän ladata sitä *ennen * Windowsia, niin että jokainen sovellus, jota pyöritän, voi päästä siihen käsiksi, kone kaatuu kovalla kädellä heti, kun käynnistän sovelluksen. Ja tietysti asiat näyttävät aika toivottomilta OS/2:lle (mutta kuka tietää). Joten onko kenelläkään kokemusta tästä oudosta ja vanhentuneesta setupista?",2,comp.os.ms-windows.misc,fi
+"DOS 5.0/6.0 ei pysty lukemaan NTFS-tiedostojärjestelmää, vaikka NTFS-tiedostojärjestelmä pystyykin lukemaan DOS-tiedostojärjestelmää. Minulla on WindowsNT kotonani erillisessä osiossa, ja voin lukea DOS-levyni Windows NT:stä, mutta en päinvastoin. Mitä tulee tiedostojärjestelmän varmuuteen, se näyttää olevan hyvin nopea, eikä minulla ole vielä yhtä ongelmaa sen kanssa. Se ei kuitenkaan todista, että se on parempi kuin FAT-järjestelmä. Lue kirja ""Inside Windows NT"", niin saat kaikki etsimäsi tiedot. Scott --",2,comp.os.ms-windows.misc,fi
+"Noin 250 Mt/s 64-bittiselle VLB:lle tai 350 Mt/s QuickRingille {Apple implection of VLB (Byte 10/92:132)] QuickRing on mielenkiintoinen siinä mielessä, että se mahdollistaa sen, että 350 Mt/s voidaan jakaa monen kortin kesken samaan aikaan {NuBus 90 ja MCA ovat suunnilleen ainoat korttirajapinnat, jotka pystyvät tekemään mitään tuollaista nopeutta ja jopa NuBus 90 ditziä noin ~30 Mt/s:ssä, jossa on murtumatila: 80MB/s. ""MCA {Micro Channel} IBM:n 16 ja 32-bittisen linja-auton linja-auton kanssa; ""mahdollistaa useamman kuin yhden prosessorin käytön tietokoneessa"" (DCT) ja mikä tahansa voi puhua mitä tahansa, niin nopeasti kuin kaksi osa-aluetta pystyy käsittelemään sen. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .",3,comp.sys.ibm.pc.hardware,fi
+"Kun olet lukenut tilanteestani, haluan kuulla mielipiteesi. Tässä skenaario: 1. Talossa on kaksi tietokonetta. Toinen on pieni 286 (40MB IDE-asema). Toinen on 386DX (213 SCSI-asema w/ Adapterec 1522 -ohjain). Molemmissa järjestelmissä on PC-käyttöjärjestelmä ja ne käyttävät Central Point-taustaa varmuuskopiona. Molemmissa järjestelmissä on 3,5"" ja 5,25"" floppia. Toinen tietokoneissa ei ole verkkoja (eikä niitä tule lähiaikoina). Tähän mennessä on ollut ainakin neljä mahdollista ratkaisua (olen varma, etten ole ajatellut muita). Näiden vaihtoehtojen osalta haluan kuulla kaikilta, jotka ovat kokeilleet niitä tai näkevät puutteita (esim. koeajotyyppi X ei ole käytössä).",3,comp.sys.ibm.pc.hardware,fi
+"Minulla on ikkunoita esiasennettuna, ja pinoja on edelleen 9 256. Jos niitä tarvittaisiin vain lavastukseen, eivätkö idiootit ottaisi niitä pois???? (Minulla ei myöskään ole qemmin ohjekirjaa, koska hyvin paljon tuli kompun kanssa, mutta ei qemmin ohjekirjaa, joten voisiko kukaan vahvistaa tämän??) Mickey",3,comp.sys.ibm.pc.hardware,fi
+"Etsin kirjoja, jotka näyttävät, miten korjata oma laiteongelma. Kerro, jos sinulla on kirjoja mielessäsi.",3,comp.sys.ibm.pc.hardware,fi
+"Yritän auttaa ystävääni saamaan DTK I/O Plus II -korttinsa toisen sarjaportin toimimaan, eikä se halua tehdä yhteistyötä. Dokumentaatiosta ei ole mitään apua. Siinä sanotaan, että ""sarjaportin voi vaihtaa Common1-sarjaan siirtämällä hyppääjiä."", mutta siinä ei sanota, mitä hyppääjiä liikkuu! :-( On olemassa kaksi hyppääjäpankkia. Ensimmäinen on merkitty seuraavasti: C1 C2 S2 P2 P1 G Toinen pankki on merkitty ""IRQ"" ja siinä on seuraavat merkinnät: 5C 5S 4 3S 2C 2S Olen päättänyt, että C1 & C2 hyppääjät käskevät sen puhua ensimmäisestä sarjaportista, koska se on COM1 tai COM2. P1P2 hyppääjät kertovat, että P1C2 -ryhmä käyttää P1C2 -sarjaporttia LPT1 tai LPT2.",3,comp.sys.ibm.pc.hardware,fi
+"Suoraan sanottuna tämä malli on mielestäni moka. Siinä ei ole PostScriptLevel 2:ta, siinä on vain 13 fonttia, eikä siinä ole edes pientä printtiä, valokuvausta tai harmaata. Jopa 300 mallissa on tämä! Olen järkyttynyt siitä, millaisia ominaisuuksia saat tälle tulostimelle. Toivoin itse, että joku kunnon tulostin korvaisi Personal Laser Writerit. -- Brooks Institute of Photography, CA Santa Barbara ja ulkomainen opiskelija Kuala Lumpurista, Malesiasta.",4,comp.sys.mac.hardware,fi
+"Minulla on aivan sama ongelma. On taas hyvä, kun vaihdan 16 väriin tai pienempään monitoriin. Konfiguraationi on: Malli: Centris 610 4 MB/80 HD:llä, 512 VRAM:lla, ei kortteja Monitori: MAG MX15F 16"" monitorilla (resoluutio 832*624), huomasin ongelman vasta vähän aikaa sitten sen jälkeen, kun olin kytkenyt uuden MAG-monitorini. Se näyttää ilmestyvän joko ikkunan läpi kurkistaessa tai Alphan tai Word:n käyttäessäni <paluu>. Arvelen, että myös VRAM-muistit ovat huonoja. Toivon todella, ettei se ole suunnitteluvirhe. Onko kukaan Applella kuuntelemassa?",4,comp.sys.mac.hardware,fi
+"Nimeätkö industy-asiantuntijat, jotta voin yrittää löytää tämän? Siksi olen aika utelias, mutta suurin osa kohtaamistani SCSI-ongelmista johtuu kaapeleista. noah",4,comp.sys.mac.hardware,fi
+"Voisiko joku ystävällisesti tehdä jotain seuraavista: 3. Selitä minulle, miksi tällainen merkintä on täysin tai osittain mahdoton. Ihanteellisesti haluaisin tietysti pystyä kytkemään päälle ja pois päältä Duo 210:n avulla. Varmasti tällainen intti olisi erittäin hyödyllinen Powerbookin omistajille, jotka haluavat tehdä MIDI:n... En voi kuvitella, miksi se ei ole mahdollista, ellei Applea vaadita paljastamaan jotain salaisuutta. Ja jos näin on, niin varmasti APPLE voisi kirjoittaa sen. (Ellei Apple tuo esiin uusia malleja niin nopeasti näinä päivinä, että HE eivät edes tiedä, miten ne toimivat).",4,comp.sys.mac.hardware,fi
+"Minulla on Laserwriter IIg, joka on kadonnut kokonaan verkosta, eli sen nimi ei näy millään vyöhykkeellä. (Voit tulostaa sen sarjarajapintaan, tho!) Olen nähnyt tässä keskustelua alueen muuttamisesta IIg:ksi on... mukaan lukien jokin PS-koodi, jonka avulla voit muuttaa aluetta. Onko olemassa jotain PS-koodia, jota voit käyttää, jotta se voisi palata kaikkiin sen tehtaan oletusasetuksiin? Minulla on sellainen tunne, että se on tarpeen oman alueemme parantamiseksi.",4,comp.sys.mac.hardware,fi
+"Xcursor-versio 4.1 on nyt viemässä xcursor4.1.tar.Z:nä. Lisäsin uuden vaihtoehdon selvittääkseni, onko pyydetty kursorikoko ok. Palvelimesi voi tietysti valehdella!",5,comp.windows.x,fi
+Se toimii xtermeillä. Ainakaan minulla ei ole mitään ongelmaa sen kanssa. - Takaisin alkuperäiseen kysymykseen: Aloitan yleensä uudet xtermit valitsemalla oikean valikkomerkinnän työpöytävalikostani. Tässä on esimerkkikomento: xterm -sl 999 -nls12i -nimeä ls12i -e rlogin ls12i & The -n ja -n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n-n--n-n----n-n-n--n-n----n-n----n-n-------n-------n--n-n-n--n-n-n-n---------n-------------n-n--------------------n-n-n-n-n-n-n--n-n-------------------------------------------------------------------------------------n-n--,5,comp.windows.x,fi
+"Pähkinät.lcs.mit.edu hakemistosta, ja avahi.inria.fr-hakemistosta pub/xpm: xpm-3.2f-to-3.2g.patch.Z xpm-3.2g.tar.Z /* Tekijänoikeus 1990-93 GNU:n gzip-muotoon/pakattuihin tiedostoihin - lisätty XpmColorAppject - mahdollisuus määritellä värit, joita voi käyttää <pppppp.fi-lok.fi-lok.fi-lok.",5,comp.windows.x,fi
+"X Window -asennus Sun4/470-laitteella yksin CG6:lla ja CG2:lla näytöllä:0.0 ja CG6 näytöllä:0.1. Kysymykset: 1) Onko CG2- ja/tai CG6-laitteilla laitteiston kokoonpanomuutoksia, jotka on tehtävä muutoin kuin vetämällä ja asettamalla CG2:n puskuri vme-bussiin? 2) CG6:ta kutsutaan ""grafiikkakiihdyttimeksi"" ""kehyspuskurille"". Mikä on tämän merkitys X-palvelimelle ja miten asennamme SunOS-ajurin / X:n yhteensopivaksi. --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",5,comp.windows.x,fi
+"Tämä voi olla FAQ, mutta en tiedä, mistä saan FAQ-listan! OpenLook-sovelluksessani on muutama painike. Ensimmäinen painike muuttuu punaiseksi (kestää korostetun?) heti, kun sprite (hiiri) on siirretty sovelluksen ikkunaan. Miten estän tämän?",5,comp.windows.x,fi
+")""The Catalog of Personal Computing Tools for Engineers and Scien- )"" listaa laitekortit ja sovellusohjelmistopaketit ) PC/XT/AT/PS/2 -luokan koneille. Painopiste on konepajassa ja tieteessä. Siinä on paljon qool-tuotteita, kuten tietojen hankinta/valvonta, suunnitteluautomaatio sekä tietojen analysointi ja esittely. ) ) ) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .",6,misc.forsale,fi
+"* Calculus w/ Analytic Geometria by Authur B.!!!! En ole kovinkaan varma!!!!! Just make Me Afer and I will bebyby take it!!!!!!!! * Calculus w/ Analytic Geometria by Authur B. Simon (copyright date 1982), alle sallitun kunnon, mutta silti luettavissa! * Hyvän ohjelmiston kirjoittaminen Fortranissa, Graham Smithissä. * Kirszner & Mandellin Holt Handbook (copyright 1986) 720+ -sivun kirjoitusopas. * Algebra & Trigonometria, ongelmaratkaisu, 3. painos W. Flemmingissä ja D. Varbergissa. Erittäin hyvä kunto. * Yleiset kemian periaatteet ja modernit sovellukset, R. Petrucci, neljäs painos. Big Book! * Erittäin hyvä kunto! * Ratkaisut Chemistry Bookiin. Paperback. * Opinto-ohje Chemistry Bookiin. Paperback. Paperback. Lähetä tarjouksenne.",6,misc.forsale,fi
+"Se on yhteensä 6""x3""x1"", ja näyttö on 2,75"" diagonaalinen, yli 2"" leveä, yli 1,5"" pitkä. Sain sen 2 vuotta sitten 320 dollarilla, joten pyydän 160 dollaria oboa. * VHF- ja UHF-vaihde kanaville 2–69. * paikka Audio/Videolle videonauhoista (asianmukainen johto) * paikka puhelimille * paikka A/C-adapterille (A/C-adator myös annettu) * paikka ulkoiselle Antennille (sisäinen antenni) * On/Off-kytkin * Manuaali Tuning, Volume, Brightness and Hue * Akkujen käyttö sekä 4 AA-paristoa) Sitä on käytetty hyvin vähän. Näyttää uudelta. Sähköposti jos kiinnostaa.",6,misc.forsale,fi
+"Olen päättänyt myydä kaiken tämän pakettisopimuksena (ellei joku todella halua jotain erillistä, niin olen avoin sillekin).... Kramer Striker 100. sähkökitara Tumman metallinsininen... Floyd Rose Tremlo... Kaappien virittäminen pähkinän äärellä... mahtava toiminta, mahtava kitara!! -plus- Korg pme40x ammatillinen modulaarinen efektipolkimella on laipallinen, kuoro ja graafinen tasasuuntaaja... On ainutlaatuinen bonus...voit ostaa erilliset polkimet, jotka liukuvat mihin tahansa neljästä olemassa olevasta lähtöruudusta.. Yksinpano, STEREO-ulostulo, täydellinen sähkö- tai akustisiin kitaroihin! -plus- Dod American Metallinen vääntöpoljin Kestoinen, mahtava sointi!",6,misc.forsale,fi
+"Title just 'bout kertoo kaiken: Grasshopper Remote Controlled Car for Sale/Trade Features: -75 dollaria kilpamoottori asennettu (myös mukana) -2 kappaletta renkaita -Futaba 2 -kanavaradio servoineen/vastaanottimen kanssa -keho viimeistellään täydellisesti - loistava muoto -Battery ja laturi -jokainen asia, jota tarvitset, on käynnissä laatikosta, erittäin nopeasti -kaikki 100 % en ole ajanut tätä pitkään aikaan. Minulla oli se toissapäivänä vain tarkistaakseni sen, ja kaikki on A-OK:ta. Kuuntelisin mitä tahansa käteistarjousta, mutta olisin kiinnostuneempi ostamaan ylimääräistä tallennustilaa tietokoneelleni. Jos sinulla on jokin seuraavista ja olet kiinnostunut kaupasta, pudota minulle rivi: IDE kovalevy 50+ megs (MUST on 3,5"" leveä, 1"" pitkä) SCSI kiintolevy 50+ megs (MUST on 3,5"" leveä, 1"" pitkä)",6,misc.forsale,fi
+Minun täytyy tuoda VW Corradoni kehontöihin (minuun osui). Onkohan kukaan kuullut näistä South Bayn koriliikkeistä: Akins Collision Center of Santa Clara - Reed St Auto West Collision - San Jose Los Gatos Acura Royal Auto Body - Sunnyvalessa Kiitos!,7,rec.autos,fi
+"Hei Australiassa, olen autointoilija Australiassa. Olen erityisen kiinnostunut 1960- ja 1970-lukujen amerikkalaisista lihasautoista. ALL Makes: AMC, Ford, Chrysler/Mopar, GM. Olen Yhdysvalloissa 6 viikkoa toukokuun 2. päivästä - kesäkuun 14. päivään 1993. Chicago: Sun 2. päivä -toukokuu 6. päivä Denver: perjantai 7. toukokuuta - sunnuntai 9. toukokuuta Austin, Texas: maanantai 10. toukokuuta 21. toukokuuta Oklahoma City: perjantai 21. toukokuuta 24. toukokuuta Anaheim, Kalifornia: tiistai 25. toukokuuta 27. toukokuuta Las Vegas, Nevada: perjantai 28. toukokuuta 30. toukokuuta, maanantai 31. toukokuuta - tiistai 1. kesäkuuta Las Angeles, San Diego ja sen lähistö: keskiviikko 3. kesäkuuta 6. kesäkuuta South Lake Tahoe, Cal: Sunday 6. kesäkuuta 9. kesäkuuta, jolloin myydään autoja, joita arvostetaan myös PHYL:ssä, PHL:ssä, PHL:ssä, PHL:ssä, PHL:ssä, PHL:ssä, PHYL:ssä, PHYL:ssä, PHYL:ssä, PH:ssä ja PH:ssä.",7,rec.autos,fi
+"Se oli mukava, mutta verkkainen auto. Totuin varressa olevaan torveen, kun siihen oli totuteltu muutaman kuukauden ajan. Kun ostin seuraavan auton, Chevyn, minulta vei ikuisuuden tottua ohjauspyörän torveen! jim grey jwg@acd4.acd.com",7,rec.autos,fi
+Miten tämän pitäisi toimia?,7,rec.autos,fi
+"Itse en käyttäisi KMartista saatua 1,29 dollarin tuotetta, mutta viime viikonloppuna PBS:n MotorWeek Pat Goss (asukasteknikkotyyppi) keskusteli näistä tuotteista, ja suosittelen, että niitä ei käytetä (eli ei-isopropyylialkohlopohjaisia injektoreita). Käytän VW:n suosittelemaa tuotetta nimeltä 44K (Bussel Products, Inc.). Se maksaa noin 14,00 dollaria, koska se käyttää vain näitä tuotteita (Pyri/Pyri/Pyri/Pyri/Pyri/Pyri/Pyri/Pyri/Pyri/Pyri/Pyri/Pyri/Pyri/Pyri/Pyri/Pyri/Pyri/Pyri/Pyri/Pyri/Pyri/Pyri/Pyri/Pyri/Pyri/Pyri/Pyri/Pyri/Pyri/Pyri/Pyri/Pyri/Pyri/Pyris.",7,rec.autos,fi
+"Onko kellään takapyörää poliisia varten, jonka kanssa he haluaisivat erota? Tietääkö kukaan, mistä voisin löytää yhden pelastuslaitoksen? Niin kauan kuin saan Brunnhilden GIV-matkatavarat ja huoneen, ajattelin kantaa vararenkaan. Ride Free, Bill Johnsw@wsuvm1.csc.wsu.edu prez=BIMC KotRR DoD #00314 AMA #580924 SPI = 7.18 WMTC # 0002 KotD #0001 Yamabeemer fj100gs1200pdr650 Special ja Volvo. Mitä muuta kukaan voisi kysyä?",8,rec.motorcycles,fi
+"Jos hän tulee paikalle, sinun pitäisi huomauttaa, että hän valehteli (puhtaasti) lipussa. Miksi 70+? Sanon, että jos sinua syytetään yli 15 promillen nopeudesta, se on ankarampi.",8,rec.motorcycles,fi
+"Se on ainoa CB750, jolla on 630-ketju. 14 vuoden jälkeen se on vihdoin venymässä ""korvaa"" -alueelle.",8,rec.motorcycles,fi
+"Voit itse asiassa saavuttaa molemmat tavoitteet, jos mielessäsi on selvä fyysinen tyyppi, kun käyt näissä (yhdysvaltalaisissa) kirkolliskokouksissa. Jos makusi on yleensä pienempi, pikkutarkkampi (yhdysvaltalaisempi) kirkossakävijä, on todennäköisempää, että heillä on pienempi pää, ja voit turvallisesti hankkia keskikokoisen tai pienen kypärän. Tämä toimii minulle, ja vaihdoin varakypäräni parhaan ystäväni kanssa, joka on 6'9"", etsii yleensä enemmän naisia, jotka ovat yli 180-vuotiaita, eikä se yleensä mahdu siihen keskikokoiseen kypärään, jolla hän aiemmin oli... Jos et ole nirhaillut minkä kokoisia (*kuiskaus*) kirkkokävijöitä, joille annat hyödyllisiä moottoripyöräajeluja, silloin Edin neuvot toivottavasti kattavat kaiken mahdollisen laillisuuden kannalta, ja varakädenpyyhkäisy tankkiin tekee hyväksyttävän pehmusteen, jotta matkustaja näkee ulos näkymäportista (enemmän kuin näkymäportin yläpuolella).",8,rec.motorcycles,fi
+"Myynnissä 1988 Honda CBR600 (Hurricane). Ostin pyörän viime kesän lopulla, ja vaikka pidän siitä, laskut pakottavat minut luopumaan siitä. Pyörässä on hieman yli 6000 mailia ja se kulkee hyvin lujaa. Se on viritys- ja mahdollisesti katkaisutyynyissä, mutta kumi on hyvää. Heitän myös TankBagissa ja KIWI Helmetissä. Kysyn 3000,00 dollaria tai parasta tarjousta. Lisää numeroihin 04-20-93 ja Micronews 04-23-93. Kiinnostuneet osapuolet voivat soittaa 206-635-2006 päivisin ja 889-1510 iltaisin viimeistään kello 11:00.",8,rec.motorcycles,fi
+Etsin American Leaguen baseball-tilastojen lähdettä yksittäisille pelaajille samassa muodossa kuin sanomalehdissä. En halua antaa listaa pelaajista ja saada takaisin hienoja painettuja raportteja 35 dollarilla viikossa. Tietääkö kukaan tällaisesta tilastojen saatavuudesta ja hinnasta?,9,rec.sport.baseball,fi
+"Luettuani tänään paikallislehteni sain tietää, että Phillies aloitti kauden 1964 10-2. En ole yhtä vanha kuin 1964, mutta olen kuullut monien puhuvan Philliesin vakavasta kuristustyöstä tuon kauden aikana. He olivat kardinaalien edellä elokuun puolivälissä 15 ottelussa. He onnistuivat häviämään joukon ja kardinaalit ottivat divisioonan. 15!! -peliä edessä ja hävisivät sen... Toivon, että tämä kausi on paljon erilainen.",9,rec.sport.baseball,fi
+"Sherri Nichols kirjoittaa tai nuori Don Bordello... On olemassa vahva mahdollisuus, että Bucsilla ei ole tässä vaiheessa lainkaan muita mahdollisuuksia saada kiinni alaikäisissä – ainakaan kukaan ei ole valmis mihinkään vakavaan AAA/major-velvollisuuteen. Suurin syy, miksi he olisivat voineet jäädä Princen luo, voisi olla vain ikä, varsinkin jos Spanky hiipisi kohti hänen 30-vuotiasta tai jotain. Kaikki asiat huomioon ottaen olisin kuitenkin paljon mukavampi Spankyn kanssa lautasen takana kuin Princen. Eikö siellä ole kunnollista taustatukea työnhakuun?",9,rec.sport.baseball,fi
+"Ennustukseni: Red Sox-Cubs-sarja ja Vikings-Broncos SuperBore tulevat tapahtumaan maailmanlopussa. Yksi Rockie sijoittuu tänä vuonna kymmenen parhaan joukkoon, eikä yhdelläkään Rockie-aloittelijalla ole ERAa alle 3,50:n. Rangers häipyy vasta...elokuussa. He väistyvät enkeleiden tieltä, mutta ovat silti haasteellisia loppuun asti. Ei todellakaan. Jos näin on, lyököön Jumala minut maahan *ZZZZZZT*",9,rec.sport.baseball,fi
+"Jos muistan oikein (mikä on aina epävarmaa), Hornerin allekirjoitus Bravesin kanssa oli riippuvainen siitä, että hän aloitti Atlantassa. Uskon, että hän olisi voinut palata Arizona St.:iin vielä vuodeksi, jos hän ei olisi allekirjoittanut sopimusta. Urheilijat kuitenkin yrittivät lähettää hänet Richmondiin, mikä johti viikon mittaiseen ulosmarssiin. Methink Hornerilla ei ollut työmoraalia ennen kuin hänet kutsuttiin, eikä pikkuleikki olisi auttanut. Mutta hänen raaka lahjakkuutensa olisi saanut hänet ML:ään, ja se piti hänet siellä jonkin aikaa, kunnes hän alkoi pudota ranteiltaan.",9,rec.sport.baseball,fi
+": > MVP Bigest : > Yllätyspettymys : > Los Angeles Kings Robitaille Donnelly Hrudey : : : : Olisin valinnut Alex Zhitnikin suurimmaksi yllätykseksi. He : odottivat, että hänestä tulisi suuri puolustaja, mutta en usko, että kukaan tiesi hänen tulevan näin vaikuttavaksi hänen : tulokasvuotenaan. Hänen vauhtinsa, luistelukykynsä ja kiekonhallintansa on : poikkeuksellinen -- hän on se, joka seuraa Kingsiä. : Olen samaa mieltä Marty McSorelyn ja Warren Rychelin kanssa, joka on lähes toinen ja kolmas. Olen yllättynyt siitä, että useammat ihmiset eivät ole panneet Knickleä penkille, vaikka en itse arvostaisikaan häntä hyvin. Suurin pettymys on varmasti Carson. Tämä on todella epäreilua, koska häneltä odotettiin liikaa. Toinen pettymys on Melrose, kun hän käsittelee maalia tavoittelevia ongelmia.",10,rec.sport.hockey,fi
+"Koska kaikki haluavat nähdä, että Pittsburghin pelaajat eivät pelaa, Stanley-malja olisi huonolla tolalla. -- Iskander AAYARI",10,rec.sport.hockey,fi
+"Ranskalaisella Canadiensilla on nyt oma jääkiekkoliigansa! Emme halua heitä! Oletko sinä CRAZY? NHL:ssä yksi todellisista kansainvälisistä liigoista, ja kyllä, siellä on monta eurooppalaista, jotka ansaitsevat pelata NHL:ssä ja ovat parempia kuin jotkut pohjoisamerikkalaiset, katso Teemu!! Olen iloinen, että olen nähnyt eurooppalaisia NHL:ssä, ja toivon, että NHL laajenee pian Eurooppaan. On mukava nähdä, että kaikki nämä ihmiset muodostavat 26 jääkiekkojoukkuetta. Darryl Brooks University at Buffalo \////////////////// / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /).",10,rec.sport.hockey,fi
+"#2PETER AHOLA Season: 2. sijaa: '92-93, Pittsburghin kanssa käytyä kauppaa tulevia kisoja varten: I (B) On aivan liian aikaista kertoa Aholasta, joka on hankittu todennäköisesti sen takia, että Penguins olisi uskonut menettävänsä hänet laajennuskisassa. Ahola oli pelannut tällä kaudella vain 50 peliä (mikä on mielestäni pienempi; San Jose Mercury News on saattanut olla tappiolla, mutta hän on saattanut olla väärässä joukkueessaan, koska hän on pelannut Sharksin kanssa. Pelissä hän on ollut varsin vahva, vaikka hän ei ole ollut mitään mieltä, ja hänen rikkomuksensa ei ole ollut kotona (8 pistettä), on jopa mahdollista, että kauppa voi olla tulevaisuuden kannalta, joka muuttuu... Peter Ahola. #24 DOUG WILSON Season, joka on ollut tappiolla, kun hän on ollut tappiolla, kun hän on pelannut hyvin, ja kun hän on ollut tappiolla.",10,rec.sport.hockey,fi
+"Miten voit olettaa, että se oli sarkastinen huomautus?",10,rec.sport.hockey,fi
+":tarnold@vnet.IBM.COM (Todd W. Arnold) sanoi artikkelissa <19930322.101356.617@almaden.ibm.com>: :>Se on ok niin kauan kuin luotat, että käyttäjä pysyy pois sovelluksestasi:>Ohjelmisto - tai niin kauan kuin se toimii järjestelmässä, jossa käyttäjä ei pääse siihen käsiksi. :>Muuten häntä ei voi estää löytämästä ""ladaa moduuli"" -koodia :>Ohjelmisto ja yksinkertaisesti ohita sekki valitettavalle moduulille. Väärä käyttäjä :>voi joko muuttaa kohdekoodia ennen ohjelman suorittamista, tai hän voi ajaa :> ohjelma debuggerin alla ja muuttaa ohjeita muistissa. :On olemassa tapa estää vianetsintää, kuten simulaattoria tai simulaattoria kirjoittamalla koodia.",11,sci.crypt,fi
+"Näin voidaan havaita ennalta salaus , voidaan tehdä muunnos salatun signaalin spektristä vain lisäämällä siihen jokin ennalta järjestetty (kommunikaation alussa) toiminto. Luulen niin. Sano, että voit tehdä FFT:n salatun signaalisi. Ajattelen vain... -- _____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________",11,sci.crypt,fi
+Ilman todellisia teknisiä yksityiskohtia tähän kysymykseen on vaikea vastata. Mutta entä jos ne ovat jo * XORing kaksi 40-bittistä osaa tuottaakseen vain 40-bittiä todellista avainmateriaalia? Ehkä ne käyttävät RC2:n vientikelpoista versiota...? :-),11,sci.crypt,fi
+"Ei kiitos, tämä aihe kiinnostaa paljon laajempaa yleisöä. ""Tekemällä tämän päätöksen aion estää yksityistä sektoria kehittymästä, paitsi hallituksen suostumuksella, muita mikropiirejä tai algoritmeja, jotka ovat tehokkaampia yksityisyyden turvaamisessa.""",11,sci.crypt,fi
+": Yhtiössä, jonka palveluksessa työskentelin aiemmin, sain tiedoston, joka oli purettu: ja henkilö, joka oli lähettänyt sen, jatkoi toimintaansa. Sen sijaan, että olisin odottanut kaksi viikkoa: pystytin suoran etuhyökkäyksen yhdellä avaimella kerrallaan. Kesti vain kaksi (2): päivää avatakseni tiedoston. Ei, en usko DES:iin. : A.G. Fun! Kolme kysymystä: 1) Mitä laitteistoa käytit? 2) Kun löysit avaimen, oliko siinä mitään erityistä, joka tarkoitti, että olit onnekas, kun löysit sen aikaisin? (Kuten ensimmäiset 30 kohtaa kaikki ovat 0) 3) ... vai tarkoititko sanakirjahyökkäystä binäärisen avainhyökkäyksen sijaan?",11,sci.crypt,fi
+"""Jos käytät mikroaaltojärjestelmää (tosiasiassa tämä tarkoittaa jonkinlaista tutkaa), tarvitset melkoisen määrän tarkan tiedon välittämiseksi alkuperäisistä signaaleistasi. GPS-järjestelmä näyttää olevan parempi (ja käynnissä oleva) idea hakemukseesi (tässä uutisryhmässä on käyty keskusteluja), et tiedä osoitetta enää). ""Robert"" (HB9NBY) Robert (HB9NBY)",12,sci.electronics,fi
+"Ensinnäkin, ymmärrä, että Tesla keksi vaihtovirtageneraattorit, moottorit, muuntajat, johtimet jne. Teknisesti, *ALL* muuntajat ovat Teslan keloja. Yleisesti ottaen, kun joku viittaa Teslan käämeeseen, ne tarkoittavat ""ilmaytimen resonanssimuuntajaa"". Television takaosan Teslan käämi (ks. 'Encyclopedia' of'Electronic_Circuits' V3, 106-1 for diagrammia varten) ei ole ilmaytimesi. Se on piiri, jonka nimi on ""Oscollating Shuttle Circuit"" (OSC). Yleensä OSC:n käyttö on erittäin tehokasta, mutta tämä versio käyttää transistoreja ja äännöksiä, jotka ovat erittäin häviöllisiä laitteita. Yleensä Tesla käyttäisi passiivisia reaktioita sen sijaan, että me tyhjentäisimme THE:n, PHARE:n, PHARE:n ja PHARE:n, ja PHARE:n. PH.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.L.P.L.L.L.P.L.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.P.",12,sci.electronics,fi
+KNBR on Friscossa ja alas 680:ssa.,12,sci.electronics,fi
+"Tulevassa projektissa haluan käyttää neljää megaa DRAM-muistia, jotka on määritelty kahdeksi kahden megapannaksi, joissa on 16 bittiä dataa. Mietin, tietääkö joku muu DRAM-ohjaimesta, joka voi virkistää dataa. On ihan ok, jos ohjain ei käsittele pankkikytkentää – tämä osa on helppo. Ainoat, joista tiedän, ovat ne, jotka ovat pois kansallisesta puolijohdemuistin hallintakäsikirjasta (1988 painos), esim. DP8429. Haluaisin tietää, tuottaako toinen valmistaja sellaisen, joka voi olla helpompi toteuttaa piirissäni. BTW, jos joku haluaa kytkeä DRAM-muistin mikro-ohjaimeen, Dallas Semiceconductor tekee näppärän sirun: DS1262 Serial DRAM Nonvolatizer Chip. Se käyttää SPI (I2C) -bussia ja virkistää/ohjauttaa DRAM-muistia 16 Mx1. Se voi käyttää ulkoista akkua, kun virta on pois päältä. Hinta on 11,75 dollaria Dallasilta (kohta 1). Haluaisin, että voisin käyttää tätä sirua, mutta sen maksiminopeus on SPl.",12,sci.electronics,fi
+"PHARE post Martin. Hyvin informatiivinen, hyvin tasapainoinen ja humanitaarinen, unohtamatta tarvetta tieteelliselle kurinpidolle. (PHPP:llä on kuitenkin vahvat potilaat, joilla on vahvat voimavarat.) He ovat vastanneet luontaisella tavallaan: ""HCS:llä"" psykologisessa yhteisössä tämä ei ole tunnustettua ""ilkeyttä"", eikä se näin ollen saa koskaan olla olemassa. :) Itse asiassa on kiehtovaa, että heidän kriminaalinsa on yhtä kuin THP:llä tai PHP:llä.",13,sci.med,fi
+"Uskon, että FDA:n säännöt kieltävät verenluovutuksen ja verituotteiden luovutuksen kaikilta, jotka ovat olleet malaria-alueella kolme vuotta. Olin verihiutaleiden luovuttaja, kunnes Thaimaan-matkani ja veripankkini olivat hyvin pettyneitä saadessaan tietää, etteivät he voineet käyttää minua kolmeen vuoteen. Ei välttämättä. Samat säännöt eivät välttämättä koske elinten luovutusta kuin verenluovutusta. Itse asiassa olen varma, etteivät he luovuta sitä liian pian. ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",13,sci.med,fi
+"Aldridge@netcom.comin ansiosta tiedän nyt hieman enemmän Stargardtin taudista, eli nuorten makulavauriosta, mutta haluaisin tietää lisää. Ensinnäkin, mikä on yleisennuste - onko sokeus tulos? Toiseksi, mitä hoitoja, jos niitä on, on saatavilla?",13,sci.med,fi
+"Kiva nähdä, että Griffin käyttää aikaansa tekniikkoon eikä kielen rituaalipuhdistukseen. Harmi, että hän juuttui kalkkunaan eikä ollut yksi järkevistä vaihtoehdoista.",14,sci.space,fi
+"Entäpä määräysvallan siirtäminen voittoa tavoittelemattomalle organisaatiolle, joka voi ottaa vastaan lahjoituksia pitääkseen käsityön toiminnassa.",14,sci.space,fi
+"Olen juuri pois armeijasta. Mene signaalijoukkoihin tai tiedusteluun, valotiedustelutulkintaan. Jos menet ADA:han, saatat päästä pelaamaan raketeilla, mutta avaruus näyttää aika kauas kaivetulta mudasta, jonka vieressä on rökäle, joka suojelee joukkoja matalalta lentäviltä esineiltä.",14,sci.space,fi
+"Voi olla, että he eivät vain maininneet sitä, tai että he eivät itse asiassa ole miettineet sitä. Sain heidän tehtäväehdotuksestaan epämääräisen vaikutelman, että he eivät olleet ottamassa kovin kokonaisvaltaista aproachia koko asiaan. He näyttivät haluavan laskeutua Kuuhun vuosikymmenen loppuun mennessä selittämättä miksi tai mitä he tekisivät päästyään sinne. Ainoa sovellus, jonka muistan Av Week -artikkelista, oli teleskoopin asettaminen Kuuhun. Se on hienoa, mutta he eivät selitä, miksi sitä ei voi tehdä robottimaisesti. Mutta olen _member_. Billin lisäksi hengailen kanssasi :)",14,sci.space,fi
+"Ehkä myös venäläiset voisivat olla mukana, sillä heillähän on resursseja tehdä se osittain, mutta he tarvitsevat pääomaa ja päämäärää. Ihmettelen, olisiko venäläisten resurssien vuokraaminen ajokieltoa?",14,sci.space,fi
+"Minulla on teille kaikille tähän liittyvä kysymys. Jesus tuomitsee avioeron useaan kertaan uudessa testamentissa, ja minulla on vaikeaa tämän kanssa. Katolinen kirkko (niin pitkälle kuin voin sanoa) myöntää kumoavansa sen, että avioliittoa ei koskaan ollut olemassakaan Jumalan silmissä. (Jos tulkitsen väärin, korjaan itseni.) Olen kuitenkin todistanut avioliitot, joissa kaksi ihmistä oli hyvin rakastuneita, mutta tunnustanut, että he tuhosivat itsensä ja toisensa pysymällä avioliitossa, ja että ongelmat johtuivat henkilökohtaisista lapsuuden ongelmista, joita ei ollut koskaan ratkaistu. Kysyn sinulta, onko avioero oikeutettu tällaisessa tapauksessa? He tiesivät, keitä he olivat, mitä he tekivät, mutta loppujen lopuksi he olivat syvästi rakastuneita, mutta he eivät toimineet. Minun täytyy myöntää, että en näe jesuksen pakottavan heitä elämään yhdessä tai tuomitsevan, että he menevät ja etsivät onnellisuutta jonkun muun kanssa myöhemmin. mielipiteet? vera! I am your CLOCK! I us to myself - Yes I'm I'm I'm I'mseld I looked of the study of the studyry.",15,soc.religion.christian,fi
+"Tekstiyhteys kertoo siitä, että Jumala on kutsunut erikoiskansan (juutalaiset) kantamaan ""lupausta"". Kirjaimellisena kansana luettaessa merkitys jää huomaamatta Paavalin koko pointti. Lähetän mielelläni kaikille yksityiskohtaisempia selityksiä tästä kohdasta, jos se kiinnostaa.",15,soc.religion.christian,fi
+"Ensiksikin ""seremonialaki"" on raamatullinen termi. Sitä käytetään toisinaan kehyksenä Raamatun tarkasteluun. Mutta jos katsotaan yhteentörmäyksiä, joihin ei liity olettamusta, että sapatti ei voi olla seremoniallinen laki, huomaa, että se viittaa sapattiin. meitä vastaan ristiin, ja siksi meidän ei pitäisi tuomita, mitä ruokaa syömme, mitä juomme, mitä uusia kuita ja pyhiä päiviä, tai sapattia. Sapatin sana tässä jakeessa on ""sabbaton"" ja sitä käytetään koko Uudessa testamentissa viittaamaan seitsemänteen päivään. Jos on olemassa jokin kirjoitus, josta saamme ajatuksen seremonialaista laista, tämä on yksi niistä, ja sapatti on merkitty seremonialakiin. Jos se kertoo, että syyhyssä ei ole mitään merkittävää olettamusta siitä, että se ei voi olla seremoniallinen laki, niin hänen on pakko sanoa, että se voi viitata vain muihin sapatinpyhiin päiviin, koska ""sapatti ei ole seremoniallinen laki"", koska se on seremonialaki, miksi se on osasyyllistä lakia. Jos se on se on se, että se on syy, miksi se on syy, että se on syy, että se on se, että se, että se ei ole suuri syy, että se, että se on syy, että se, että se on syy, että se, että se, että se, että se, että se, että se, että se, että se, että se ei ole on syy, että se, että se, että se, että se, että se, että se, että se ei ole on syy, että se, että se, että se, että se, että se, että se, että se ei ole on suuri syy, että se, että se, että se, että se, että se, että se, että se, ei ole, että se, että se, että se, että se, että se, että se, että se, ei ole on, että se, että se, että se, että se, että se, että se, että se, että se, ei ole, että se on, että se, että se, että se, että se, että se, että se, että se, että se, ei ole, ei ole, että se, on, että on, että on, että on, että on, että on, että on, että on, että on, että on, että on,",15,soc.religion.christian,fi
+"""Vaikka olinkin väärässä sen suhteen, että käytitte ""Pryphamian perustuslakia"" (Pryphamian perustuslakia lukuun ottamatta), ""Pryphamian perustuslakia lukuun ottamatta"" (Pryphamian perustuslakia lukuun ottamatta) ""Pryphamian perustuslakia on aina käytetty väärin, ja sen sijaan ""Pryphamian perustuslakia lukuun ottamatta"" (Pryphamian perustuslakia lukuun ottamatta) ""Pryphamian perustuslakia ei ole. Ortodoksit eivät tietenkään poistaneet ""Pryphamian perustuslakia"" ja ""Pryphamian perustuslakia lukuun ottamatta"" (Pryphamian perustuslakia lukuun ottamatta), ""Pryphamian Creediä lukuun ottamatta"" ja ""Pryphamian perustuslakia lukuun ottamatta"". ""Pryphamian perustuslakia lukuun ottamatta ""Pryphamian perustuslakia lukuun ottamatta"" ja ""Pryphamian perustuslakia lukuun ottamatta"" ja ""Thyphamian perustuslakia lukuun ottamatta"" ovat ""Phyphayamia ja ""Phyphayamiaathmiaathia vastaan"" ja ""Thyphyphyphyphyp"" ovat toinen osa, mutta ""Thyphyphyphyphyphyphyp"" ja "".",15,soc.religion.christian,fi
+"Jos uskoisin Raamatun Jumalaan, olisin hyvin peloissani tämän lausunnon esittämisestä. Eikö siinä sanota, että ne, jotka tuomitsevat, tuomitaan samalla mitalla? Jumala, jonka täytyy motivoida pelolla, ei ole palvomisen arvoinen Jumala. Jos Jumala, josta Jeesus puhui, olisi todellakin olemassa, hän ei tarvitsisi helvettiä saadakseen ihmiset palvomaan häntä. Se oli myytti helvetistä, joka lopulta sai minut tajuamaan, että koko asia oli valhetta. Jos en olisi ollut varma, olisin edelleen uskovainen tänään. Myytti helvetistä sai minut ymmärtämään, että jos olisi olemassa Jumala, joka ei ole se kaikki tuntemansa ja hyvä Jumala, jonka hän väitti olevansa. Miksi minun pitäisi ottaa sellainen olento hänen sanansa mukaan, vaikka olisi todisteita hänen olemassaolostaan?",15,soc.religion.christian,fi
+"Miller oli kadonnut, eikä kukaan vaivautunut esittämään hänen puoltaan korkeimmalle oikeudelle, erityisesti että sahattuja haulikkoja käytettiin ensimmäisen maailmansodan juoksuhaulikoissa ja muissa tiukoissa paikoissa siitä lähtien, kun aseet oli keksitty. Kieltäytyisitkö, jos joutuisit ""puhdistamaan"" E. St. Louisin kujan?",16,talk.politics.guns,fi
+"Ja jos nämä kansalaiset eivät olisi ottaneet kantaakseen moraalisen vastuun oman henkensä suojelemisesta, ainakin 13 viatonta uhria olisi voinut kuolla, ja useat rikolliset olisivat yhä kävelemässä kaduilla syyllistyen rikoksiinsa toisiin.",16,talk.politics.guns,fi
+"Ja, voin lisätä, että C-vitamiinia on hyväksytty nobelistiksi lähes kaikkeen tavallisesta flunssasta syöpään. Odota hetki. S&K ei vertaillut suuntauksia. Jos he olisivat nähneet, että Kanadan aselain tulolla ei ollut vaikutusta murhiin, totaaliseen tai käsiaseeseen. Ilman jälkimmäistä vertailua Kanadan aselailla ei voida spekuloida minkään hyödyllisyyttä. Heillä ei ole muuta keinoa kuin vastaavuus, eikä vastaavuus ole todiste syy-seuraussuhdetta. Jos olet kanadalainen ja omistat aseen ennen kuin rajoittavat aselait ohitetaan, ja päätät piilottaa sen, koska se ei ole totuudenmukainen kysymys aseomistuksesta henkilöltä, joka soittaa, kirjoittaa tai kysyy sinulta kadulla? Tämä on yksi kyselyyn liittyvä ongelma. Kukaan ei voi spekuloida, jos olet kanadalainen, ja jos olet hankkinut toisen puolustuksen, niin se ei useinkaan tarkoita sitä, että olet hankkinut toisenlaisia aseita, ja se ei tarkoita sitä, että olet hankkinut toisenlaisia aseita, ja se ei tarkoita sitä, että olet hankkinut toisenlaisia aseita, ja se ei useinkaan tarkoita, että se ei tarkoita sitä, että se tarkoittaa sitä, että se tarkoittaa sitä, että olet aiemmin, että se, että syypää, että se on, että se, että se, että syypää, että se on, että se, että se, että se on, että se, että se, että se, että se on PHyyriää, että se on.",16,talk.politics.guns,fi
+"San Jose Mercury News: >1201 Evans Ave 110 5. St. 750 Ridder Park Dr.: >San Fran, CA 94124 San Fran., CA 94103 San Jose, CA 95190: Hmm, SJ Merc. kuljettaa Targemasters Westiä, National Shooting Clubia, Reeds Sportshopia, Sportsmens-liikettä ja Big 5 -mainoksia. He kaikki myyvät aseita. Ei heillä ole mitään lisäosia, kuten Shotgun-uutisissa. Jos he eivät edes käytä nykyistä lisäystä, vannon, että peruutan tilaukseni ja lopetan CRPA:n käteisrahan.",16,talk.politics.guns,fi
+"Kyllä, olen aseen kannalla, ja kyllä, olen eri mieltä tämän lausunnon kanssa. Ydinaseet ja ne itsessään ovat vaarallisia. Plutoniumin ja uraanin radioaktiivinen hajoaminen sekä aseen tritium ovat yleensä jokseenkin vaarallisia elollisille. (Voitteko sanoa ""neutronvolveri""? Lisäksi näillä asioilla ei ole mitään itsepuolustusta. On aika vaikeaa perustella niiden käyttöä miliisin aseena, kun ne on parhaimmillaan tarkoitettu taistelukäyttöön (matalatuottoisiin aseisiin) tai pahimmillaan teolliseen kohteiden hävittämiseen (kääntäminen: kaupungit ja väestökeskukset). Puhumattakaan siitä, että niitä voidaan käyttää miliisin aseena ja odottaa käyttäjän elävän, joka vaatii jonkinlaista laukaisuajoneuvoa. .",16,talk.politics.guns,fi
+"... poistettiin, en lue ajatuksia, mutta tässä tapauksessa se ei olisi tarpeen. Israelin entiset ja nykyiset huippujohtajat ovat aina olleet ylimielisiä kovilla puheillaan, jotka yrittävät pelotella arabeja. Mielestäni israelilaiset ja arabit eivät ole pystyneet saavuttamaan rauhaa lähes 50 vuoden taistelun jälkeen seuraavien kahden tärkeän syyn vuoksi: 1) arabihallitukset eivät todellisuudessa edusta kansaansa, ja tällä hetkellä suurin osa heidän johtajistaan on typeriä ja/tai riippumattomia ja/tai diktaattoreita.",17,talk.politics.mideast,fi
+"Egyptin lisäksi muu arabimaailma kiistää virallisesti Israelin olemassaolon. Potkaise ulos Syyria, Amerikan miehittämä Libanon? Se on uutta minulle!",17,talk.politics.mideast,fi
+"On soveliaampaa puhua nettereille heidän nimillään, kuten heidän nimikirjoituksessaan sanotaan (en tehnyt niin, koska et vaivautunut allekirjoittamaan lähetystäsi). Ei vain siksi, että se on kohteliasta, vaan myös siksi, että vältät puhumasta naisille ""herralle"", kuten olet tehnyt. Toiseksi saari, jonka nimi on oikein kirjoitettu Kyproksena, ei ole koskaan ollut kreikkalainen, vaan pikemminkin se on ollut kreikkalaisten ja turkkilaisten muodostaman kahden yhteisön muodostaman yhteiskunnan koti. Näyttää siltä, että tiedät yhtä vähän saaren historiasta ja demografiasta, kuten tiedät Turkin sotilaallisen väliintulon olemuksesta kansainvälisissä sopimuksissa. Olkoonpa kyseessä sitten rinnastus historian miehityksen ja Azerbaidžanin maan nykytilanteen välillä, voidaan vetää vain Armenian harjoittaman laajentumispolitiikan avulla.",17,talk.politics.mideast,fi
+"""Säätiöt, jotka koskevat Turkin kansanmurhaa #17 ja kansanmurhan lapsia: ""Lähetä heidät pois aavikolle"" [4] Tämä on osa jatkuvia artikkeleita, jotka sisältävät virallisia Turkin sota-ajan (WW1) hallituksen sähkeitä, jotka sisältävät määräyksiä armenialaisten tuhoamisesta Turkissa. Yleensä nämä sähkeet on antanut Turkin sisäministeri Talaat Pasha, esimerkiksi heidän maa- ja metsätalousjärjestönsä, joka on lähettänyt seuraavan sarjan lapsia varten: ""Aleppon hallitukselle 5. marraskuuta 1915. Meille kerrotaan, että armenialaisten pikkulapset Sivas-, Mamuret-ul-Azizis-, Diarbekir- ja Erzeroum-lapset [Aleppon kilometrien etäisyydeltä] ovat hyväksyneet ne, jotka ovat lähettäneet Tyly-Pyhysysylä-Pyhä-Pyhä-Pyhä-Pyhä-Pyhä-Pyhä-Pyhä-Pyhä-Pyhä-Pyhä-Pyhä-Pyhä-Pyhä-Pyhä-Pyhjä-Pyhä-hä-Pyhä-Pyhä-Pyhä-Pyhä-Pyhä-Pyhä-Pyhä-Pyhä-Pyhä-Pyhä-Pyhä-Pyhä-Pyhä-Pyhä-Pyhä-Pyhä-K-Kylä-K-K-K-K-K-K-K-Kylä-K-Kylä-K-Kylä-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-K-",17,talk.politics.mideast,fi
+"Hasan taisi vihdoin paljastaa väitteensä lähteen siitä, että Israel ohjasi vettä Libanonista - hänen mielikuvituksestaan.",17,talk.politics.mideast,fi
+"Rich Thompson lörpöttelee Libertarian-puolueesta: Mitä rukous kertoo siitä, että liberaalit tietävät vaalien voittamisesta?",18,talk.politics.misc,fi
+"William December Starr kirjoittaa... tyypillisessä lakimiehen syöttimuodissa, kuten tavallista. (Kaikkia ACLU:n periaatteita unohtamatta.) Hyvä nähdä, että olet yhä siellä WDS:ssä. Varmasti olemme olleet kehän ympärillä jo tarpeeksi tyytyväisiä, että tiedät, että et voi pyörittää minua ulospäin. Katsotaan, onko jäljellä mitään, mihin kannattaa vastata... E vaivannäköä. Kuultuani ihmisistä, jotka elävät sumutorvien ja lentokenttien ympärillä. Vaikuttaa minusta aivan oikealta - valtion olento. Btw, oletko yhä tyytyväinen presidenttiisi? Katso kohtaa, jossa lapset seuraavat ""ja"" ensimmäistä riviä. Liitännässäsi ""kultti"" on ""uskoa sääntöihin"". Joten voin kertoa, että olen huolissani siitä, että on tärkeää, että on olemassa lasten mielenkiinnonaiheita ja että ei ole olemassa mitään sellaista, joka ei ole vastuussa hallituksen puolustuksesta. Ehkä siellä on sykkivä sydän.",18,talk.politics.misc,fi
+"Jos tämä ei voita kaikkea, mitä olen koskaan kuullut! Yllä oleva varmasti kertoo Ted Frankin ja myös statistien mielentilasta kaikkialla.",18,talk.politics.misc,fi
+"Miehet haluavat vain kehuskella, kuinka monta naista heillä on ollut.",18,talk.politics.misc,fi
+"Ei, tässä on kaksi ongelmaa: 1) Peter kuoli kaksi miljoonaa vuotta sitten. Alkuperäiset kirjeet ovat jo kauan sitten hävinneet. Jos hän olisi elossa tänään ja voisin kyseenalaistaa hänet, tämä voisi lisätä uskottavuutta väitteillesi (mutta ei luultavasti paljon, koska olen kuullut ihmisten väittävän vilpittömästi, että he ovat puhuneet Elviksen kanssa äskettäin). Mutta hänen kuolemansa jälkeen munkit kirjoittivat Peterin kirjoituksia vuosisatojen ajan, ja minun on vaikea uskoa, että joku heistä ei ole päättänyt muuttaa jonkin muotoilua, jotta se (hänen mielestään) olisi hieman helpompi ymmärtää. (2) Vaikka Peter olisi nähnyt Jeesuksen ihmeet kaksi miljoonaa vuotta sitten, se ei tarkoita, että jumaluutesi olisi sitä, mitä Raamattu sanoo (Jumala voi olla vain Saatana, yrittäen vakuuttaa kaikki, että hän on mukava tyyppi), tai jopa sitä, että deittisi on yhä elossa ja aktiivinen maailmassa tänään. Nice yrittää, mutta se ei riitä vakuuttamaan minua, varsinkin kun hurjia väitteitäsi jumaluudestasi tuntuu olevan olemassa.",19,talk.religion.misc,fi
+"Selvä: Olit siis naiivi teini. Väärin: 1915 ja jos teet läksysi, 1909. Mutta hän syntyi viime vuosisadalla (1883).",19,talk.religion.misc,fi
+"Eikö tämä kuulostakin paljolta muinaisen ajan värikkäältä (tai muuten) tarinalta, joka yrittää jotenkin selittää luonnon feno- menaa? Luulen, että kuulen, mitä sanot, mutta en ole vakuuttunut siitä, että tiedän, mitä tarkoitat. On olemassa mahdollisuus, että se, miltä ""myytti"" näyttää pinnalla, voi olla loppujen lopuksi paljon enemmän kuin ""vain"" tarina. * * * * * * * * * * * * * * * * * * *",19,talk.religion.misc,fi

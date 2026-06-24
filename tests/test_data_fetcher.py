@@ -120,3 +120,16 @@ def test_multilingual_corpus_concatenation() -> None:
     assert len(corpus) == len(english) * 3
     assert sorted(corpus["language"].unique().tolist()) == ["en", "fi", "sv"]
     assert list(corpus.columns) == SCHEMA_COLUMNS
+
+
+def test_stratified_sampling_preserves_columns() -> None:
+    """sample_size triggers stratified sampling that must keep every column
+    (regression: groupby.apply silently dropped the grouping column in pandas 3)."""
+    english = pd.concat([_english_frame()] * 10, ignore_index=True)  # 30 rows, 3 labels
+    fetcher = SwedishTranslationFetcher(
+        source_dataframe=english, sample_size=9, translator=_fake_translator("SV")
+    )
+    sampled = fetcher._sample_source()
+    assert set(sampled.columns) == set(english.columns)
+    assert "label" in sampled.columns
+    assert 0 < len(sampled) <= len(english)

@@ -1,0 +1,219 @@
+MULTILINGUAL EDA (English 20NG sample -> Opus-MT Swedish & Finnish)
+Sample size per language: 96 | total rows: 288
+Median words/doc -> {'EN': 89.5, 'SV': 84.0, 'FI': 52.5}
+Mean   words/doc -> {'EN': 159.15625, 'SV': 82.38541666666667, 'FI': 62.84375}
+
+Sample translations (label | EN -> SV -> FI):
+  [alt.atheism]
+    EN: 
+
+I am fairly sure that she could obtain citizenship by making an
+application for it. It might require immigration to Germany, but
+I am almo
+    SV: Jag är ganska säker på att hon kunde få medborgarskap genom att göra en ansökan om det. Det kan kräva invandring till Tyskland, men jag är n
+    FI: Olen melko varma, että hän voisi saada kansalaisuuden tekemällä sitä koskevan hakemuksen. Se voi edellyttää maahanmuuttoa Saksaan, mutta ole
+  [alt.atheism]
+    EN:  
+    SV: - Jag vet inte.
+    FI: - Ei, ei, ei. Ei, ei, ei, ei, ei, ei, ei, ei, ei, ei, ei, ei, ei, ei, ei, ei, ei, ei, ei.
+  [alt.atheism]
+    EN: 
+: >EVER HEAR OF
+: >BAPTISM AT BIRTH?  If that isn't preying on the young, I don't know what
+: >is...
+: >
+: RB>   
+: RB>   No, that's prayin
+    SV: Om det inte är att jaga på de unga, vet jag inte vad : > är... : > : RB> : RB> Nej, det är att be på de unga. För att jag ska hinna med de u
+    FI: : > AIKAISEMPI KUULEMINEN : >PAPPISMI BIRTH:SSA? Jos se ei ole nuorten saalistamista, en tiedä mitä : > on... > : RB> : RB> : RB> Ei, se on 
+
+############################## ENGLISH ##############################
+
+=== NLP Data Quality: Missing Values (not just NaN) ===
+          category  count  percent
+        NaN / Null      0     0.00
+Empty / Whitespace      3     3.12
+  Micro (<3 words)      1     1.04
+             Valid     92    95.83
+Total documents: 96
+
+
+=== Duplicate Documents ===
+Total documents:      96
+Unique documents:     94
+Duplicate documents:  2 (2.08%)
+
+
+=== Document Length Distribution (words) ===
+count      92.0
+mean      166.1
+std       363.3
+min         9.0
+25%        41.0
+50%        94.5
+75%       160.5
+90%       248.9
+95%       292.5
+99%      1687.3
+max      3065.0
+
+IQR outlier bounds: [0, 340] words
+Outlier documents:  4 (4.35%)
+
+
+=== Category (Label) Distribution ===
+label_text
+comp.graphics               5
+comp.os.ms-windows.misc     5
+comp.sys.ibm.pc.hardware    5
+comp.sys.mac.hardware       5
+comp.windows.x              5
+misc.forsale                5
+rec.autos                   5
+rec.motorcycles             5
+rec.sport.baseball          5
+rec.sport.hockey            5
+sci.crypt                   5
+sci.electronics             5
+sci.med                     5
+sci.space                   5
+soc.religion.christian      5
+talk.politics.guns          5
+talk.politics.mideast       5
+alt.atheism                 4
+talk.politics.misc          4
+talk.religion.misc          3
+
+Most common:  comp.graphics (5 docs)
+Least common: talk.religion.misc (3 docs)
+Imbalance ratio (max / min): 1.67
+
+
+
+############################## SWEDISH ##############################
+
+=== NLP Data Quality: Missing Values (not just NaN) ===
+          category  count  percent
+        NaN / Null      0     0.00
+Empty / Whitespace      0     0.00
+  Micro (<3 words)      1     1.04
+             Valid     95    98.96
+Total documents: 96
+
+
+=== Duplicate Documents ===
+Total documents:      96
+Unique documents:     94
+Duplicate documents:  2 (2.08%)
+
+
+=== Document Length Distribution (words) ===
+count     95.0
+mean      83.2
+std       55.0
+min        4.0
+25%       34.5
+50%       87.0
+75%      135.5
+90%      159.8
+95%      172.3
+99%      182.5
+max      190.0
+
+IQR outlier bounds: [0, 287] words
+Outlier documents:  0 (0.0%)
+
+
+=== Category (Label) Distribution ===
+label_text
+comp.graphics               5
+comp.os.ms-windows.misc     5
+comp.sys.ibm.pc.hardware    5
+comp.sys.mac.hardware       5
+comp.windows.x              5
+misc.forsale                5
+rec.autos                   5
+rec.motorcycles             5
+rec.sport.baseball          5
+rec.sport.hockey            5
+sci.crypt                   5
+sci.electronics             5
+sci.med                     5
+sci.space                   5
+soc.religion.christian      5
+talk.politics.guns          5
+talk.politics.mideast       5
+alt.atheism                 4
+talk.politics.misc          4
+talk.religion.misc          3
+
+Most common:  comp.graphics (5 docs)
+Least common: talk.religion.misc (3 docs)
+Imbalance ratio (max / min): 1.67
+
+
+
+############################## FINNISH ##############################
+
+=== NLP Data Quality: Missing Values (not just NaN) ===
+          category  count  percent
+        NaN / Null      0     0.00
+Empty / Whitespace      0     0.00
+  Micro (<3 words)      1     1.04
+             Valid     95    98.96
+Total documents: 96
+
+
+=== Duplicate Documents ===
+Total documents:      96
+Unique documents:     94
+Duplicate documents:  2 (2.08%)
+
+
+=== Document Length Distribution (words) ===
+count     95.0
+mean      63.5
+std       54.3
+min        4.0
+25%       25.5
+50%       56.0
+75%       82.0
+90%      118.2
+95%      145.2
+99%      251.1
+max      331.0
+
+IQR outlier bounds: [0, 167] words
+Outlier documents:  4 (4.21%)
+
+
+=== Category (Label) Distribution ===
+label_text
+comp.graphics               5
+comp.os.ms-windows.misc     5
+comp.sys.ibm.pc.hardware    5
+comp.sys.mac.hardware       5
+comp.windows.x              5
+misc.forsale                5
+rec.autos                   5
+rec.motorcycles             5
+rec.sport.baseball          5
+rec.sport.hockey            5
+sci.crypt                   5
+sci.electronics             5
+sci.med                     5
+sci.space                   5
+soc.religion.christian      5
+talk.politics.guns          5
+talk.politics.mideast       5
+alt.atheism                 4
+talk.politics.misc          4
+talk.religion.misc          3
+
+Most common:  comp.graphics (5 docs)
+Least common: talk.religion.misc (3 docs)
+Imbalance ratio (max / min): 1.67
+
+
+
+DONE_OK
