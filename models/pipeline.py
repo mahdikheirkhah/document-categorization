@@ -133,6 +133,16 @@ class RealTimePipeline:
                     logger.warning(f"Tagging failed (doc {i}, '{langs[i]}'): {te}")
                     tags, entities = [], []
 
+                # Top-3 predictions for interpretability ("why this category?").
+                top_idx = np.argsort(probabilities[i])[::-1][:3]
+                top_categories = [
+                    {
+                        "category": self.label_map.get(int(j), str(int(j))),
+                        "probability": round(float(probabilities[i][j]), 4),
+                    }
+                    for j in top_idx
+                ]
+
                 results.append(
                     {
                         "language": langs[i],
@@ -141,6 +151,7 @@ class RealTimePipeline:
                         "confidence": round(float(confidences[i]), 4),
                         "tags": tags,
                         "entities": entities,
+                        "top_categories": top_categories,
                     }
                 )
 
