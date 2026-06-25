@@ -36,16 +36,17 @@ import pandas as pd
 from loguru import logger
 from sklearn.model_selection import train_test_split
 
+from utils import config
 from utils.text_cleaning import LanguageSpecificSanitizer
 from models.text_classifier import BaselineClassifier, DistilBertClassifier
 
-DEFAULT_CORPUS = "data/processed_data/multilingual_corpus.csv"
-REPORTS_DIR = "reports"
-MIN_WORDS = 3
+DEFAULT_CORPUS = config.CORPUS_PATH
+REPORTS_DIR = config.REPORTS_DIR
+MIN_WORDS = config.MIN_WORDS
 
 
 def load_clean_split(
-    corpus_path: str, test_size: float = 0.2, seed: int = 42
+    corpus_path: str, test_size: float = config.TEST_SIZE, seed: int = config.SEED
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     """
     Loads the multi-language corpus, cleans each document by its known language,
@@ -72,14 +73,16 @@ def load_clean_split(
         )
 
         sanitizers = {
-            lang: LanguageSpecificSanitizer(lang) for lang in ("en", "sv", "fi")
+            lang: LanguageSpecificSanitizer(lang) for lang in config.SUPPORTED_LANGUAGES
         }
 
         def clean_one(row: pd.Series) -> str:
             text = "" if pd.isna(row["text"]) else str(row["text"])
             if not text.strip():
                 return None
-            cleaned = sanitizers.get(row["language"], sanitizers["en"]).clean(text)
+            cleaned = sanitizers.get(
+                row["language"], sanitizers[config.DEFAULT_LANGUAGE]
+            ).clean(text)
             return cleaned if len(cleaned.split()) >= MIN_WORDS else None
 
         dataframe["clean_text"] = dataframe.apply(clean_one, axis=1)
@@ -164,17 +167,17 @@ def main(epochs: int, corpus_path: str) -> None:
             "baseline_accuracy": round(float(base_metrics["accuracy"]), 4),
             "baseline_f1_macro": round(float(base_metrics["f1_macro"]), 4),
         }
-        with open(os.path.join(REPORTS_DIR, "performance_metrics.json"), "w") as f:
+        with open(config.METRICS_PATH, "w") as f:
             json.dump(report, f, indent=2)
-        logger.info(f"Wrote reports/performance_metrics.json: {report}")
+        logger.info(f"Wrote {config.METRICS_PATH}: {report}")
 
         # 5. Sample predictions for inspection.
-        sample = val_df.sample(min(20, len(val_df)), random_state=42).copy()
+        sample = val_df.sample(min(20, len(val_df)), random_state=config.SEED).copy()
         sample["predicted_label"] = np.argmax(
             deep_model.predict(sample["clean_text"].tolist()), axis=1
         )
         sample[["text", "label", "predicted_label", "language"]].to_csv(
-            os.path.join(REPORTS_DIR, "example_predictions.csv"), index=False
+            config.EXAMPLE_PREDICTIONS_PATH, index=False
         )
         logger.info("Wrote reports/example_predictions.csv. Training pipeline complete.")
     except Exception as e:
@@ -184,7 +187,7 @@ def main(epochs: int, corpus_path: str) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Train the document classifier.")
-    parser.add_argument("--epochs", type=int, default=5, help="Fine-tuning epochs.")
+    parser.add_argument("--epochs", type=int, default=config.EPOCHS, help="Fine-tuning epochs.")
     parser.add_argument("--corpus", type=str, default=DEFAULT_CORPUS, help="Corpus CSV path.")
     args = parser.parse_args()
     main(epochs=args.epochs, corpus_path=args.corpus)

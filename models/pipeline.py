@@ -23,12 +23,13 @@ import numpy as np
 import pandas as pd
 from loguru import logger
 
+from utils import config
 from utils.language_detector import NgramLanguageDetector
 from utils.text_cleaning import LanguageSpecificSanitizer
 from models.text_classifier import DistilBertClassifier, CHECKPOINT_DIR
 from models.tagger import MultilingualTagger
 
-DEFAULT_CORPUS = "data/processed_data/multilingual_corpus.csv"
+DEFAULT_CORPUS = config.CORPUS_PATH
 
 
 class RealTimePipeline:
@@ -55,7 +56,7 @@ class RealTimePipeline:
         label_map: dict[int, str] = None,
     ) -> None:
         try:
-            self.languages = languages or ["en", "sv", "fi"]
+            self.languages = languages or config.SUPPORTED_LANGUAGES
             self.detector = detector or NgramLanguageDetector(self.languages)
             self.sanitizers = {
                 lang: LanguageSpecificSanitizer(lang) for lang in self.languages
@@ -91,11 +92,11 @@ class RealTimePipeline:
         try:
             return self.detector.detect_language(text)
         except Exception:
-            return "en"
+            return config.DEFAULT_LANGUAGE
 
     def _clean(self, text: str, language: str) -> str:
         """Cleans a document with the language-specific sanitizer."""
-        sanitizer = self.sanitizers.get(language, self.sanitizers["en"])
+        sanitizer = self.sanitizers.get(language, self.sanitizers[config.DEFAULT_LANGUAGE])
         return sanitizer.clean(str(text))
 
     def process_batch(self, texts: list[str], languages: list[str] = None) -> list[dict]:
@@ -128,10 +129,12 @@ class RealTimePipeline:
                 # classification.
                 try:
                     tag_result = self.tagger.tag(cleaned[i], language=langs[i])
-                    tags, entities = tag_result["tags"], tag_result["entities"]
+                    tags = tag_result["tags"]
+                    entities = tag_result["entities"]
+                    keywords = tag_result.get("keywords", [])
                 except Exception as te:
                     logger.warning(f"Tagging failed (doc {i}, '{langs[i]}'): {te}")
-                    tags, entities = [], []
+                    tags, entities, keywords = [], [], []
 
                 # Top-3 predictions for interpretability ("why this category?").
                 top_idx = np.argsort(probabilities[i])[::-1][:3]
@@ -150,6 +153,7 @@ class RealTimePipeline:
                         "category_id": label,
                         "confidence": round(float(confidences[i]), 4),
                         "tags": tags,
+                        "keywords": keywords,
                         "entities": entities,
                         "top_categories": top_categories,
                     }

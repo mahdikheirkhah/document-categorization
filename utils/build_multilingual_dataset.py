@@ -25,6 +25,7 @@ import argparse
 import pandas as pd
 from loguru import logger
 
+from utils import config
 from utils.data_fetcher import (
     EnglishNewsgroupsFetcher,
     SwedishTranslationFetcher,
@@ -46,19 +47,19 @@ def _is_translatable(text: str) -> bool:
         bool: Whether the document is worth translating.
     """
     words = text.split()
-    if len(words) < 3:
+    if len(words) < config.MIN_WORDS:
         return False
     alpha_ratio = sum(c.isalpha() for c in text) / max(1, len(text))
     uniq_ratio = len(set(words)) / len(words)
     longest = max(len(w) for w in words)
     return (
-        alpha_ratio >= 0.45
-        and uniq_ratio >= 0.3
-        and not (longest > 40 and len(words) < 5)
+        alpha_ratio >= config.MIN_ALPHA_RATIO
+        and uniq_ratio >= config.MIN_UNIQUE_WORD_RATIO
+        and not (longest > config.MAX_TOKEN_LENGTH and len(words) < 5)
     )
 
-OUTPUT_DIR: str = "data/processed_data"
-OUTPUT_PATH: str = os.path.join(OUTPUT_DIR, "multilingual_corpus.csv")
+OUTPUT_DIR: str = config.PROCESSED_DATA_DIR
+OUTPUT_PATH: str = config.CORPUS_PATH
 
 
 def build(sample_size: int = None) -> pd.DataFrame:
@@ -88,14 +89,14 @@ def build(sample_size: int = None) -> pd.DataFrame:
             per_class = max(1, sample_size // n_classes)
             en_sample = (
                 english.groupby("label", group_keys=False)
-                .sample(n=per_class, random_state=42)
+                .sample(n=per_class, random_state=config.SEED)
                 .reset_index(drop=True)
             )
 
         # Clean the English source BEFORE translating: stripping headers, quoted
         # replies, and signatures means they are never fed to the translator, so
         # the SV/FI text is cleaner and the model degenerates far less.
-        sanitizer = LanguageSpecificSanitizer("en")
+        sanitizer = LanguageSpecificSanitizer(config.DEFAULT_LANGUAGE)
         en_sample["text"] = en_sample["text"].fillna("").astype(str).map(sanitizer.clean)
 
         # Then drop empty/micro AND non-linguistic ("garbage") docs up front, so we

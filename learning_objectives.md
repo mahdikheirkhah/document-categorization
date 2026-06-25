@@ -1,70 +1,253 @@
 # Learning Objectives
 
-## Issue #1: Project Setup, Dataset Selection, and Exploratory Data Analysis (EDA)
+This document records the NLP and ML concepts studied while building the
+multi-language document categorization and tagging system, and — honestly — which
+ones are actually implemented in this codebase versus understood in theory.
 
-### 1. Data Ingestion and Parsing for High-Volume, Multi-Language Text Corpora
-Working with large-scale document collections requires specialized ingestion strategies, as loading massive corpora entirely into memory will cause system crashes. 
-* **Concepts Mastered:** Implementing chunking and streaming techniques to process high-volume text efficiently. This ensures continuous, memory-safe data flow from the raw source into the processing pipeline, allowing the system to scale regardless of the dataset's total size.
+**Implementation legend**
+- ✅ **Implemented** — built and used in the pipeline.
+- ⚠️ **Partial** — partially implemented, or implemented differently than the pure theory.
+- ❌ **Concept only** — understood, but not implemented in this project (with the reason).
 
-### 2. Identifying and Mitigating Statistical Challenges in NLP
-Text datasets present unique statistical anomalies that can severely degrade a machine learning model's predictive power if left unaddressed during the EDA phase.
-* **Class Imbalances:** When document categories are unevenly distributed, models develop a bias toward the majority class. **Mitigation:** Applied strategies such as oversampling the minority class, undersampling the majority, or applying penalized loss functions (class weights) during training to force the model to learn the minority patterns.
-* **Skewed Data (Document Length):** Variations in document length (e.g., 50 words vs. 10,000 words) create skewed feature spaces when converting text to vectors. **Mitigation:** Standardizing input sizes and utilizing advanced vectorization techniques or pre-trained embeddings to ensure consistent feature extraction regardless of document length.
-* **Missing Values in Unstructured Text:** Unlike tabular data, missing text data can manifest as empty strings, missing body paragraphs, or corrupted encodings. **Mitigation:** Developed strategies to either drop irrecoverable documents or perform semantic imputation (inferring missing subjects or keywords based on surrounding context) to preserve valuable structural data without altering the document's core meaning.
+---
 
-### 3. Text Feature Engineering and Normalization Across Distinct Linguistic Families
-Different languages require fundamentally different preprocessing rules before they can be vectorized. 
-* **Germanic vs. Finno-Ugric:** English and Swedish (Germanic) rely on distinct word boundaries where stemming or lemmatization (e.g., "running" to "run") is straightforward. Finnish (Finno-Ugric) is highly agglutinative, meaning words contain complex chains of prefixes and suffixes that cannot be handled by standard tokenizers.
-* **Architectural Solution:** Designed an Object-Oriented Programming (OOP) pipeline utilizing abstract classes for the core data loader. Language-specific logic (for English, Swedish, and Finnish) is handled via inheritance, encapsulating the distinct normalization and parsing rules required for each linguistic family to ensure high code reusability and clean architecture.
+## Table of Contents
 
-### 4. Architectural Data Flow: Ephemeral Embeddings vs. Vector Databases
-Distinguishing between system architectures based on the end goal of the NLP application.
-* **Direct Classification over Similarity Search:** Identified that a vector database is unnecessary for this project. Vector databases are optimized for Retrieval-Augmented Generation (RAG) or similarity searches. Because this system is a direct classifier, it does not need to store semantic vectors long-term.
-* **Ephemeral Processing Pipeline:** The architecture feeds text into DistilBERT, which internally converts it to vector embeddings. These vectors pass through neural network layers to output a final probability distribution (Softmax) across predefined categories. 
-* **Analogy to Computer Vision:** Similar to how an object detection inference engine processes a frame through its layers to output bounding box coordinates without persisting intermediate pixel feature maps, this NLP classifier generates the final category and tags in real-time, discarding the ephemeral embeddings and only saving the final structured output to a relational database.
+- [1. Project Setup, Dataset Selection, and EDA](#1-project-setup-dataset-selection-and-eda)
+  - [1.1 High-Volume, Multi-Language Data Ingestion](#11-high-volume-multi-language-data-ingestion)
+  - [1.2 Statistical Challenges in NLP](#12-statistical-challenges-in-nlp)
+  - [1.3 OOP Normalization Across Linguistic Families](#13-oop-normalization-across-linguistic-families)
+  - [1.4 Ephemeral Embeddings vs Vector Databases](#14-ephemeral-embeddings-vs-vector-databases)
+  - [1.5 Self-Attention Beyond Bag-of-Words](#15-self-attention-beyond-bag-of-words)
+  - [1.6 Sub-word vs Token-Level Processing](#16-sub-word-vs-token-level-processing)
+- [2. Multi-Language Preprocessing Pipeline](#2-multi-language-preprocessing-pipeline)
+  - [2.1 Regex and Unicode Normalization](#21-regex-and-unicode-normalization)
+  - [2.2 Automatic Language Detection](#22-automatic-language-detection)
+  - [2.3 Language-Specific Tokenization](#23-language-specific-tokenization)
+- [3. Transfer-Learning Classification Model](#3-transfer-learning-classification-model)
+  - [3.1 Baseline ML vs Deep Learning](#31-baseline-ml-vs-deep-learning)
+  - [3.2 Transfer Learning and Fine-Tuning](#32-transfer-learning-and-fine-tuning)
+  - [3.3 F1-Macro vs the Accuracy Trap](#33-f1-macro-vs-the-accuracy-trap)
+- [4. Information Extraction and Context-Aware Tagging](#4-information-extraction-and-context-aware-tagging)
+  - [4.1 Classification vs Tagging](#41-classification-vs-tagging)
+  - [4.2 Named Entity Recognition (NER)](#42-named-entity-recognition-ner)
+  - [4.3 Context-Aware Logic: ML + Heuristics](#43-context-aware-logic-ml--heuristics)
+- [5. Real-Time Inference and Optimization](#5-real-time-inference-and-optimization)
+  - [5.1 Model Optimization: Pruning and Quantization](#51-model-optimization-pruning-and-quantization)
+  - [5.2 Latency vs Accuracy Tradeoffs](#52-latency-vs-accuracy-tradeoffs)
+  - [5.3 Batched and Asynchronous Pipelines](#53-batched-and-asynchronous-pipelines)
+- [6. Visualization and Documentation](#6-visualization-and-documentation)
+  - [6.1 Translating ML Metrics into Dashboards](#61-translating-ml-metrics-into-dashboards)
+  - [6.2 Monitoring and Model Drift](#62-monitoring-and-model-drift)
+  - [6.3 Documenting the "Why"](#63-documenting-the-why)
 
-### 5. Deep Semantic Analysis via Self-Attention Mechanisms
-Transitioning from frequency-based word counting to true semantic understanding.
-* **Beyond Bag-of-Words:** Legacy methods like TF-IDF or Bag-of-Words rely on word frequency and ignore sequence. By utilizing transfer learning with BERT/DistilBERT, the system leverages the **Self-Attention** mechanism. 
-* **Contextual Nuance:** The model evaluates every word in relation to every other word simultaneously. It mathematically understands that a word's meaning changes based on its neighbors (e.g., distinguishing "bank" near "river" versus "money"), allowing the network to capture deep contextual structures across the document.
+---
 
-### 6. Sub-word Tokenization vs. Sentence Tokenization
-Selecting the correct tokenization algorithm based on the specific NLP task (Classification vs. Named Entity Recognition) and linguistic structure.
-* **WordPiece Algorithm (Classification):** Utilized Sub-word Tokenization for the core classification pipeline. Instead of splitting strictly by spaces, this breaks unknown or complex words into smaller, recognizable chunks (e.g., "unhappiness" into "un", "##happi", "##ness"). This is highly effective for processing agglutinative Finno-Ugric languages where meaning is derived from stacked suffixes rather than isolated words.
-* **Sentence Tokenization (Tagging/NER):** Deployed traditional sentence tokenizers via SpaCy specifically for the context-aware tagging phase. Named Entity Recognition (NER) requires strict analysis of exact grammatical structures and sentence boundaries to identify specific actors and actions, extracting accurate organizations, people, and locations as tags.
+## 1. Project Setup, Dataset Selection, and EDA
 
+### 1.1 High-Volume, Multi-Language Data Ingestion
+Large corpora can exceed memory; chunking/streaming keeps a memory-safe flow from
+source into the pipeline so the system scales with dataset size.
 
-## Issue #2: Multi-Language Data Preprocessing Pipeline
+> **In this project: ❌ Concept only.** The corpus (~11k English docs + translations)
+> loads fully into a DataFrame via `datasets.load_dataset(...).to_pandas()` in
+> [utils/data_loader.py](utils/data_loader.py). Chunking/streaming wasn't needed at
+> this scale and isn't implemented.
 
-### 4. Advanced Text Preprocessing (Custom Regex & Unicode Normalization)
-Raw text data contains structural noise (HTML, URLs, formatting artifacts) and encoding variations that must be standardized before vectorization.
-* **Regex Filtering with Clean Architecture:** Utilized Regular Expressions to identify and strip structural noise. Adhering to clean code principles, all Regex patterns are abstracted into explicitly named constant variables rather than being hardcoded inline, drastically improving pipeline readability and maintainability.
-* **Unicode Normalization & Observability:** Implemented strict UTF-8 parsing. To ensure data integrity, the pipeline includes an observability layer that actively detects, logs the count, and logs the character shape of non-ASCII UTF-8 characters, ensuring special linguistic characters are not corrupted during ingestion.
+### 1.2 Statistical Challenges in NLP
+Text datasets carry anomalies that hurt models: **class imbalance** (bias to the
+majority class), **document-length skew** (uneven feature spaces), and
+**NLP-specific "missing values"** (empty strings, whitespace, encoding corruption).
 
-### 5. Implementation of Automatic Language Detection Algorithms
-A single, robust pipeline requires dynamic routing to handle multiple languages autonomously.
-* **Algorithmic Routing:** Integrated a pre-trained language detection model to evaluate incoming raw text. This model analyzes character and sequence probabilities to classify the document's language, allowing the system to automatically route the document to the corresponding language-specific preprocessing and tokenization logic without human intervention.
+> **In this project: ⚠️ Partial.** The EDA notebook detects all three (imbalance
+> ratio, IQR length outliers, and an NLP missing-value taxonomy). Mitigations
+> actually applied: `class_weight="balanced"` in the baseline, length standardization
+> via DistilBERT `max_length` truncation/padding, and **dropping** empty/micro docs.
+> Not done: over/under-sampling, class weights for DistilBERT, or semantic imputation
+> (we drop irrecoverable docs rather than infer their content).
 
-### 6. Linguistic Differences in Tokenization Strategies
-Applying uniform tokenization across distinct linguistic families destroys semantic value. The pipeline adapts its strategy based on the detected language:
-* **English (Analytic):** Utilizes standard tokenization strategies—removing whitespaces and punctuation, and extracting word roots.
-* **Swedish (Germanic/Compound):** Shares similarities with English but requires specialized tokenizer configurations to protect Swedish-specific alphabet characters (å, ä, ö) from being incorrectly parsed as delimiters or special symbols, while also preserving the structure of compound words.
-* **Finnish (Finno-Ugric/Agglutinative):** Because Finnish words represent entire complex phrases via stacked suffixes (e.g., one word containing the root, pluralization, and preposition), standard word-splitting is prohibited. The pipeline mandates **sub-word tokenization** to break these long, complex words down into their foundational semantic chunks to prevent vocabulary explosion.
+### 1.3 OOP Normalization Across Linguistic Families
+English/Swedish (Germanic) have clear word boundaries; Finnish (Finno-Ugric) is
+agglutinative. An OOP design with abstract base classes encapsulates per-language
+logic via inheritance for reuse and clean architecture.
 
- ## Issue #3: Transfer Learning Classification Model Development
+> **In this project: ✅ Implemented.** Abstract bases + inheritance throughout —
+> `BaseDataLoader`, `BaseTextCleaner`, `BaseTokenizer`, `BaseTagger`,
+> `BaseTextClassifier`. (Note: for the transformer we keep cleaning *light* — no
+> stemming; lemmatization is used only in the tagger's keyword extraction.)
 
-### 7. Baseline Machine Learning vs. Deep Learning in Text Classification
-Establishing a baseline model is critical to justify the computational cost of deep learning architectures.
-* **Baseline Constraints (Bag of Words):** Traditional ML baselines evaluate text frequency but fail to capture semantic meaning or word order, severely limiting their ability to parse complex linguistic patterns.
-* **Deep Learning Superiority:** By utilizing deep neural networks and backpropagation, the model converts text into dense vector embeddings. Hidden layers process these embeddings to understand sequence, context, and structural importance, identifying equivalent meanings across completely different vocabulary sets.
+### 1.4 Ephemeral Embeddings vs Vector Databases
+Vector databases suit retrieval/RAG/similarity search. A direct classifier doesn't
+need to persist embeddings — DistilBERT computes them internally, passes them
+through its head to a softmax distribution, then discards them.
 
-### 8. Transfer Learning and Fine-Tuning (BERT/DistilBERT)
-Leveraging pre-trained models eliminates the need to train language fundamentals from scratch, drastically reducing computational overhead.
-* **Strategic Fine-Tuning:** The architecture involves loading a foundational model, freezing its base layers (to retain general language comprehension), and retraining the output layers specifically on the target document categories.
-* **Latency vs. Parameter Count Trade-off:** System latency in real-time inference is directly tied to the model's parameter count. DistilBERT was strategically selected over standard BERT; its distilled parameter count ensures high-throughput processing (critical for the ≥ 100 documents/second requirement) while retaining maximal predictive accuracy.
+> **In this project: ✅ design / ⚠️ storage.** No vector DB; embeddings are
+> ephemeral. The final structured output is written to CSV/JSON in
+> [reports/](reports/) and shown in the dashboard — not a relational database.
 
-### 9. Evaluating Performance: F1-Macro vs. The Accuracy Trap
-Applying standard accuracy metrics to heavily imbalanced text corpora results in deceptive model evaluation.
-* **The Accuracy Trap:** In datasets dominated by a majority category, models achieve artificially high accuracy simply by predicting the majority class by default, completely failing on minority classes.
-* **Robust Evaluation Metrics (F1-Score):** To prevent biased evaluation, the system is scored using the F1-Macro metric. This calculates a harmonic mean between **Precision** (True Positives / Predicted Positives) and **Recall** (True Positives / Actual Positives). 
-* **Macro-Averaging:** By using Macro-averaging, the evaluation treats every category with equal importance, ensuring that the model's predictive power is balanced across all classifications regardless of their sample size.
+### 1.5 Self-Attention Beyond Bag-of-Words
+TF-IDF/Bag-of-Words ignore word order and meaning. Transformer self-attention weighs
+every word against every other, capturing context (e.g. "bank" by a river vs money).
+
+> **In this project: ✅ Implemented.** DistilBERT (self-attention, transfer learning)
+> vs the TF-IDF baseline in [models/text_classifier.py](models/text_classifier.py).
+
+### 1.6 Sub-word vs Token-Level Processing
+Sub-word (WordPiece) tokenization splits complex/unknown words into chunks
+(`unhappiness` → `un`, `##happi`, `##ness`), which suits agglutinative Finnish and
+avoids vocabulary explosion.
+
+> **In this project: ✅ Implemented (with a correction).** WordPiece is used for
+> classification (DistilBERT tokenizer) and for Finnish in
+> [utils/tokenization.py](utils/tokenization.py). *Correction:* NER tagging uses
+> SpaCy's **token-level** pipeline (tokenizer → tagger → NER), not "sentence
+> tokenization."
+
+---
+
+## 2. Multi-Language Preprocessing Pipeline
+
+### 2.1 Regex and Unicode Normalization
+Raw text carries structural noise (HTML, URLs, headers, signatures) and encoding
+variation. Regex strips noise; Unicode normalization (NFKC) standardizes characters.
+
+> **In this project: ✅ Implemented.** Named `REGEX_*` constants, a
+> `NewsgroupNoiseCleaner`, `UnicodeNormalizer` (NFKC, preserving `å ä ö`), and an
+> observability decorator that logs non-ASCII counts — all in
+> [utils/text_cleaning.py](utils/text_cleaning.py).
+
+### 2.2 Automatic Language Detection
+A single pipeline routes documents by detecting their language from character/sequence
+probabilities, with no manual intervention.
+
+> **In this project: ✅ Implemented.** `NgramLanguageDetector` (langdetect) in
+> [utils/language_detector.py](utils/language_detector.py). It drives **inference-time**
+> routing (tagger/pipeline); during training we route by the known `language` column.
+
+### 2.3 Language-Specific Tokenization
+A uniform tokenizer destroys meaning across families: English (analytic), Swedish
+(protect `å ä ö` and compounds), Finnish (mandatory sub-word splitting).
+
+> **In this project: ✅ Implemented.** `TokenizerFactory` routes en/sv to SpaCy and
+> fi to WordPiece sub-word tokenization in [utils/tokenization.py](utils/tokenization.py).
+
+---
+
+## 3. Transfer-Learning Classification Model
+
+### 3.1 Baseline ML vs Deep Learning
+A baseline justifies the cost of deep learning. Bag-of-Words baselines capture
+frequency but not order/meaning; deep models learn dense contextual embeddings.
+
+> **In this project: ✅ Implemented.** `BaselineClassifier` (TF-IDF + Logistic
+> Regression) vs `DistilBertClassifier`; the deep model beats the baseline by ~30
+> points (well past the ≥5% requirement).
+
+### 3.2 Transfer Learning and Fine-Tuning
+Pre-trained models avoid learning language from scratch. DistilBERT is chosen over
+BERT because lower parameter count means lower inference latency (the ≥100 docs/sec bar).
+
+> **In this project: ✅ Implemented (with a correction).** DistilBERT-multilingual is
+> fine-tuned on the corpus. *Correction:* we perform **full fine-tuning** — all layers
+> are updated at a small learning rate (3e-5) — **not** frozen-base/head-only
+> feature-extraction (which the original draft described).
+
+### 3.3 F1-Macro vs the Accuracy Trap
+On imbalanced data, accuracy is misleading (a majority-class predictor looks good).
+Macro-F1 (harmonic mean of precision and recall, averaged equally across classes)
+fixes this.
+
+> **In this project: ✅ Implemented.** `evaluate()` reports accuracy **and** macro-F1
+> (and AUC); macro-F1 is the headline metric in
+> [reports/performance_metrics.json](reports/performance_metrics.json).
+
+---
+
+## 4. Information Extraction and Context-Aware Tagging
+
+### 4.1 Classification vs Tagging
+Classification assigns one mutually-exclusive label (*what the document is*); tagging
+attaches multiple non-exclusive markers (*what the document contains*). They complement
+each other.
+
+> **In this project: ✅ Implemented.** Single-label softmax classification +
+> multi-tag NER/keyword tagging, combined in
+> [models/pipeline.py](models/pipeline.py).
+
+### 4.2 Named Entity Recognition (NER)
+NER turns unstructured text into structured entities (persons, organizations,
+locations, dates), using surrounding syntax to disambiguate meaning.
+
+> **In this project: ✅ Implemented.** `SpacyNerTagger` in
+> [models/tagger.py](models/tagger.py), with label normalization across the
+> en/fi OntoNotes scheme and the Swedish SUC scheme, plus per-mention deduplication.
+
+### 4.3 Context-Aware Logic: ML + Heuristics
+Robust pipelines combine statistical predictions with deterministic logic.
+
+> **In this project: ⚠️ Partial (and reframed).** We merge statistical NER with a
+> **deterministic, model-driven keyword-extraction heuristic** (top lemmatized
+> non-entity nouns) and surface a **low-confidence flag** when the top class is weak.
+> *Correction:* we do **not** hardcode If/Else rules that override the classifier
+> based on entities — we deliberately **removed** the hardcoded keyword vocabulary in
+> favor of dynamic extraction, so "hardcoded guardrails overriding the model" is not
+> what this system does.
+
+---
+
+## 5. Real-Time Inference and Optimization
+
+### 5.1 Model Optimization: Pruning and Quantization
+**Quantization** lowers weight precision (e.g. fp32 → int8) for faster math and less
+RAM; **pruning** removes near-zero connections to create a sparse, cheaper model.
+
+> **In this project: ❌ Concept only.** Neither pruning nor quantization is
+> implemented. The ≥100 docs/sec target was met another way — a GPU plus an efficient
+> direct-call **batched `predict`** (~314 docs/sec). Quantization/pruning remain the
+> obvious next optimization if CPU-only latency ever becomes the constraint.
+
+### 5.2 Latency vs Accuracy Tradeoffs
+Heavier models are more accurate but slower; the design must stay fast enough
+(≥100 docs/sec) while staying accurate enough (≥85% / 0.80 macro-F1).
+
+> **In this project: ✅ Implemented.** Addressed by **model choice** (DistilBERT over
+> BERT) and verified by the benchmark — the system clears both bars simultaneously
+> (314 docs/sec, 85% accuracy).
+
+### 5.3 Batched and Asynchronous Pipelines
+Batching exploits GPU parallelism (higher throughput at slight per-item latency);
+async pipelines decouple CPU tokenization from GPU inference to avoid idle hardware.
+
+> **In this project: ⚠️ Partial.** **Batched** inference is implemented
+> (`process_batch` runs one model call per batch). **Asynchronous** (async/await)
+> decoupling is **not** — the pipeline is synchronous.
+
+---
+
+## 6. Visualization and Documentation
+
+### 6.1 Translating ML Metrics into Dashboards
+End users can't read tensors; dashboards must show operational realities (categories,
+tags, confidence, speed) so stakeholders can trust the system.
+
+> **In this project: ✅ Implemented.** The Streamlit dashboard
+> [app/real_time_dashboard.py](app/real_time_dashboard.py) shows live
+> categorization + tagging, accuracy/F1/throughput, per-language accuracy, and
+> category/language/tag distributions. (No time-series/daily-volume view.)
+
+### 6.2 Monitoring and Model Drift
+Production models drift as real data diverges from training; tracking confidence and
+distributions signals when retraining is needed.
+
+> **In this project: ⚠️ Partial.** Per-prediction **confidence**, a **low-confidence
+> flag**, **latency**, and a **session tag-count** view exist in the dashboard. True
+> drift detection (time-series confidence/distribution tracking) and hardware
+> telemetry are **not** implemented.
+
+### 6.3 Documenting the "Why"
+Code comments explain *what*; architectural docs explain *why* — the challenges,
+alternatives, and rationale — so the system can be safely maintained and extended.
+
+> **In this project: ✅ Implemented.** [data.md](data.md) (data/EDA/cleaning
+> rationale), [CONTRIBUTING.md](CONTRIBUTING.md) (standards), module docstrings, and
+> this file document the reasoning behind the architecture.

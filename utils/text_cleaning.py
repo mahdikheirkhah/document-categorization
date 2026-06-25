@@ -3,6 +3,8 @@ import unicodedata
 from abc import ABC, abstractmethod
 from loguru import logger
 
+from utils import config
+
 # ==========================================
 # REGEX CONSTANTS (Clean Architecture)
 # ==========================================
@@ -212,7 +214,7 @@ class LanguageSpecificSanitizer(BaseTextCleaner):
             "sv": [SwedishCompoundCleaner()],
             "fi": [FinnishMorphologyCleaner()],
         }
-        self.lang_code = lang_code if lang_code in language_cleaners else "en"
+        self.lang_code = lang_code if lang_code in language_cleaners else config.DEFAULT_LANGUAGE
         # Whitespace normalization always runs last.
         self.cleaners = (
             common_cleaners + language_cleaners[self.lang_code] + [DuplicationCleaner()]

@@ -23,19 +23,15 @@ from abc import ABC, abstractmethod
 import pandas as pd
 from loguru import logger
 
+from utils import config
 from utils.data_loader import HuggingFaceCorpusLoader
 
-# ==========================================
-# STANDARDIZED CORPUS SCHEMA
-# Every fetcher MUST return exactly these columns so the orchestration layer can
-# concatenate language-specific frames without any bespoke glue code.
-# ==========================================
-SCHEMA_COLUMNS: list[str] = ["text", "label", "label_text", "language"]
+# Standardized schema every fetcher returns (re-exported from the central config).
+SCHEMA_COLUMNS: list[str] = config.SCHEMA_COLUMNS
 
-# Default OPUS-MT translation models (Helsinki-NLP, free on Hugging Face).
-# For higher quality at the cost of size, swap EN->FI for "opus-mt-tc-big-en-fi".
-OPUS_MODEL_EN_SV: str = "Helsinki-NLP/opus-mt-en-sv"
-OPUS_MODEL_EN_FI: str = "Helsinki-NLP/opus-mt-en-fi"
+# OPUS-MT translation models (Helsinki-NLP), sourced from the central config.
+OPUS_MODEL_EN_SV: str = config.OPUS_MODELS["sv"]
+OPUS_MODEL_EN_FI: str = config.OPUS_MODELS["fi"]
 
 
 class BaseDatasetFetcher(ABC):
@@ -131,8 +127,8 @@ class EnglishNewsgroupsFetcher(BaseDatasetFetcher):
 
     def __init__(
         self,
-        dataset_name: str = "SetFit/20_newsgroups",
-        split: str = "train",
+        dataset_name: str = config.DATASET_NAME,
+        split: str = config.DATASET_SPLIT,
     ) -> None:
         """
         Args:
@@ -182,8 +178,8 @@ class BaseTranslationFetcher(BaseDatasetFetcher):
         language: str,
         model_name: str,
         sample_size: int = None,
-        batch_size: int = 16,
-        random_state: int = 42,
+        batch_size: int = config.TRANSLATION_BATCH_SIZE,
+        random_state: int = config.SEED,
         framework: str = None,
         translator=None,
     ) -> None:
@@ -303,7 +299,10 @@ class BaseTranslationFetcher(BaseDatasetFetcher):
         try:
             translator = self._load_translator()
             outputs = translator(
-                texts, batch_size=self.batch_size, truncation=True, max_length=512
+                texts,
+                batch_size=self.batch_size,
+                truncation=True,
+                max_length=config.TRANSLATION_MAX_LENGTH,
             )
             return [item["translation_text"] for item in outputs]
         except Exception as e:
@@ -342,8 +341,8 @@ class SwedishTranslationFetcher(BaseTranslationFetcher):
         self,
         source_dataframe: pd.DataFrame,
         sample_size: int = None,
-        batch_size: int = 16,
-        random_state: int = 42,
+        batch_size: int = config.TRANSLATION_BATCH_SIZE,
+        random_state: int = config.SEED,
         model_name: str = OPUS_MODEL_EN_SV,
         translator=None,
     ) -> None:
@@ -365,8 +364,8 @@ class FinnishTranslationFetcher(BaseTranslationFetcher):
         self,
         source_dataframe: pd.DataFrame,
         sample_size: int = None,
-        batch_size: int = 16,
-        random_state: int = 42,
+        batch_size: int = config.TRANSLATION_BATCH_SIZE,
+        random_state: int = config.SEED,
         model_name: str = OPUS_MODEL_EN_FI,
         translator=None,
     ) -> None:

@@ -26,35 +26,16 @@ from collections import Counter
 import spacy
 from loguru import logger
 
+from utils import config
 from utils.language_detector import NgramLanguageDetector
 
-# Full SpaCy pipelines per language (each includes NER + tagger + lemmatizer).
-SPACY_MODELS: dict[str, str] = {
-    "en": "en_core_web_sm",
-    "sv": "sv_core_news_sm",
-    "fi": "fi_core_news_sm",
-}
-
-# Normalize heterogeneous SpaCy entity labels into one standardized scheme.
-# en_core_web_sm and fi_core_news_sm use OntoNotes (PERSON/ORG/GPE/LOC/DATE/...);
-# sv_core_news_sm uses SUC (PRS/LOC/ORG/TME/OBJ/MSR/WRK/EVN). Unknown -> "misc".
-ENTITY_LABEL_TO_TAG: dict[str, str] = {
-    "PERSON": "person", "PER": "person", "PRS": "person",
-    "ORG": "organization",
-    "GPE": "location", "LOC": "location", "FAC": "location",
-    "NORP": "group",
-    "DATE": "date", "TIME": "date", "TME": "date",
-    "MONEY": "money", "PERCENT": "metric", "QUANTITY": "metric", "MSR": "metric",
-    "CARDINAL": "number", "ORDINAL": "number",
-    "PRODUCT": "product", "OBJ": "product",
-    "EVENT": "event", "EVN": "event",
-    "WORK_OF_ART": "work", "WRK": "work",
-    "LAW": "law", "LANGUAGE": "language", "MISC": "misc",
-}
-
-# Content keywords are the most frequent lemmas with these parts of speech.
-KEYWORD_POS: set[str] = {"NOUN", "PROPN"}
-MAX_KEYWORDS: int = 8
+# All tagger constants live in the central config; re-exported here as module-level
+# names for callers/tests. SpaCy label schemes (en/fi OntoNotes, sv SUC) are
+# normalized to one tag scheme by config.ENTITY_LABEL_TO_TAG.
+SPACY_MODELS: dict[str, str] = config.SPACY_MODELS
+ENTITY_LABEL_TO_TAG: dict[str, str] = config.ENTITY_LABEL_TO_TAG
+KEYWORD_POS: set[str] = config.KEYWORD_POS
+MAX_KEYWORDS: int = config.MAX_KEYWORDS
 
 
 class BaseTagger(ABC):
@@ -124,7 +105,9 @@ class SpacyNerTagger(BaseTagger):
         try:
             self.language = language
             self.max_keywords = max_keywords
-            self.model_name = model_name or SPACY_MODELS.get(language, SPACY_MODELS["en"])
+            self.model_name = model_name or SPACY_MODELS.get(
+                language, SPACY_MODELS[config.DEFAULT_LANGUAGE]
+            )
             self.nlp = spacy.load(self.model_name)
             logger.info(f"Initialized SpacyNerTagger '{self.model_name}' for '{language}'.")
         except OSError as ose:
@@ -142,14 +125,25 @@ class SpacyNerTagger(BaseTagger):
         try:
             doc = self.nlp(str(text))
 
-            entities = [
-                {
-                    "text": ent.text,
-                    "label": ent.label_,
-                    "tag": ENTITY_LABEL_TO_TAG.get(ent.label_, "misc"),
-                }
-                for ent in doc.ents
-            ]
+            # Deduplicate entities by surface form: keep the MAJORITY label across
+            # its mentions and a mention COUNT. So "Iran" becomes one row (count=9),
+            # not nine rows, and a name labelled inconsistently across mentions
+            # collapses to its most common label.
+            mentions: dict[str, list[str]] = {}
+            for ent in doc.ents:
+                mentions.setdefault(ent.text, []).append(ent.label_)
+            entities = []
+            for surface, labels in mentions.items():
+                label = Counter(labels).most_common(1)[0][0]
+                entities.append(
+                    {
+                        "text": surface,
+                        "label": label,
+                        "tag": ENTITY_LABEL_TO_TAG.get(label, "misc"),
+                        "count": len(labels),
+                    }
+                )
+            entities.sort(key=lambda entity: entity["count"], reverse=True)
 
             # Dynamic keywords: most frequent content-word lemmas (model-driven; the
             # lemmatizer normalizes inflection, so no per-language vocabulary needed).
@@ -188,7 +182,7 @@ class MultilingualTagger:
             detector (NgramLanguageDetector, optional): Detector for language routing.
         """
         try:
-            self.languages = languages or ["en", "sv", "fi"]
+            self.languages = languages or config.SUPPORTED_LANGUAGES
             self.detector = detector or NgramLanguageDetector(self.languages)
             self.taggers: dict[str, BaseTagger] = {}  # lazily loaded per language
             logger.info(f"Initialized MultilingualTagger for {self.languages}.")
@@ -199,7 +193,7 @@ class MultilingualTagger:
     def _get_tagger(self, language: str) -> BaseTagger:
         """Lazily loads and caches the SpaCy tagger for a language (fallback to en)."""
         try:
-            lang = language if language in self.languages else "en"
+            lang = language if language in self.languages else config.DEFAULT_LANGUAGE
             if lang not in self.taggers:
                 self.taggers[lang] = SpacyNerTagger(lang)
             return self.taggers[lang]

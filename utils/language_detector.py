@@ -3,8 +3,10 @@ from loguru import logger
 from langdetect import detect, DetectorFactory
 from langdetect.lang_detect_exception import LangDetectException
 
-# Regulatory Compliance: Ensure deterministic outputs for the N-gram probability model
-DetectorFactory.seed = 42
+from utils import config
+
+# Deterministic N-gram detection across runs (reproducibility).
+DetectorFactory.seed = config.SEED
 
 
 class BaseLanguageDetector(ABC):
@@ -41,7 +43,7 @@ class NgramLanguageDetector(BaseLanguageDetector):
             supported_languages (list[str]): Permitted language codes. Defaults to ['en', 'sv', 'fi'].
         """
         try:
-            self.supported_languages = supported_languages or ["en", "sv", "fi"]
+            self.supported_languages = supported_languages or config.SUPPORTED_LANGUAGES
             logger.info(f"Initialized NgramLanguageDetector. Supported partitions: {self.supported_languages}")
         except Exception as e:
             logger.error(f"Failed to initialize NgramLanguageDetector: {e}")
@@ -68,8 +70,11 @@ class NgramLanguageDetector(BaseLanguageDetector):
 
             # 3. Routing Guardrails
             if detected_lang not in self.supported_languages:
-                logger.warning(f"Detected unsupported language '{detected_lang}'. Defaulting to 'en'.")
-                return "en"  # Standard fallback strategy for unsupported text
+                logger.warning(
+                    f"Detected unsupported language '{detected_lang}'. "
+                    f"Defaulting to '{config.DEFAULT_LANGUAGE}'."
+                )
+                return config.DEFAULT_LANGUAGE  # fallback for unsupported text
 
             return detected_lang
 

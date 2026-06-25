@@ -4,6 +4,8 @@ from abc import ABC, abstractmethod
 from transformers import AutoTokenizer
 from loguru import logger
 
+from utils import config
+
 
 class BaseTokenizer(ABC):
     """
@@ -77,7 +79,7 @@ class FinnishSubwordTokenizer(BaseTokenizer):
     Crucial for Finno-Ugric languages to prevent vocabulary explosion from agglutination.
     """
 
-    def __init__(self, model_name: str = "distilbert-base-multilingual-cased") -> None:
+    def __init__(self, model_name: str = config.FINNISH_SUBWORD_MODEL) -> None:
         """
         Initializes the Hugging Face sub-word tokenizer.
         """
@@ -122,9 +124,9 @@ class TokenizerFactory:
         Instantiates all required tokenizers on startup.
         """
         self.tokenizers: dict[str, BaseTokenizer] = {
-            "en": SpacyTokenizer("en_core_web_sm"),
-            "sv": SpacyTokenizer("sv_core_news_sm"),
-            "fi": FinnishSubwordTokenizer()
+            "en": SpacyTokenizer(config.SPACY_MODELS["en"]),
+            "sv": SpacyTokenizer(config.SPACY_MODELS["sv"]),
+            "fi": FinnishSubwordTokenizer(),
         }
 
     def get_tokenizer(self, lang_code: str) -> BaseTokenizer:
@@ -132,6 +134,9 @@ class TokenizerFactory:
         Retrieves the appropriate tokenizer, defaulting to English.
         """
         if lang_code not in self.tokenizers:
-            logger.warning(f"No specific tokenizer for '{lang_code}'. Defaulting to 'en'.")
-            return self.tokenizers["en"]
+            logger.warning(
+                f"No specific tokenizer for '{lang_code}'. "
+                f"Defaulting to '{config.DEFAULT_LANGUAGE}'."
+            )
+            return self.tokenizers[config.DEFAULT_LANGUAGE]
         return self.tokenizers[lang_code]

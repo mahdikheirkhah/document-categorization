@@ -21,14 +21,15 @@ from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
 from sklearn.preprocessing import LabelBinarizer
 from transformers import AutoTokenizer, TFAutoModelForSequenceClassification
 
+from utils import config
 from utils.tokenization import TokenizerFactory
 
 # Global seeds for reproducibility (per CONTRIBUTING.md).
-np.random.seed(42)
-tf.random.set_seed(42)
+np.random.seed(config.SEED)
+tf.random.set_seed(config.SEED)
 
-# Artifacts always land in models/checkpoints/, regardless of the working dir.
-CHECKPOINT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "checkpoints")
+# Artifacts always land in models/checkpoints/ (resolved centrally in config).
+CHECKPOINT_DIR = config.CHECKPOINT_DIR
 
 
 class BaseTextClassifier(ABC):
@@ -97,7 +98,7 @@ class BaselineClassifier(BaseTextClassifier):
     semantic understanding. Establishes the floor the deep model must beat by >=5%.
     """
 
-    def __init__(self, max_features: int = 10000) -> None:
+    def __init__(self, max_features: int = config.BASELINE_MAX_FEATURES) -> None:
         """
         Args:
             max_features (int): Maximum vocabulary size for the TF-IDF vectorizer.
@@ -112,7 +113,7 @@ class BaselineClassifier(BaseTextClassifier):
                 token_pattern=None,  # required by sklearn when a tokenizer is given
             )
             self.model = LogisticRegression(
-                max_iter=1000, random_state=42, class_weight="balanced"
+                max_iter=1000, random_state=config.SEED, class_weight="balanced"
             )
             logger.info("Initialized BaselineClassifier (TF-IDF + Logistic Regression).")
         except Exception as e:
@@ -166,8 +167,8 @@ class DistilBertClassifier(BaseTextClassifier):
     def __init__(
         self,
         num_classes: int,
-        model_name: str = "distilbert-base-multilingual-cased",
-        max_length: int = 256,
+        model_name: str = config.DISTILBERT_MODEL,
+        max_length: int = config.MAX_LENGTH,
     ) -> None:
         """
         Args:
@@ -188,8 +189,8 @@ class DistilBertClassifier(BaseTextClassifier):
                 model_name, num_labels=num_classes, use_safetensors=False
             )
 
-            # Learning rate 3e-5 sits in the required 2e-5..5e-5 fine-tuning band.
-            optimizer = tf.keras.optimizers.legacy.Adam(learning_rate=3e-5)
+            # Learning rate sits in the required 2e-5..5e-5 fine-tuning band.
+            optimizer = tf.keras.optimizers.legacy.Adam(learning_rate=config.LEARNING_RATE)
             loss = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True)
             self.model.compile(optimizer=optimizer, loss=loss, metrics=["accuracy"])
             logger.info("DistilBertClassifier initialized and compiled.")
@@ -198,7 +199,10 @@ class DistilBertClassifier(BaseTextClassifier):
             raise
 
     def _prepare_tf_dataset(
-        self, texts: list[str], labels: list[int] = None, batch_size: int = 16
+        self,
+        texts: list[str],
+        labels: list[int] = None,
+        batch_size: int = config.TRAIN_BATCH_SIZE,
     ) -> tf.data.Dataset:
         """Tokenizes and batches texts (and labels) into a tf.data.Dataset."""
         try:
@@ -225,7 +229,7 @@ class DistilBertClassifier(BaseTextClassifier):
         y_train: list[int],
         X_val: list[str],
         y_val: list[int],
-        epochs: int = 5,
+        epochs: int = config.EPOCHS,
     ) -> None:
         """
         Fine-tunes DistilBERT, saving the best weights, training history, and config
@@ -244,7 +248,7 @@ class DistilBertClassifier(BaseTextClassifier):
             val_ds = self._prepare_tf_dataset(X_val, y_val)
 
             # 1. Best-weights checkpoint (filename matches the validation spec).
-            checkpoint_path = os.path.join(self.checkpoint_dir, "text_classifier_best.h5")
+            checkpoint_path = os.path.join(self.checkpoint_dir, config.BEST_WEIGHTS_FILENAME)
             checkpoint_cb = tf.keras.callbacks.ModelCheckpoint(
                 filepath=checkpoint_path,
                 save_best_only=True,
@@ -253,7 +257,7 @@ class DistilBertClassifier(BaseTextClassifier):
                 mode="min",
             )
             # 2. Per-epoch metrics for the training-history artifact.
-            csv_path = os.path.join(self.checkpoint_dir, "training_history.csv")
+            csv_path = os.path.join(self.checkpoint_dir, config.HISTORY_FILENAME)
             csv_cb = tf.keras.callbacks.CSVLogger(csv_path)
 
             logger.info(f"Starting Fine-Tuning for {epochs} epochs...")
@@ -265,7 +269,7 @@ class DistilBertClassifier(BaseTextClassifier):
             )
 
             # 3. Persist the configuration metadata.
-            config_path = os.path.join(self.checkpoint_dir, "config.json")
+            config_path = os.path.join(self.checkpoint_dir, config.MODEL_CONFIG_FILENAME)
             with open(config_path, "w") as f:
                 json.dump(
                     {
@@ -280,7 +284,7 @@ class DistilBertClassifier(BaseTextClassifier):
             logger.error(f"Fine-tuning failed: {e}")
             raise
 
-    def predict(self, X: list[str], batch_size: int = 32) -> np.ndarray:
+    def predict(self, X: list[str], batch_size: int = config.INFERENCE_BATCH_SIZE) -> np.ndarray:
         """
         Returns softmax class probabilities for X.
 
@@ -324,7 +328,7 @@ class DistilBertClassifier(BaseTextClassifier):
                 ``<checkpoint_dir>/text_classifier_best.h5``.
         """
         try:
-            path = weights_path or os.path.join(self.checkpoint_dir, "text_classifier_best.h5")
+            path = weights_path or os.path.join(self.checkpoint_dir, config.BEST_WEIGHTS_FILENAME)
             self.model.load_weights(path)
             logger.info(f"Loaded fine-tuned weights from {path}.")
         except Exception as e:
@@ -344,14 +348,16 @@ class DistilBertClassifier(BaseTextClassifier):
             DistilBertClassifier: Classifier with the fine-tuned weights loaded.
         """
         try:
-            with open(os.path.join(checkpoint_dir, "config.json")) as f:
-                config = json.load(f)
+            with open(os.path.join(checkpoint_dir, config.MODEL_CONFIG_FILENAME)) as f:
+                saved_config = json.load(f)
             classifier = cls(
-                num_classes=config["num_classes"],
-                model_name=config["model_name"],
-                max_length=config["max_length"],
+                num_classes=saved_config["num_classes"],
+                model_name=saved_config["model_name"],
+                max_length=saved_config["max_length"],
             )
-            classifier.load_weights(os.path.join(checkpoint_dir, "text_classifier_best.h5"))
+            classifier.load_weights(
+                os.path.join(checkpoint_dir, config.BEST_WEIGHTS_FILENAME)
+            )
             return classifier
         except Exception as e:
             logger.error(f"Failed to load classifier from checkpoint: {e}")

@@ -29,10 +29,14 @@ import pandas as pd
 import streamlit as st
 from loguru import logger
 
+from utils import config
 from models.pipeline import RealTimePipeline
 
-METRICS_PATH = "reports/performance_metrics.json"
-CORPUS_PATH = "data/processed_data/multilingual_corpus.csv"
+METRICS_PATH = config.METRICS_PATH
+CORPUS_PATH = config.CORPUS_PATH
+# Below this top-class probability the document likely falls outside the trained
+# categories (out-of-domain), so the predicted category should not be trusted.
+LOW_CONFIDENCE_THRESHOLD = config.LOW_CONFIDENCE_THRESHOLD
 
 
 @st.cache_resource(show_spinner="Loading the trained model (one-time)...")
@@ -87,6 +91,13 @@ def render_live_analysis() -> None:
                 col3.metric("Language", result["language"])
                 col4.metric("Latency", f"{latency_ms:.0f} ms")
 
+                if result["confidence"] < LOW_CONFIDENCE_THRESHOLD:
+                    st.warning(
+                        "Low confidence — this document likely falls outside the 20 "
+                        "trained categories, so the predicted category is unreliable. "
+                        "The tags below describe its actual content."
+                    )
+
                 st.markdown("**Why — top predictions**")
                 st.bar_chart(
                     pd.Series(
@@ -105,8 +116,10 @@ def render_live_analysis() -> None:
                         hide_index=True,
                     )
 
-                # Accumulate for the session-level monitoring chart.
-                st.session_state.setdefault("tag_history", []).extend(result["tags"])
+                # Accumulate tag OCCURRENCES (each entity mention + each keyword) so
+                # the session chart shows meaningful frequencies, not a flat count.
+                occurrences = [e["tag"] for e in result["entities"]] + result.get("keywords", [])
+                st.session_state.setdefault("tag_history", []).extend(occurrences)
             except Exception as e:
                 logger.error(f"Live analysis failed: {e}")
                 st.error(
@@ -115,7 +128,11 @@ def render_live_analysis() -> None:
                 )
 
     if st.session_state.get("tag_history"):
-        st.markdown("**Tag counts (this session)**")
+        header, clear = st.columns([4, 1])
+        header.markdown("**Tag counts (this session, by occurrence)**")
+        if clear.button("Clear history"):
+            st.session_state["tag_history"] = []
+            st.rerun()
         counts = pd.Series(Counter(st.session_state["tag_history"])).sort_values(ascending=False)
         st.bar_chart(counts)
 
