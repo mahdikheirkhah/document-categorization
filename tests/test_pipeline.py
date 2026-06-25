@@ -50,7 +50,11 @@ def test_process_single(pipeline: RealTimePipeline) -> None:
 
 
 def test_process_batch(pipeline: RealTimePipeline) -> None:
-    docs = ["short", "a much longer document about several things", "mid length doc here"]
+    docs = [
+        "short",
+        "a much longer document about several things",
+        "mid length doc here",
+    ]
     out = pipeline.process_batch(docs, languages=["en", "en", "en"])
     assert len(out) == 3
     assert all("category" in r and "confidence" in r for r in out)

@@ -45,7 +45,9 @@ class SpacyTokenizer(BaseTokenizer):
             self.nlp = spacy.load(model_name, exclude=["ner", "parser"])
             logger.info(f"Initialized SpacyTokenizer with model '{model_name}'.")
         except OSError as e:
-            logger.error(f"SpaCy model '{model_name}' not found. Did you run 'python -m spacy download'? Error: {e}")
+            logger.error(
+                f"SpaCy model '{model_name}' not found. Did you run 'python -m spacy download'? Error: {e}"
+            )
             raise
 
     def tokenize(self, text: str) -> list[str]:
@@ -56,7 +58,7 @@ class SpacyTokenizer(BaseTokenizer):
             # Safe NaN Handling
             if pd.isna(text) or text is None:
                 raise ValueError("Encountered NaN or None value during tokenization.")
-            
+
             text_str = str(text).strip()
             if not text_str:
                 return []
@@ -64,7 +66,7 @@ class SpacyTokenizer(BaseTokenizer):
             # Encapsulated processing prevents data leakage across calls
             doc = self.nlp(text_str)
             return [token.text for token in doc if not token.is_space]
-        
+
         except ValueError as ve:
             logger.error(f"Validation error in SpacyTokenizer: {ve}")
             raise
@@ -98,14 +100,14 @@ class FinnishSubwordTokenizer(BaseTokenizer):
             # Safe NaN Handling
             if pd.isna(text) or text is None:
                 raise ValueError("Encountered NaN or None value during tokenization.")
-            
+
             text_str = str(text).strip()
             if not text_str:
                 return []
 
             # Returns sub-words (e.g., 'taloissani' -> ['talo', '##issa', '##ni'])
             return self.tokenizer.tokenize(text_str)
-            
+
         except ValueError as ve:
             logger.error(f"Validation error in FinnishSubwordTokenizer: {ve}")
             raise

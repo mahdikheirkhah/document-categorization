@@ -1,15 +1,19 @@
 import pytest
 from utils.data_loader import HuggingFaceCorpusLoader, NordicCorpusLoader
 
+
 def test_huggingface_loader_invalid_dataset() -> None:
     """
     Tests the exception flow of the HuggingFaceCorpusLoader when given a non-existent dataset.
     """
     try:
-        loader = HuggingFaceCorpusLoader(dataset_name="non_existent_fake_dataset", subset="en", split="train")
+        loader = HuggingFaceCorpusLoader(
+            dataset_name="non_existent_fake_dataset", subset="en", split="train"
+        )
         loader.load_data()
     except Exception as e:
         assert isinstance(e, ValueError) or type(e).__name__ == "DatasetNotFoundError"
+
 
 def test_nordic_loader_file_not_found() -> None:
     """

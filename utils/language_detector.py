@@ -31,7 +31,7 @@ class BaseLanguageDetector(ABC):
 
 class NgramLanguageDetector(BaseLanguageDetector):
     """
-    Concrete implementation utilizing Character N-gram probabilities 
+    Concrete implementation utilizing Character N-gram probabilities
     to detect document language dynamically.
     """
 
@@ -44,14 +44,16 @@ class NgramLanguageDetector(BaseLanguageDetector):
         """
         try:
             self.supported_languages = supported_languages or config.SUPPORTED_LANGUAGES
-            logger.info(f"Initialized NgramLanguageDetector. Supported partitions: {self.supported_languages}")
+            logger.info(
+                f"Initialized NgramLanguageDetector. Supported partitions: {self.supported_languages}"
+            )
         except Exception as e:
             logger.error(f"Failed to initialize NgramLanguageDetector: {e}")
             raise
 
     def detect_language(self, text: str) -> str:
         """
-        Predicts the language using N-gram probabilities. Includes fallback logic 
+        Predicts the language using N-gram probabilities. Includes fallback logic
         for unsupported languages and structural safety checks.
 
         Args:
@@ -63,7 +65,9 @@ class NgramLanguageDetector(BaseLanguageDetector):
         try:
             # 1. Structural Validation (Guards against "Ghost" documents)
             if not text or not str(text).strip():
-                raise ValueError("Cannot detect language of an empty or whitespace-only document.")
+                raise ValueError(
+                    "Cannot detect language of an empty or whitespace-only document."
+                )
 
             # 2. Probability Prediction
             detected_lang = detect(str(text))
@@ -81,7 +85,9 @@ class NgramLanguageDetector(BaseLanguageDetector):
         except LangDetectException as lde:
             # This triggers if the text has no recognizable alphabet characters (e.g., "12345!@#")
             logger.error(f"N-gram detection failed on text '{text}': {lde}")
-            raise ValueError(f"Unrecognizable characters in text, detection failed.") from lde
+            raise ValueError(
+                f"Unrecognizable characters in text, detection failed."
+            ) from lde
         except ValueError as ve:
             logger.error(f"Validation error: {ve}")
             raise

@@ -9,6 +9,7 @@ pipeline constants here.
 Paths are anchored to the repository root (this file's parent's parent), so they
 resolve correctly no matter the current working directory.
 """
+
 import os
 
 # --------------------------------------------------------------------------- #
@@ -41,28 +42,33 @@ EXAMPLE_PREDICTIONS_PATH: str = os.path.join(REPORTS_DIR, "example_predictions.c
 # --------------------------------------------------------------------------- #
 # Dataset & standardized schema
 # --------------------------------------------------------------------------- #
-DATASET_NAME: str = "SetFit/20_newsgroups"
-DATASET_SPLIT: str = "train"
+# MASSIVE (Amazon) is a natively multilingual, parallel dataset — the same
+# utterances are provided in every language, so all languages share one identical
+# label space with no translation step. The canonical "AmazonScience/massive"
+# repo ships a dataset *script*, which datasets>=4 no longer executes, so we load
+# the parquet mirror published by MTEB. We classify the 18 coarse "scenario"
+# domains (alarm, calendar, weather, ...) rather than the 60 fine intents: fewer,
+# better-separated classes make the >=85% accuracy / >=0.80 macro-F1 targets
+# realistic, while still clearing the ">=5 categories" requirement.
+MASSIVE_DATASET: str = "mteb/amazon_massive_scenario"
+# One config per language; in MASSIVE the config name is just the ISO code.
+MASSIVE_LANGUAGE_CONFIGS: dict[str, str] = {"en": "en", "sv": "sv", "fi": "fi"}
+# Splits pulled per language and concatenated into the corpus. MASSIVE is
+# parallel, so each split holds the same utterances across all languages.
+MASSIVE_SPLITS: list[str] = ["train"]
+# Column names in the MTEB parquet: the utterance text and the scenario name.
+MASSIVE_TEXT_COL: str = "text"
+MASSIVE_LABEL_COL: str = "label_text"  # human-readable scenario name (e.g. "alarm")
+
 SCHEMA_COLUMNS: list[str] = ["text", "label", "label_text", "language"]
 
 # --------------------------------------------------------------------------- #
-# Translation (Opus-MT) used to build the Swedish/Finnish corpus
+# Corpus quality filter & train/val split
 # --------------------------------------------------------------------------- #
-OPUS_MODELS: dict[str, str] = {
-    "sv": "Helsinki-NLP/opus-mt-en-sv",
-    "fi": "Helsinki-NLP/opus-mt-en-fi",
-}
-TRANSLATION_BATCH_SIZE: int = 16
-TRANSLATION_MAX_LENGTH: int = 512
-
-# --------------------------------------------------------------------------- #
-# Corpus quality filter (applied before translation) & train/val split
-# --------------------------------------------------------------------------- #
-MIN_WORDS: int = 3              # drop documents with fewer real words
-MIN_ALPHA_RATIO: float = 0.45   # drop mostly-symbol docs (ASCII art, separators)
-MIN_UNIQUE_WORD_RATIO: float = 0.3  # drop highly repetitive docs
-MAX_TOKEN_LENGTH: int = 40      # a single token longer than this is junk
-TEST_SIZE: float = 0.2          # validation fraction of the stratified split
+# MASSIVE utterances are short, already-clean commands (e.g. "play music"), so
+# the only filter is dropping empty / whitespace-only ("ghost") rows.
+MIN_WORDS: int = 1  # drop only empty docs (MASSIVE utterances are short)
+TEST_SIZE: float = 0.2  # validation fraction of the stratified split
 
 # --------------------------------------------------------------------------- #
 # Classifier (TF-IDF baseline + DistilBERT)
@@ -90,17 +96,32 @@ SPACY_MODELS: dict[str, str] = {
 }
 # Normalize heterogeneous SpaCy entity labels (en/fi OntoNotes; sv SUC) -> one scheme.
 ENTITY_LABEL_TO_TAG: dict[str, str] = {
-    "PERSON": "person", "PER": "person", "PRS": "person",
+    "PERSON": "person",
+    "PER": "person",
+    "PRS": "person",
     "ORG": "organization",
-    "GPE": "location", "LOC": "location", "FAC": "location",
+    "GPE": "location",
+    "LOC": "location",
+    "FAC": "location",
     "NORP": "group",
-    "DATE": "date", "TIME": "date", "TME": "date",
-    "MONEY": "money", "PERCENT": "metric", "QUANTITY": "metric", "MSR": "metric",
-    "CARDINAL": "number", "ORDINAL": "number",
-    "PRODUCT": "product", "OBJ": "product",
-    "EVENT": "event", "EVN": "event",
-    "WORK_OF_ART": "work", "WRK": "work",
-    "LAW": "law", "LANGUAGE": "language", "MISC": "misc",
+    "DATE": "date",
+    "TIME": "date",
+    "TME": "date",
+    "MONEY": "money",
+    "PERCENT": "metric",
+    "QUANTITY": "metric",
+    "MSR": "metric",
+    "CARDINAL": "number",
+    "ORDINAL": "number",
+    "PRODUCT": "product",
+    "OBJ": "product",
+    "EVENT": "event",
+    "EVN": "event",
+    "WORK_OF_ART": "work",
+    "WRK": "work",
+    "LAW": "law",
+    "LANGUAGE": "language",
+    "MISC": "misc",
 }
 KEYWORD_POS: set[str] = {"NOUN", "PROPN"}  # parts of speech kept as content keywords
 MAX_KEYWORDS: int = 8

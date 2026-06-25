@@ -28,7 +28,7 @@ def test_unicode_normalizer() -> None:
     """Tests NFKC normalization and preservation of Nordic characters."""
     cleaner = UnicodeNormalizer()
     # 'a' + combining ring above (U+030A) should normalize to 'å' (U+00E5)
-    raw = "Taloissani on a\u030A" 
+    raw = "Taloissani on a\u030a"
     cleaned = cleaner.clean(raw)
     assert cleaned == "Taloissani on å"
 
@@ -42,14 +42,11 @@ def test_duplication_cleaner() -> None:
 
 def test_full_cleaning_pipeline() -> None:
     """Tests the composite pattern chaining all cleaners."""
-    pipeline = TextCleaningPipeline([
-        HtmlCleaner(),
-        ArtifactCleaner(),
-        UnicodeNormalizer(),
-        DuplicationCleaner()
-    ])
-    
-    raw = "<p>  Visit https://site.com/a\u030A   for info! </p>"
+    pipeline = TextCleaningPipeline(
+        [HtmlCleaner(), ArtifactCleaner(), UnicodeNormalizer(), DuplicationCleaner()]
+    )
+
+    raw = "<p>  Visit https://site.com/a\u030a   for info! </p>"
     # Expected: HTML gone, URL gone, Unicode normalized (å), spaces compressed.
     cleaned = pipeline.clean(raw)
     assert cleaned == "Visit for info!"
@@ -89,11 +86,11 @@ def test_language_specific_sanitizer_unified_pipeline() -> None:
     """Every language now gets HTML + newsgroup + URL/email + unicode + whitespace."""
     raw = "From: a@b.com\n<p>Visit https://x.com</p>\n> quoted line\nReal Swedish content åäö."
     cleaned = LanguageSpecificSanitizer("sv").clean(raw)
-    assert "From:" not in cleaned          # header removed
-    assert "<p>" not in cleaned            # html removed
+    assert "From:" not in cleaned  # header removed
+    assert "<p>" not in cleaned  # html removed
     assert "https://x.com" not in cleaned  # url removed
-    assert ">" not in cleaned              # quote removed
-    assert "åäö" in cleaned                # Swedish diacritics preserved
+    assert ">" not in cleaned  # quote removed
+    assert "åäö" in cleaned  # Swedish diacritics preserved
     assert "Real Swedish content" in cleaned
 
 

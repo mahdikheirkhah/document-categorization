@@ -6,7 +6,9 @@ from models.tagger import BaseTagger, MultilingualTagger, ENTITY_LABEL_TO_TAG
 class _FakeTagger(BaseTagger):
     """Returns canned model output so the base logic can be tested without SpaCy."""
 
-    def __init__(self, entities: list[dict], keywords: list[str] = None, language: str = "en") -> None:
+    def __init__(
+        self, entities: list[dict], keywords: list[str] = None, language: str = "en"
+    ) -> None:
         self.language = language
         self._entities = entities
         self._keywords = keywords or []
@@ -32,7 +34,9 @@ def test_tag_merges_entities_and_keywords() -> None:
         {"text": "Nordea", "label": "ORG", "tag": "organization"},
         {"text": "Stockholm", "label": "GPE", "tag": "location"},
     ]
-    result = _FakeTagger(entities, keywords=["bank", "savings"]).tag("Some document text.")
+    result = _FakeTagger(entities, keywords=["bank", "savings"]).tag(
+        "Some document text."
+    )
     assert result["entity_tags"] == ["location", "organization"]
     assert result["keywords"] == ["bank", "savings"]
     assert set(result["tags"]) == {"location", "organization", "bank", "savings"}

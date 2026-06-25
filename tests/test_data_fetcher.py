@@ -1,34 +1,38 @@
 import pytest
 import pandas as pd
 
+from utils import config
 from utils.data_fetcher import (
     BaseDatasetFetcher,
-    SwedishTranslationFetcher,
-    FinnishTranslationFetcher,
+    MassiveScenarioFetcher,
     MultilingualCorpusFetcher,
+    build_scenario_label_map,
     SCHEMA_COLUMNS,
 )
 
 
-def _english_frame() -> pd.DataFrame:
-    """A tiny, already-standardized English frame to translate from."""
+def _fake_massive_frame(language_config: str) -> pd.DataFrame:
+    """
+    A tiny MASSIVE-like frame mimicking the MTEB parquet schema for one language.
+
+    Two scenarios ('alarm', 'weather') x three rows. The scenario names are
+    identical across languages (MASSIVE is parallel); only the text differs.
+    """
+    scenarios = ["weather", "alarm", "weather", "alarm", "weather", "alarm"]
     return pd.DataFrame(
         {
-            "text": ["Stocks fell today.", "The team won the match.", "A new vaccine was approved."],
-            "label": [0, 1, 2],
-            "label_text": ["finance", "sport", "health"],
-            "language": ["en", "en", "en"],
+            "id": [str(i) for i in range(len(scenarios))],
+            "label": scenarios,
+            "label_text": scenarios,
+            "text": [f"{language_config} utterance {i}" for i in range(len(scenarios))],
+            "lang": language_config,
         }
     )
 
 
-def _fake_translator(prefix: str):
-    """Returns a callable mimicking a transformers translation pipeline (no model download)."""
-
-    def _translate(texts, **kwargs):
-        return [{"translation_text": f"{prefix}:{text}"} for text in texts]
-
-    return _translate
+def _fake_loader(dataset_name: str, language_config: str, split: str) -> pd.DataFrame:
+    """Stand-in for HuggingFaceCorpusLoader — returns a frame with no network call."""
+    return _fake_massive_frame(language_config)
 
 
 class _DummyFetcher(BaseDatasetFetcher):
@@ -39,7 +43,9 @@ class _DummyFetcher(BaseDatasetFetcher):
 
     def fetch(self) -> pd.DataFrame:
         raw = pd.DataFrame({"body": ["hello world"], "y": [0], "cat": ["greeting"]})
-        return self._standardize(raw, text_col="body", label_col="y", label_text_col="cat")
+        return self._standardize(
+            raw, text_col="body", label_col="y", label_text_col="cat"
+        )
 
 
 def test_base_fetcher_is_abstract() -> None:
@@ -64,72 +70,82 @@ def test_standardize_missing_column_raises() -> None:
         fetcher._standardize(bad, "body", "y", "cat")
 
 
-def test_swedish_translation_preserves_labels() -> None:
-    """EN->SV translation keeps the label space identical and stamps language='sv'."""
-    english = _english_frame()
-    fetcher = SwedishTranslationFetcher(
-        source_dataframe=english, translator=_fake_translator("SV")
-    )
-    swedish = fetcher.fetch()
-
-    assert list(swedish.columns) == SCHEMA_COLUMNS
-    assert (swedish["language"] == "sv").all()
-    assert swedish["label"].tolist() == english["label"].tolist()
-    assert swedish["label_text"].tolist() == english["label_text"].tolist()
-    assert swedish.loc[0, "text"].startswith("SV:")
+def test_build_scenario_label_map_is_sorted_and_deterministic() -> None:
+    """Scenario names map to ids in alphabetical order, identically every time."""
+    mapping = build_scenario_label_map(["weather", "alarm", "weather", "calendar"])
+    assert mapping == {"alarm": 0, "calendar": 1, "weather": 2}
+    # Same names in a different order yield the same mapping (language parity).
+    assert build_scenario_label_map(["calendar", "alarm", "weather"]) == mapping
 
 
-def test_finnish_translation_language_code() -> None:
-    """EN->FI translation stamps language='fi' and routes through the FI fetcher."""
-    english = _english_frame()
-    fetcher = FinnishTranslationFetcher(
-        source_dataframe=english, translator=_fake_translator("FI")
-    )
-    finnish = fetcher.fetch()
-
-    assert (finnish["language"] == "fi").all()
-    assert finnish.loc[0, "text"].startswith("FI:")
-
-
-def test_translation_requires_non_empty_source() -> None:
-    """An empty source frame triggers a controlled ValueError at construction."""
+def test_build_scenario_label_map_empty_raises() -> None:
+    """An empty name list triggers a controlled ValueError."""
     with pytest.raises(ValueError):
-        SwedishTranslationFetcher(source_dataframe=pd.DataFrame())
+        build_scenario_label_map([])
+
+
+def test_massive_fetch_produces_schema_with_integer_labels() -> None:
+    """The MASSIVE fetcher returns the canonical schema with integer labels."""
+    fetcher = MassiveScenarioFetcher("en", loader=_fake_loader)
+    frame = fetcher.fetch()
+    assert list(frame.columns) == SCHEMA_COLUMNS
+    assert (frame["language"] == "en").all()
+    assert pd.api.types.is_integer_dtype(frame["label"])
+    # 'alarm' sorts before 'weather' -> alarm=0, weather=1.
+    alarm_labels = frame.loc[frame["label_text"] == "alarm", "label"].unique().tolist()
+    assert alarm_labels == [0]
+
+
+def test_massive_label_space_is_shared_across_languages() -> None:
+    """Injecting the English label map keeps sv/fi ids aligned to the same space."""
+    english = MassiveScenarioFetcher("en", loader=_fake_loader)
+    shared = english.fetch_label_map()
+
+    swedish = MassiveScenarioFetcher(
+        "sv", label_to_id=shared, loader=_fake_loader
+    ).fetch()
+    finnish = MassiveScenarioFetcher(
+        "fi", label_to_id=shared, loader=_fake_loader
+    ).fetch()
+
+    for frame in (swedish, finnish):
+        pairs = frame[["label", "label_text"]].drop_duplicates()
+        mapping = {row.label_text: row.label for row in pairs.itertuples(index=False)}
+        assert mapping == shared
+
+
+def test_massive_unsupported_language_raises() -> None:
+    """A language absent from the config raises a controlled ValueError."""
+    with pytest.raises(ValueError):
+        MassiveScenarioFetcher("es", loader=_fake_loader)
+
+
+def test_massive_stratified_sampling_preserves_classes() -> None:
+    """sample_size draws a stratified slice keeping every scenario and the schema."""
+    fetcher = MassiveScenarioFetcher("en", sample_size=2, loader=_fake_loader)
+    frame = fetcher.fetch()
+    assert list(frame.columns) == SCHEMA_COLUMNS
+    assert set(frame["label_text"]) == {"alarm", "weather"}
+    assert 0 < len(frame) <= len(_fake_massive_frame("en"))
 
 
 def test_multilingual_corpus_concatenation() -> None:
     """The orchestrator polymorphically combines EN + SV + FI into one corpus."""
-    english = _english_frame()
+    english = MassiveScenarioFetcher("en", loader=_fake_loader)
+    shared = english.fetch_label_map()
+    fetchers = [
+        MassiveScenarioFetcher(lang, label_to_id=shared, loader=_fake_loader)
+        for lang in config.SUPPORTED_LANGUAGES
+    ]
 
-    class _EnFetcher(BaseDatasetFetcher):
-        def __init__(self) -> None:
-            super().__init__(language="en")
+    corpus = MultilingualCorpusFetcher(fetchers).build()
 
-        def fetch(self) -> pd.DataFrame:
-            return english
-
-    swedish = SwedishTranslationFetcher(
-        source_dataframe=english, translator=_fake_translator("SV")
-    )
-    finnish = FinnishTranslationFetcher(
-        source_dataframe=english, translator=_fake_translator("FI")
-    )
-
-    corpus = MultilingualCorpusFetcher([_EnFetcher(), swedish, finnish]).build()
-
-    assert len(corpus) == len(english) * 3
     assert sorted(corpus["language"].unique().tolist()) == ["en", "fi", "sv"]
     assert list(corpus.columns) == SCHEMA_COLUMNS
+    assert len(corpus) == len(_fake_massive_frame("en")) * 3
 
 
-def test_stratified_sampling_preserves_columns() -> None:
-    """sample_size triggers stratified sampling that must keep every column
-    (regression: groupby.apply silently dropped the grouping column in pandas 3)."""
-    english = pd.concat([_english_frame()] * 10, ignore_index=True)  # 30 rows, 3 labels
-    fetcher = SwedishTranslationFetcher(
-        source_dataframe=english, sample_size=9, translator=_fake_translator("SV")
-    )
-    sampled = fetcher._sample_source()
-    assert set(sampled.columns) == set(english.columns)
-    assert "label" in sampled.columns
-    assert 0 < len(sampled) <= len(english)
+def test_multilingual_corpus_requires_a_fetcher() -> None:
+    """Building with no fetchers raises a controlled ValueError."""
+    with pytest.raises(ValueError):
+        MultilingualCorpusFetcher([])

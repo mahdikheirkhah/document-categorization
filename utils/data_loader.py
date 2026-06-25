@@ -53,22 +53,26 @@ class HuggingFaceCorpusLoader(BaseDataLoader):
         """
         try:
             logger.info(f"Downloading {self.dataset_name} split: {self.split}")
-            
+
             # Added trust_remote_code=True to bypass new Hugging Face security restrictions
             if self.subset:
                 dataset = load_dataset(self.dataset_name, self.subset, split=self.split)
             else:
                 dataset = load_dataset(self.dataset_name, split=self.split)
-                
+
             dataframe = dataset.to_pandas()
-            logger.info(f"Successfully loaded {len(dataframe)} English documents.")
+            label = self.subset or self.split
+            logger.info(f"Successfully loaded {len(dataframe)} documents ({label}).")
             return dataframe
         except ValueError as val_error:
-            logger.error(f"Value error during dataset loading (invalid split/subset): {val_error}")
+            logger.error(
+                f"Value error during dataset loading (invalid split/subset): {val_error}"
+            )
             raise
         except Exception as e:
             logger.error(f"Unexpected error loading Hugging Face dataset: {e}")
             raise
+
 
 class NordicCorpusLoader(BaseDataLoader):
     """
@@ -87,7 +91,9 @@ class NordicCorpusLoader(BaseDataLoader):
         try:
             self.file_path = file_path
             self.language_code = language_code
-            logger.info(f"Initialized NordicCorpusLoader for language: {self.language_code}")
+            logger.info(
+                f"Initialized NordicCorpusLoader for language: {self.language_code}"
+            )
         except Exception as e:
             logger.error(f"Initialization failed for NordicCorpusLoader: {e}")
             raise
@@ -102,7 +108,9 @@ class NordicCorpusLoader(BaseDataLoader):
         try:
             logger.info(f"Loading {self.language_code} data from {self.file_path}...")
             dataframe = pd.read_csv(self.file_path, encoding="utf-8")
-            logger.info(f"Successfully loaded {len(dataframe)} {self.language_code} documents.")
+            logger.info(
+                f"Successfully loaded {len(dataframe)} {self.language_code} documents."
+            )
             return dataframe
         except FileNotFoundError as fnf_error:
             logger.error(f"Data file not found at {self.file_path}: {fnf_error}")

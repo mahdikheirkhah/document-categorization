@@ -21,9 +21,10 @@ clean, scalable, and reproducible, every contributor must follow the guidelines 
 * **Poetry:** We use **Poetry** for dependency resolution and environment management. Install with
   `poetry install`. Core dependencies include `tensorflow`, `tf-keras`, `transformers`, `datasets`,
   `spacy`, `langdetect`, `streamlit`, `pandas`, `scikit-learn`, and `loguru`.
-* **SpaCy / Translation models:** Language assets are downloaded separately, e.g.
-  `python -m spacy download en_core_web_sm` (English), `sv_core_news_sm` (Swedish). Finnish
-  sub-word handling and the EN→SV / EN→FI OPUS-MT translation models are pulled from Hugging Face.
+* **SpaCy / dataset assets:** Language assets are downloaded separately, e.g.
+  `python -m spacy download en_core_web_sm` (English), `sv_core_news_sm` (Swedish),
+  `fi_core_news_sm` (Finnish). The MASSIVE corpus and Finnish sub-word tokenizer are
+  pulled from Hugging Face on first use.
 * **Black Formatter:** We enforce a uniform code style (`line-length = 88`). Before committing, run:
 
 ```bash
@@ -43,8 +44,8 @@ Every contribution must demonstrate the **four OOP principles**:
 * **Abstraction (Interfaces):** Define an `abc.ABC` base class with `@abstractmethod`s that declares
   *what* a component does, hiding *how* it does it (e.g. `BaseDatasetFetcher.fetch()`).
 * **Inheritance:** Concrete classes inherit the contract and share reusable logic through base
-  classes — including multi-level hierarchies (e.g.
-  `BaseDatasetFetcher → BaseTranslationFetcher → SwedishTranslationFetcher`).
+  classes (e.g. `BaseDatasetFetcher → MassiveScenarioFetcher`,
+  `BaseTextCleaner → SwedishCompoundCleaner`).
 * **Encapsulation:** Keep internal state and helpers private (prefix with `_`), expose only a small
   public surface, and validate inputs inside the object rather than leaking complexity to callers.
 * **Polymorphism:** Callers should depend on the base type, not the concrete class. Orchestrators
@@ -108,9 +109,10 @@ def fetch(self) -> pd.DataFrame:
 * **Imbalance-Aware Evaluation:** Plain accuracy can be misleading on skewed category distributions.
   Always report **macro-F1** alongside accuracy, use `class_weight="balanced"` where appropriate, and
   use `StratifiedKFold` / stratified splits to preserve category ratios.
-* **Multilingual Parity:** Labels are language-agnostic — the Swedish and Finnish sets are produced by
-  translating the English source, so all languages **share one identical label space**. Always report
-  **per-language** accuracy (target ≥ 80% for `en`, `sv`, and `fi`), not just a global number.
+* **Multilingual Parity:** Labels are language-agnostic — MASSIVE is a parallel corpus, so the
+  Swedish and Finnish sets are **native** text sharing one identical label space with English (the
+  scenario→id map is built once and injected into every language). Always report **per-language**
+  accuracy (target ≥ 80% for `en`, `sv`, and `fi`), not just a global number.
 * **Reproducibility:** Set and document `random_state` / seeds for every stochastic process
   (`np.random.seed`, `tf.random.set_seed`, `DetectorFactory.seed`, dataset sampling, and splits).
 
@@ -128,6 +130,6 @@ def fetch(self) -> pd.DataFrame:
   corresponding test under `tests/`.
 * **Flow Coverage:** Tests must cover the main path **and** the `except` blocks (trigger known errors,
   e.g. a missing column, a NaN token, an empty document, an unsupported language fallback). Inject
-  fakes/mocks for heavy models (translation, DistilBERT) so the suite runs fast and offline.
+  fakes/mocks for heavy I/O and models (dataset loading, DistilBERT) so the suite runs fast and offline.
 * **Classifier Checks:** Validate F1-macro and accuracy via `StratifiedKFold` splits, and assert that
   the deep model meaningfully outperforms the TF-IDF + Logistic Regression baseline.

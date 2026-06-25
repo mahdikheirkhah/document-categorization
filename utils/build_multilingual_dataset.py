@@ -1,23 +1,27 @@
 """
 utils/build_multilingual_dataset.py
 
-Offline data-builder for the multi-language corpus (Route A): fetches the English
-20 Newsgroups corpus, translates a stratified sample to Swedish and Finnish with
-Opus-MT, and persists the combined dataset to ``data/processed_data/``.
+Offline data-builder for the multi-language corpus. Loads the **MASSIVE**
+scenario dataset (Amazon) for English, Swedish and Finnish, applies light
+language-specific cleaning, and persists the combined dataset to
+``data/processed_data/``.
 
-Run this as a STANDALONE process, not inside the TensorFlow training kernel. On
-macOS, importing TensorFlow and PyTorch into one process triggers a dual-OpenMP
-"mutex lock failed" abort, so we force ``USE_TF=0`` here and keep translation in
-its own torch-only process. The training notebook then just loads the saved CSV.
+MASSIVE is natively multilingual and parallel, so Swedish and Finnish are real
+native text (not machine translations) and every language shares one identical
+integer label space. The English fetcher establishes the canonical
+scenario->id map, which is injected into the Swedish and Finnish fetchers so the
+three frames align perfectly.
+
+The training notebook / ``train.py`` then just load the saved CSV.
 
 Usage:
-    python -m utils.build_multilingual_dataset --sample-size 300
+    python -m utils.build_multilingual_dataset                 # full corpus
+    python -m utils.build_multilingual_dataset --sample-size 1200   # quick build
 """
+
 import os
 
-# Must be set BEFORE transformers is imported anywhere in this process.
-os.environ.setdefault("USE_TF", "0")
-os.environ.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")
+# Keep the HF tokenizers backend quiet in this short, single-threaded build.
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 
 import argparse
@@ -26,100 +30,131 @@ import pandas as pd
 from loguru import logger
 
 from utils import config
-from utils.data_fetcher import (
-    EnglishNewsgroupsFetcher,
-    SwedishTranslationFetcher,
-    FinnishTranslationFetcher,
-)
+from utils.data_fetcher import MassiveScenarioFetcher, MultilingualCorpusFetcher
 from utils.text_cleaning import LanguageSpecificSanitizer
-
-
-def _is_translatable(text: str) -> bool:
-    """
-    True only for genuinely linguistic documents. Filters out the non-text junk in
-    20 Newsgroups (ASCII art, symbol/separator lines, single giant tokens) that
-    makes the NMT model degenerate into repetition ("^ ^ ^", "# # #", "PRIMA PRIMA").
-
-    Args:
-        text (str): A (already cleaned) English document.
-
-    Returns:
-        bool: Whether the document is worth translating.
-    """
-    words = text.split()
-    if len(words) < config.MIN_WORDS:
-        return False
-    alpha_ratio = sum(c.isalpha() for c in text) / max(1, len(text))
-    uniq_ratio = len(set(words)) / len(words)
-    longest = max(len(w) for w in words)
-    return (
-        alpha_ratio >= config.MIN_ALPHA_RATIO
-        and uniq_ratio >= config.MIN_UNIQUE_WORD_RATIO
-        and not (longest > config.MAX_TOKEN_LENGTH and len(words) < 5)
-    )
 
 OUTPUT_DIR: str = config.PROCESSED_DATA_DIR
 OUTPUT_PATH: str = config.CORPUS_PATH
+SAMPLE_PATH: str = os.path.join(OUTPUT_DIR, "multilingual_sample.csv")
+SAMPLE_ROWS_PER_LANGUAGE: int = 100  # tiny demo/EDA slice written alongside the corpus
+
+
+def _clean_per_language(corpus: pd.DataFrame) -> pd.DataFrame:
+    """
+    Applies the polymorphic, language-specific cleaning pipeline to each language
+    partition (Unicode normalization that preserves å/ä/ö, diacritic protection
+    for Swedish, suffix-preserving handling for Finnish, whitespace normalization).
+
+    Args:
+        corpus (pd.DataFrame): Combined corpus with the standardized schema.
+
+    Returns:
+        pd.DataFrame: The corpus with a cleaned ``text`` column.
+    """
+    try:
+        cleaned_parts: list[pd.DataFrame] = []
+        for language, group in corpus.groupby("language", sort=False):
+            sanitizer = LanguageSpecificSanitizer(str(language))
+            part = group.copy()
+            part["text"] = part["text"].fillna("").astype(str).map(sanitizer.clean)
+            cleaned_parts.append(part)
+            logger.info(f"Cleaned {len(part)} '{language}' documents.")
+        return pd.concat(cleaned_parts, ignore_index=True)
+    except Exception as e:
+        logger.error(f"Per-language cleaning failed: {e}")
+        raise
+
+
+def _drop_ghost_documents(corpus: pd.DataFrame) -> pd.DataFrame:
+    """
+    Drops empty / whitespace-only ("ghost") rows produced by cleaning, using the
+    ``MIN_WORDS`` threshold from the central config.
+
+    Args:
+        corpus (pd.DataFrame): The cleaned corpus.
+
+    Returns:
+        pd.DataFrame: The corpus with ghost documents removed.
+    """
+    try:
+        word_counts = corpus["text"].fillna("").str.split().map(len)
+        keep_mask = word_counts >= config.MIN_WORDS
+        dropped = int((~keep_mask).sum())
+        if dropped:
+            logger.warning(f"Dropped {dropped} empty/whitespace-only documents.")
+        return corpus[keep_mask].reset_index(drop=True)
+    except Exception as e:
+        logger.error(f"Ghost-document filtering failed: {e}")
+        raise
+
+
+def _write_sample(corpus: pd.DataFrame) -> None:
+    """
+    Writes a tiny, label-stratified per-language slice for fast EDA and demos.
+
+    Args:
+        corpus (pd.DataFrame): The full cleaned corpus.
+    """
+    try:
+        parts = [
+            group.sample(
+                n=min(SAMPLE_ROWS_PER_LANGUAGE, len(group)),
+                random_state=config.SEED,
+            )
+            for _, group in corpus.groupby("language", sort=False)
+        ]
+        sample = pd.concat(parts, ignore_index=True)
+        sample.to_csv(SAMPLE_PATH, index=False)
+        logger.info(f"Saved {len(sample)}-row demo sample to {SAMPLE_PATH}.")
+    except Exception as e:
+        logger.error(f"Failed to write demo sample: {e}")
+        raise
 
 
 def build(sample_size: int = None) -> pd.DataFrame:
     """
-    Builds and persists the English+Swedish+Finnish corpus.
+    Builds and persists the English + Swedish + Finnish MASSIVE corpus.
 
     Args:
-        sample_size (int, optional): Number of English documents to translate per
-            language (stratified by label so category balance is preserved). If
-            ``None``, the ENTIRE English corpus is translated ("everything").
+        sample_size (int, optional): Rows per language to keep (label-stratified)
+            for a fast, small build. If ``None``, the entire configured split is
+            used for every language.
 
     Returns:
-        pd.DataFrame: The combined multi-language corpus (SCHEMA_COLUMNS).
+        pd.DataFrame: The combined, cleaned multi-language corpus (SCHEMA_COLUMNS).
     """
     try:
         os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-        english = EnglishNewsgroupsFetcher().fetch()
-        if sample_size is None:
-            # "Everything": translate the entire English corpus (slow, offline-scale).
-            en_sample = english.reset_index(drop=True)
-            logger.info(f"Using the ENTIRE English corpus ({len(en_sample)} docs).")
-        else:
-            # Stratified n-per-class sampling. (Using frac is fragile: for small
-            # sample sizes it rounds down to 0 per class and yields an empty set.)
-            n_classes = english["label"].nunique()
-            per_class = max(1, sample_size // n_classes)
-            en_sample = (
-                english.groupby("label", group_keys=False)
-                .sample(n=per_class, random_state=config.SEED)
-                .reset_index(drop=True)
-            )
-
-        # Clean the English source BEFORE translating: stripping headers, quoted
-        # replies, and signatures means they are never fed to the translator, so
-        # the SV/FI text is cleaner and the model degenerates far less.
-        sanitizer = LanguageSpecificSanitizer(config.DEFAULT_LANGUAGE)
-        en_sample["text"] = en_sample["text"].fillna("").astype(str).map(sanitizer.clean)
-
-        # Then drop empty/micro AND non-linguistic ("garbage") docs up front, so we
-        # never waste translation on them or save degenerate output (ASCII art,
-        # symbol lines, single giant tokens that collapse into "^ ^ ^" / "# # #").
-        valid_mask = en_sample["text"].map(_is_translatable)
-        dropped = int((~valid_mask).sum())
-        en_sample = en_sample[valid_mask].reset_index(drop=True)
+        # English establishes the canonical scenario -> integer-id label map, which
+        # is shared with Swedish and Finnish so all languages align on one space.
+        # (The repeated English load is served from the local HF cache, so it is
+        # cheap and keeps every language flowing through the same orchestrator.)
+        shared_label_map = MassiveScenarioFetcher(
+            "en", sample_size=sample_size
+        ).fetch_label_map()
         logger.info(
-            f"Cleaned + filtered: dropped {dropped} low-quality docs; "
-            f"translating {len(en_sample)} documents..."
+            f"Established shared label space with {len(shared_label_map)} scenarios."
         )
 
-        # Same documents across languages -> one identical label space.
-        swedish = SwedishTranslationFetcher(en_sample).fetch()
-        finnish = FinnishTranslationFetcher(en_sample).fetch()
+        fetchers = [
+            MassiveScenarioFetcher(
+                language, label_to_id=shared_label_map, sample_size=sample_size
+            )
+            for language in config.SUPPORTED_LANGUAGES
+        ]
+        corpus = MultilingualCorpusFetcher(fetchers).build()
 
-        corpus = pd.concat([en_sample, swedish, finnish], ignore_index=True)
+        corpus = _clean_per_language(corpus)
+        corpus = _drop_ghost_documents(corpus)
+
         corpus.to_csv(OUTPUT_PATH, index=False)
         logger.info(
             f"Saved {len(corpus)} documents to {OUTPUT_PATH} "
             f"({corpus['language'].value_counts().to_dict()})."
         )
+
+        _write_sample(corpus)
         return corpus
     except Exception as e:
         logger.error(f"Failed to build multilingual dataset: {e}")
@@ -127,12 +162,14 @@ def build(sample_size: int = None) -> pd.DataFrame:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Build the multi-language corpus.")
+    parser = argparse.ArgumentParser(
+        description="Build the MASSIVE multi-language corpus."
+    )
     parser.add_argument(
         "--sample-size",
         type=int,
         default=None,
-        help="Docs per language to translate. Omit to translate the ENTIRE corpus.",
+        help="Rows per language to keep (stratified). Omit to use the full split.",
     )
     args = parser.parse_args()
     build(args.sample_size)
