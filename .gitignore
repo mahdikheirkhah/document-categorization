@@ -23,10 +23,13 @@ Thumbs.db
 data/*.csv
 data/*.json
 
-# Machine Learning Models (If NOT using Git LFS)
+# Machine Learning Models
+# Large weights (*.h5) are tracked via Git LFS — see .gitattributes.
 # *.pkl
-*.h5
 *.model
+
+# Logs
+*.log
 
 # Secrets and Environment Variables
 .env

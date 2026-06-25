@@ -280,12 +280,79 @@ class DistilBertClassifier(BaseTextClassifier):
             logger.error(f"Fine-tuning failed: {e}")
             raise
 
-    def predict(self, X: list[str]) -> np.ndarray:
-        """Returns softmax class probabilities for X."""
+    def predict(self, X: list[str], batch_size: int = 32) -> np.ndarray:
+        """
+        Returns softmax class probabilities for X.
+
+        Calls the model directly in manual batches with dynamic padding — far lower
+        latency than ``model.predict`` (no dataset/callback overhead) for real-time
+        and small-batch inference.
+
+        Args:
+            X (list[str]): Documents to classify.
+            batch_size (int): Inference batch size.
+
+        Returns:
+            np.ndarray: Shape (len(X), num_classes) probability matrix.
+        """
         try:
-            test_ds = self._prepare_tf_dataset(X, batch_size=16)
-            logits = self.model.predict(test_ds).logits
-            return tf.nn.softmax(logits, axis=-1).numpy()
+            probabilities = []
+            for start in range(0, len(X), batch_size):
+                batch = X[start : start + batch_size]
+                encodings = self.tokenizer(
+                    batch,
+                    truncation=True,
+                    padding=True,
+                    max_length=self.max_length,
+                    return_tensors="tf",
+                )
+                logits = self.model(dict(encodings), training=False).logits
+                probabilities.append(tf.nn.softmax(logits, axis=-1).numpy())
+            if not probabilities:
+                return np.empty((0, self.num_classes))
+            return np.vstack(probabilities)
         except Exception as e:
             logger.error(f"Prediction failed: {e}")
+            raise
+
+    def load_weights(self, weights_path: str = None) -> None:
+        """
+        Loads fine-tuned weights into the (already-built) model for inference.
+
+        Args:
+            weights_path (str, optional): Path to the ``.h5`` weights. Defaults to
+                ``<checkpoint_dir>/text_classifier_best.h5``.
+        """
+        try:
+            path = weights_path or os.path.join(self.checkpoint_dir, "text_classifier_best.h5")
+            self.model.load_weights(path)
+            logger.info(f"Loaded fine-tuned weights from {path}.")
+        except Exception as e:
+            logger.error(f"Failed to load weights: {e}")
+            raise
+
+    @classmethod
+    def from_checkpoint(cls, checkpoint_dir: str = CHECKPOINT_DIR) -> "DistilBertClassifier":
+        """
+        Rebuilds a ready-to-predict classifier from a saved checkpoint
+        (``config.json`` + ``text_classifier_best.h5``).
+
+        Args:
+            checkpoint_dir (str): Directory holding the config and weights.
+
+        Returns:
+            DistilBertClassifier: Classifier with the fine-tuned weights loaded.
+        """
+        try:
+            with open(os.path.join(checkpoint_dir, "config.json")) as f:
+                config = json.load(f)
+            classifier = cls(
+                num_classes=config["num_classes"],
+                model_name=config["model_name"],
+                max_length=config["max_length"],
+            )
+            classifier.load_weights(os.path.join(checkpoint_dir, "text_classifier_best.h5"))
+            return classifier
+        except Exception as e:
+            logger.error(f"Failed to load classifier from checkpoint: {e}")
             raise

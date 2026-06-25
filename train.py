@@ -28,6 +28,7 @@ os.environ.setdefault("USE_TORCH", "0")
 
 import argparse
 import json
+import sys
 import time
 
 import numpy as np
@@ -125,6 +126,10 @@ def per_language_accuracy(
 def main(epochs: int, corpus_path: str) -> None:
     """Runs the full baseline + DistilBERT training pipeline and writes artifacts."""
     try:
+        # Show INFO and above; the cleaner emits one DEBUG line per document.
+        logger.remove()
+        logger.add(sys.stderr, level="INFO")
+
         os.makedirs(REPORTS_DIR, exist_ok=True)
         train_df, val_df = load_clean_split(corpus_path)
         X_train, y_train = train_df["clean_text"].tolist(), train_df["label"].tolist()
