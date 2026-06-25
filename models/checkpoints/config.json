@@ -1,1 +1,1 @@
-{"model_name": "distilbert-base-multilingual-cased", "num_classes": 20, "max_length": 256}
+{"model_name": "distilbert-base-multilingual-cased", "num_classes": 18, "max_length": 256}
