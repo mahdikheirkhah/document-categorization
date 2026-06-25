@@ -1,30 +1,34 @@
 # Document Categorization & Tagging — dependencies
-# (mirrors pyproject.toml; pinned to the versions used in development)
 #
-# GPU training: on a Linux NVIDIA VM install TensorFlow with CUDA support, e.g.
-#     pip install "tensorflow[and-cuda]==2.21.0"
+# Version RANGES (not exact pins) so the project installs across machines and
+# Python versions (the dev Mac had newer builds than some package indexes carry).
+#
+# Recommended install (fresh virtualenv):
+#     python3 -m venv .venv && source .venv/bin/activate
+#     pip install -U pip
+#     pip install -r requirements.txt
+#
+# GPU training on a Linux NVIDIA VM — install the CUDA build of TensorFlow:
+#     pip install "tensorflow[and-cuda]>=2.16,<2.22"
 # (or use a GCP Deep Learning VM image, which ships TF + CUDA preconfigured).
 
 # --- Core NLP / ML ---
-tensorflow==2.21.0
-tf-keras==2.21.0
-transformers==4.57.6
-datasets==5.0.0
-spacy==3.8.14
-scikit-learn==1.9.0
-pandas==3.0.3
-numpy==2.4.6
-langdetect==1.0.9
-loguru==0.7.3
+tensorflow>=2.16,<2.22
+tf-keras>=2.16,<2.22
+transformers>=4.40,<5
+datasets>=2.18,<6
+spacy>=3.7,<4
+scikit-learn>=1.4,<2
+pandas>=2.2,<3
+langdetect>=1.0.9
+loguru>=0.7
 tqdm
 
 # --- Visualization / dashboard ---
-matplotlib==3.11.0
-seaborn==0.13.2
-streamlit==1.58.0
+matplotlib>=3.8
+seaborn>=0.13
+streamlit>=1.30
 
-# --- Data-build / translation step only (Opus-MT EN->SV/FI) ---
-# Needed to (re)build the multilingual corpus, NOT to train on an existing one.
-sentencepiece==0.2.1
-sacremoses==0.1.1
-# torch        # uncomment to run translation (utils/build_multilingual_dataset.py)
+# --- Corpus-(re)build only (NOT needed to train on the committed CSV) ---
+sentencepiece>=0.2.0
+sacremoses>=0.1.1
