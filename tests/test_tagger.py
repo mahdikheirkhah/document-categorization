@@ -4,43 +4,43 @@ from models.tagger import BaseTagger, MultilingualTagger, ENTITY_LABEL_TO_TAG
 
 
 class _FakeTagger(BaseTagger):
-    """Returns canned entities so the base logic can be tested without SpaCy."""
+    """Returns canned model output so the base logic can be tested without SpaCy."""
 
-    def __init__(self, entities: list[dict], language: str = "en") -> None:
+    def __init__(self, entities: list[dict], keywords: list[str] = None, language: str = "en") -> None:
         self.language = language
         self._entities = entities
+        self._keywords = keywords or []
 
-    def extract_entities(self, text: str) -> list[dict]:
-        return self._entities
+    def _analyze(self, text: str) -> dict:
+        return {"entities": self._entities, "keywords": self._keywords}
 
 
 def test_label_normalization_map() -> None:
-    """English (OntoNotes) and European (PER/LOC/MISC) labels map to one scheme."""
+    """English/Finnish OntoNotes and Swedish SUC labels map to one scheme."""
     assert ENTITY_LABEL_TO_TAG["PERSON"] == "person"
-    assert ENTITY_LABEL_TO_TAG["PER"] == "person"
+    assert ENTITY_LABEL_TO_TAG["PRS"] == "person"  # Swedish SUC
     assert ENTITY_LABEL_TO_TAG["ORG"] == "organization"
     assert ENTITY_LABEL_TO_TAG["GPE"] == "location"
     assert ENTITY_LABEL_TO_TAG["LOC"] == "location"
+    assert ENTITY_LABEL_TO_TAG["TME"] == "date"  # Swedish SUC time
+    assert ENTITY_LABEL_TO_TAG["OBJ"] == "product"
 
 
-def test_base_tagger_merges_ner_and_rules() -> None:
-    """tag() unions normalized NER tags with rule-based topical tags."""
+def test_tag_merges_entities_and_keywords() -> None:
+    """tag() unions normalized entity-type tags with the dynamic content keywords."""
     entities = [
         {"text": "Nordea", "label": "ORG", "tag": "organization"},
         {"text": "Stockholm", "label": "GPE", "tag": "location"},
     ]
-    result = _FakeTagger(entities).tag(
-        "The government announced an election policy meeting in Stockholm."
-    )
-    assert "organization" in result["entity_tags"]
-    assert "location" in result["entity_tags"]
-    assert "politics" in result["topic_tags"]  # government/election/policy
-    assert {"organization", "location", "politics"}.issubset(set(result["tags"]))
+    result = _FakeTagger(entities, keywords=["bank", "savings"]).tag("Some document text.")
+    assert result["entity_tags"] == ["location", "organization"]
+    assert result["keywords"] == ["bank", "savings"]
+    assert set(result["tags"]) == {"location", "organization", "bank", "savings"}
     assert result["entities"] == entities
     assert result["language"] == "en"
 
 
-def test_base_tagger_empty_raises() -> None:
+def test_tag_empty_raises() -> None:
     """Empty/whitespace documents raise a controlled ValueError."""
     with pytest.raises(ValueError, match="empty document"):
         _FakeTagger([]).tag("   ")
@@ -49,13 +49,13 @@ def test_base_tagger_empty_raises() -> None:
 def test_multilingual_router_routes_and_tags() -> None:
     """MultilingualTagger routes by language to an injected (fake) tagger."""
     router = MultilingualTagger(languages=["en", "sv", "fi"])
-    fake = _FakeTagger([{"text": "X", "label": "ORG", "tag": "organization"}])
-    router.taggers["en"] = fake  # inject to avoid loading SpaCy
-
-    result = router.tag("An english text about a team game season.", language="en")
+    router.taggers["en"] = _FakeTagger(
+        [{"text": "X", "label": "ORG", "tag": "organization"}], keywords=["team"]
+    )
+    result = router.tag("An english text.", language="en")
     assert result["language"] == "en"
     assert "organization" in result["tags"]
-    assert "sports" in result["topic_tags"]  # team/game/season
+    assert "team" in result["tags"]
 
 
 def test_multilingual_empty_raises() -> None:
