@@ -1,78 +1,133 @@
-Here is the customized `CONTRIBUTING.md` tailored specifically for the Credit Scoring and Econometric Machine Learning project. I have updated the examples, libraries, architecture guidelines, and data integrity sections to reflect the nuances of predicting loan defaults, handling relational financial data, and building highly interpretable hybrid models.
+# Contributing to the Document Categorization & Tagging Project
 
----
-
-# Contributing to the Credit Scoring & Econometric ML Project
-
-Thank you for your interest in contributing to our credit scoring and risk assessment project! To ensure a smooth collaboration, maintain a high standard of code quality, and guarantee that our models meet both strict financial regulatory standards and high predictive accuracy (AUC), we require all contributors to strictly adhere to the following guidelines.
+Thank you for contributing to our intelligent **document categorization and tagging** system!
+This project applies NLP and transfer learning (DistilBERT) to classify documents and tag them
+with SpaCy/NER across **three languages — English, Swedish, and Finnish**. To keep the codebase
+clean, scalable, and reproducible, every contributor must follow the guidelines below.
 
 ## 1. Development Workflow (Branching & CI/CD)
 
-* **Branching Strategy:** Never commit or push directly to the `main` branch. Whether you are fixing a bug, adding a feature, or refactoring, you must create a dedicated branch (e.g., `feature/bureau-data-aggregation`, `fix/target-leakage`, `experiment/double-tree-architecture`).
-* **CI/CD Checks:** Your branch must successfully pass all automated CI/CD pipelines before it can be merged. This includes formatting checks, linting, and automated tests.
-* **Merging:** Once your pipeline passes, open a Pull Request (PR) to `main` and request a code review.
+* **Branching Strategy:** Never commit or push directly to the `main` branch. Always create a
+  dedicated branch named after the work and (where relevant) the issue, e.g.
+  `feature/3-transfer-learning-classifier`, `feature/data-fetcher`, `fix/finnish-tokenization`,
+  `experiment/distilbert-vs-baseline`.
+* **CI/CD Checks:** Your branch must pass all automated checks (Black formatting, linting, and the
+  `pytest` suite) before it can be merged.
+* **Merging:** Once the pipeline is green, open a Pull Request (PR) to `main` and request a review.
+  Keep PRs scoped to a single issue where possible.
 
 ## 2. Dependency Management & Formatting
 
-* **Poetry:** We use **Poetry** for package dependency resolving and environment management. Make sure you install dependencies using `poetry install` (ensure `loguru`, `pandas`, `scikit-learn`, `xgboost` or `lightgbm`, `shap`, and `dash` are added to your dependencies).
-* **Black Formatter:** We enforce a uniform code style. Before committing your code, you must format your files using Black:
+* **Poetry:** We use **Poetry** for dependency resolution and environment management. Install with
+  `poetry install`. Core dependencies include `tensorflow`, `tf-keras`, `transformers`, `datasets`,
+  `spacy`, `langdetect`, `streamlit`, `pandas`, `scikit-learn`, and `loguru`.
+* **SpaCy / Translation models:** Language assets are downloaded separately, e.g.
+  `python -m spacy download en_core_web_sm` (English), `sv_core_news_sm` (Swedish). Finnish
+  sub-word handling and the EN→SV / EN→FI OPUS-MT translation models are pulled from Hugging Face.
+* **Black Formatter:** We enforce a uniform code style (`line-length = 88`). Before committing, run:
 
 ```bash
 poetry run black .
-
 ```
 
-## 3. Architecture & Paradigm
+## 3. Architecture & Paradigm (OOP)
 
-* **Object-Oriented Programming (OOP):** All code should be structured using OOP principles. Encapsulate related logic within well-defined classes. For example, structure your code into distinct classes for `RelationalFeatureEngineer` (handling Bureau/POS data), `DoubleTreeEstimator` (handling the decision-tree routing and logistic regression leaves), and `InterpretabilityExplainer` (handling global feature importance and local SHAP values).
+All code must be structured using **Object-Oriented Programming**. Encapsulate related logic in
+well-defined classes and prefer composition of small, single-purpose objects. Our existing modules
+are the reference pattern — `BaseTextCleaner`, `BaseTokenizer`, `BaseLanguageDetector`,
+`BaseDatasetFetcher`, and `BaseTextClassifier` each define an abstract contract that concrete
+classes implement.
+
+Every contribution must demonstrate the **four OOP principles**:
+
+* **Abstraction (Interfaces):** Define an `abc.ABC` base class with `@abstractmethod`s that declares
+  *what* a component does, hiding *how* it does it (e.g. `BaseDatasetFetcher.fetch()`).
+* **Inheritance:** Concrete classes inherit the contract and share reusable logic through base
+  classes — including multi-level hierarchies (e.g.
+  `BaseDatasetFetcher → BaseTranslationFetcher → SwedishTranslationFetcher`).
+* **Encapsulation:** Keep internal state and helpers private (prefix with `_`), expose only a small
+  public surface, and validate inputs inside the object rather than leaking complexity to callers.
+* **Polymorphism:** Callers should depend on the base type, not the concrete class. Orchestrators
+  (e.g. `MultilingualCorpusFetcher`) iterate over `list[BaseDatasetFetcher]` and call `fetch()`
+  without knowing the concrete subtype.
+
+When adding a new capability, first ask: *"Which existing abstract base does this extend?"* If none
+fits, define a new base class with abstract methods before writing concrete implementations.
 
 ## 4. Coding Standards & Naming Conventions
 
-* **Variable Naming:** Use clear, descriptive variable names. Ensure your naming conventions follow standard Python Regex rules (e.g., `^[a-z_][a-z0-9_]*$` for snake_case variables and functions, `^[A-Z][a-zA-Z0-9]*$` for PascalCase classes). Always retain the `SK_ID_CURR` naming convention for client identifiers to avoid join errors.
-* **Logging over Printing:** **Never use the standard `print()` statement.** We use **Loguru** for logging to eliminate boilerplate configuration and maintain clean code. Always use it to record pipeline flow, model evaluation metrics, and errors.
+* **Naming:** Use clear, descriptive names following standard Python conventions — `snake_case` for
+  variables/functions (`^[a-z_][a-z0-9_]*$`) and `PascalCase` for classes (`^[A-Z][a-zA-Z0-9]*$`).
+  Use consistent, shared column names across the pipeline (e.g. `text`, `label`, `label_text`,
+  `language`) so language-specific frames can be concatenated without bespoke glue code.
+* **Logging over Printing:** **Never use `print()`.** Use **Loguru** to record pipeline flow,
+  evaluation metrics, and errors:
 
 ```python
 from loguru import logger
 
-logger.info("Successfully merged Bureau and POS_CASH balance data.")
-logger.warning("Test set AUC dropped to 0.54; threshold of 0.55 not met. Check for overfitting.")
-logger.error("Failed to compute SHAP values; model explainer expected different input dimensions.")
-
+logger.info("Loaded 11,314 English documents from 20 Newsgroups.")
+logger.warning("Detected unsupported language 'es'. Defaulting to 'en'.")
+logger.error("SpaCy model 'sv_core_news_sm' not found. Run 'python -m spacy download'.")
 ```
 
 ## 5. Function & Method Design
 
-* **Single Responsibility Principle:** Make your functions and methods as reusable as possible. Each function/method should serve **exactly one purpose**. Break large, monolithic functions into smaller, modular pieces.
-* **Type Hinting:** You must explicitly declare the data types for all arguments and the return type for every function and method.
+* **Single Responsibility Principle:** Each function/method serves **exactly one purpose**. Break
+  monolithic functions into smaller, reusable pieces (load → clean → detect language → tokenize →
+  classify → tag).
+* **Type Hinting:** Explicitly declare argument and return types for every function and method.
 
 ```python
 import pandas as pd
-from sklearn.linear_model import LogisticRegression
 
-def train_econometric_leaf(X_train: pd.DataFrame, y_train: pd.Series, max_iter: int = 100) -> LogisticRegression:
-
+def fetch(self) -> pd.DataFrame:
+    ...
 ```
 
-* **Documentation (Docstrings):** Every function and method must include a comprehensive docstring that clearly explains:
-1. The goal and behavior of the function.
-2. The types and descriptions of the input parameters.
-3. The type and description of the output/return value.
-
-
+* **Documentation (Docstrings):** Every function and method must include a docstring explaining:
+  1. The goal and behavior of the function.
+  2. The types and descriptions of the input parameters.
+  3. The type and description of the return value.
 
 ## 6. Error Handling
 
-* **Mandatory Try/Except:** Use `try` and `except` blocks thoroughly. You must include exception handling in **each function and method**.
-* **Granular Handling:** Ensure that every distinct logic flow or block within your methods is wrapped in appropriate error handling to catch specific exceptions and log them accordingly using Loguru (e.g., `KeyError` for missing `SK_ID_CURR` columns, `ValueError` for passing raw data containing `NaNs` into the Logistic Regression model).
+* **Mandatory Try/Except:** Wrap the logic of **each method** in `try`/`except`, log the failure with
+  Loguru, and re-raise (do not silently swallow exceptions).
+* **Granular, Specific Exceptions:** Catch the most specific exception relevant to the block, e.g.
+  `OSError` for a missing SpaCy model, `LangDetectException` for undetectable text, `KeyError` for a
+  missing DataFrame column, and `ValueError` for empty/whitespace-only ("ghost") documents or NaN
+  input during tokenization.
 
-## 7. Model Integrity & Regulatory Compliance
+## 7. Model Integrity & Reproducibility
 
-* **Zero Data Leakage:** Ensure absolutely no future information or target variables leak into the training features. When aggregating historical data (like `previous_application.csv` or `installments_payments.csv`), explicitly verify that aggregations only look at past events relative to the current application.
-* **Class Imbalance Awareness:** Because credit defaults are rare, traditional accuracy metrics are strictly forbidden for evaluation. All models must be evaluated using the Area Under the ROC Curve (AUC). Always use `StratifiedKFold` when splitting the data to preserve the default/non-default ratio.
-* **Reproducibility:** Machine learning models, SHAP explainers, and cross-validation splits must be fully reproducible (this is a regulatory requirement for financial models). Always set and document `random_state` seeds for any stochastic processes (like standard Scalers, ML models, or splitters).
+* **No Data Leakage:** Split into train/validation/test **before** fitting any vectorizer or model.
+  Fit the `TfidfVectorizer` and any encoders **only on the training split**, then transform the
+  others. Strip 20 Newsgroups headers/footers/quoted reply text so the model learns content, not
+  metadata.
+* **Imbalance-Aware Evaluation:** Plain accuracy can be misleading on skewed category distributions.
+  Always report **macro-F1** alongside accuracy, use `class_weight="balanced"` where appropriate, and
+  use `StratifiedKFold` / stratified splits to preserve category ratios.
+* **Multilingual Parity:** Labels are language-agnostic — the Swedish and Finnish sets are produced by
+  translating the English source, so all languages **share one identical label space**. Always report
+  **per-language** accuracy (target ≥ 80% for `en`, `sv`, and `fi`), not just a global number.
+* **Reproducibility:** Set and document `random_state` / seeds for every stochastic process
+  (`np.random.seed`, `tf.random.set_seed`, `DetectorFactory.seed`, dataset sampling, and splits).
 
-## 8. Testing
+## 8. Multi-Language Data Integrity
 
-* **Test-Driven Collaboration:** If you write a new function or method, you are required to write the corresponding test code.
-* **Flow Coverage:** Your tests must account for different logic flows and edge cases inside the method, including testing the `except` blocks by triggering known errors. Test edge cases specific to financial data, such as highly skewed income outliers, clients with absolutely no previous credit history, and extreme class imbalances.
-* **Interpretability Checks:** Write tests to ensure that the sum of the baseline score and the SHAP feature contributions exactly equals the final predicted probability outputted by the model.
+* **Unicode Safety:** Parse as UTF-8 and normalize (NFC/NFKC) so Swedish/Finnish characters
+  (`å`, `ä`, `ö`) are preserved, never decomposed or stripped. Log non-ASCII counts for observability.
+* **Language-Specific Tokenization:** Route by detected language — word-level SpaCy tokenization for
+  English/Swedish, sub-word (WordPiece) tokenization for agglutinative Finnish. Never apply a single
+  uniform tokenizer across all languages.
+
+## 9. Testing
+
+* **Test-Driven Collaboration:** If you write a new function, class, or method, you must add the
+  corresponding test under `tests/`.
+* **Flow Coverage:** Tests must cover the main path **and** the `except` blocks (trigger known errors,
+  e.g. a missing column, a NaN token, an empty document, an unsupported language fallback). Inject
+  fakes/mocks for heavy models (translation, DistilBERT) so the suite runs fast and offline.
+* **Classifier Checks:** Validate F1-macro and accuracy via `StratifiedKFold` splits, and assert that
+  the deep model meaningfully outperforms the TF-IDF + Logistic Regression baseline.

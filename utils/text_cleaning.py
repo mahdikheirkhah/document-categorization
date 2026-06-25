@@ -11,6 +11,19 @@ REGEX_URLS = re.compile(r"http[s]?://\S+|www\.\S+")
 REGEX_EMAILS = re.compile(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b")
 REGEX_MULTIPLE_SPACES = re.compile(r"\s{2,}")
 
+# Newsgroup / email structural noise (20 Newsgroups headers, quotes, signatures).
+REGEX_NEWS_HEADER = re.compile(
+    r"^(?:From|Subject|Date|Organization|Lines|Newsgroups|Message-ID|References|"
+    r"Sender|Reply-To|NNTP-Posting-Host|Distribution|Path|Xref|In-Reply-To|"
+    r"Followup-To|Keywords|Summary|Expires|Originator|Article-I\.D\.|X-[\w-]+):.*$",
+    re.MULTILINE,
+)
+REGEX_QUOTED_LINE = re.compile(r"^\s*(?:>|\||[A-Za-z]{1,4}>|:\s*>?).*$", re.MULTILINE)
+REGEX_ATTRIBUTION = re.compile(
+    r"^(?:In article\b.*|.*\b(?:writes|wrote):)\s*$", re.MULTILINE
+)
+REGEX_SIGNATURE = re.compile(r"^-- ?$.*", re.MULTILINE | re.DOTALL)
+
 
 class BaseTextCleaner(ABC):
     """
@@ -152,23 +165,73 @@ class SwedishCompoundCleaner(BaseTextCleaner):
         # Ensure we do not decompose combined diacritics into base chars + rings
         return unicodedata.normalize("NFC", text)
 
-class LanguageSpecificSanitizer(BaseTextCleaner):
+class NewsgroupNoiseCleaner(BaseTextCleaner):
     """
-    Polymorphic sanitizer that routes text to the correct linguistic cleaning strategy.
+    Removes 20 Newsgroups structural noise that leaks category labels and dilutes
+    signal: email/news headers, quoted reply lines, attribution lines, and the
+    trailing signature block. Equivalent to scikit-learn's
+    ``remove=('headers', 'footers', 'quotes')``.
     """
-    def __init__(self, lang_code: str) -> None:
-        self.lang_code = lang_code
-        self.cleaners = {
-            "en": [ArtifactCleaner(), DuplicationCleaner()],
-            "sv": [SwedishCompoundCleaner(), DuplicationCleaner()],
-            "fi": [FinnishMorphologyCleaner(), DuplicationCleaner()]
-        }
 
     def clean(self, text: str) -> str:
-        strategy = self.cleaners.get(self.lang_code, self.cleaners["en"])
-        for cleaner in strategy:
-            text = cleaner.clean(text)
-        return text
+        try:
+            if not isinstance(text, str):
+                raise TypeError(f"Expected string, got {type(text)}")
+            text = REGEX_SIGNATURE.sub(" ", text)
+            text = REGEX_NEWS_HEADER.sub(" ", text)
+            text = REGEX_ATTRIBUTION.sub(" ", text)
+            text = REGEX_QUOTED_LINE.sub(" ", text)
+            return text
+        except Exception as e:
+            logger.error(f"NewsgroupNoiseCleaner failed: {e}")
+            raise
+
+
+class LanguageSpecificSanitizer(BaseTextCleaner):
+    """
+    Polymorphic sanitizer that applies one shared, language-agnostic cleaning
+    sequence to every document, then a light language-specific tweak.
+
+    The pipeline is deliberately LIGHT (no lowercasing, stopword removal, or
+    stemming) so it suits transformer models, which rely on casing and context.
+    Every language gets: HTML strip -> newsgroup-noise strip -> URL/email strip
+    -> unicode normalization -> (language tweak) -> whitespace normalization.
+    """
+
+    def __init__(self, lang_code: str) -> None:
+        # Applied to every language.
+        common_cleaners = [
+            HtmlCleaner(),
+            NewsgroupNoiseCleaner(),
+            ArtifactCleaner(),
+            UnicodeNormalizer(),
+        ]
+        # Light, language-specific adjustments.
+        language_cleaners = {
+            "en": [],
+            "sv": [SwedishCompoundCleaner()],
+            "fi": [FinnishMorphologyCleaner()],
+        }
+        self.lang_code = lang_code if lang_code in language_cleaners else "en"
+        # Whitespace normalization always runs last.
+        self.cleaners = (
+            common_cleaners + language_cleaners[self.lang_code] + [DuplicationCleaner()]
+        )
+        logger.info(
+            f"Initialized LanguageSpecificSanitizer for '{self.lang_code}' "
+            f"with {len(self.cleaners)} stages."
+        )
+
+    def clean(self, text: str) -> str:
+        try:
+            if not isinstance(text, str):
+                raise TypeError(f"Expected string, got {type(text)}")
+            for cleaner in self.cleaners:
+                text = cleaner.clean(text)
+            return text
+        except Exception as e:
+            logger.error(f"LanguageSpecificSanitizer failed: {e}")
+            raise
 
 # utils/text_cleaning.py
 

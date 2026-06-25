@@ -5,6 +5,8 @@ from utils.text_cleaning import (
     UnicodeNormalizer,
     DuplicationCleaner,
     TextCleaningPipeline,
+    NewsgroupNoiseCleaner,
+    LanguageSpecificSanitizer,
 )
 
 
@@ -58,3 +60,46 @@ def test_cleaner_type_error_exception() -> None:
     cleaner = HtmlCleaner()
     with pytest.raises(TypeError, match="Expected string"):
         cleaner.clean(None)  # Passing None to trigger the exception flow
+
+
+def test_newsgroup_noise_cleaner() -> None:
+    """Strips email/news headers, quoted reply lines, attribution, and signature."""
+    cleaner = NewsgroupNoiseCleaner()
+    raw = (
+        "From: john@example.com\n"
+        "Subject: Re: hockey\n"
+        "\n"
+        "In article <123> someone writes:\n"
+        "> I think the team is great\n"
+        ": > and they will win it all\n"
+        "I disagree, the season is long.\n"
+        "-- \n"
+        "John Doe, my signature here"
+    )
+    cleaned = cleaner.clean(raw)
+    assert "From:" not in cleaned
+    assert "Subject:" not in cleaned
+    assert "writes:" not in cleaned
+    assert ">" not in cleaned
+    assert "my signature here" not in cleaned
+    assert "I disagree, the season is long." in cleaned
+
+
+def test_language_specific_sanitizer_unified_pipeline() -> None:
+    """Every language now gets HTML + newsgroup + URL/email + unicode + whitespace."""
+    raw = "From: a@b.com\n<p>Visit https://x.com</p>\n> quoted line\nReal Swedish content åäö."
+    cleaned = LanguageSpecificSanitizer("sv").clean(raw)
+    assert "From:" not in cleaned          # header removed
+    assert "<p>" not in cleaned            # html removed
+    assert "https://x.com" not in cleaned  # url removed
+    assert ">" not in cleaned              # quote removed
+    assert "åäö" in cleaned                # Swedish diacritics preserved
+    assert "Real Swedish content" in cleaned
+
+
+def test_language_specific_sanitizer_unknown_lang_falls_back_to_en() -> None:
+    """An unsupported language code falls back to the English strategy."""
+    sanitizer = LanguageSpecificSanitizer("xx")
+    assert sanitizer.lang_code == "en"
+    # Still cleans without raising.
+    assert sanitizer.clean("Plain text here.") == "Plain text here."
