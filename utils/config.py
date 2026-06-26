@@ -132,3 +132,29 @@ MAX_KEYWORDS: int = 8
 # Below this top-class probability the document is likely out-of-domain, so the
 # predicted category should be treated as unreliable.
 LOW_CONFIDENCE_THRESHOLD: float = 0.5
+
+# --------------------------------------------------------------------------- #
+# Model optimization (pruning + quantization)
+# --------------------------------------------------------------------------- #
+# Magnitude pruning: fraction of the smallest-magnitude weights (in the large 2-D
+# kernels/embeddings) to zero out. 0.30 keeps accuracy while making the model
+# highly compressible.
+PRUNING_TARGET_SPARSITY: float = 0.30
+# Only prune weight tensors with at least this many dimensions (skip 1-D biases /
+# LayerNorm gamma-beta, where pruning hurts accuracy disproportionately).
+PRUNING_MIN_RANK: int = 2
+
+# Optimized-artifact filenames (saved alongside the fp32 checkpoint).
+PRUNED_WEIGHTS_FILENAME: str = "text_classifier_pruned.weights.h5"
+FP16_WEIGHTS_FILENAME: str = "text_classifier_fp16.npz"
+TFLITE_FILENAME: str = "text_classifier_int8.tflite"
+
+# Which weights the serving pipeline / dashboard loads. These reload into the same
+# architecture, so switch to PRUNED_WEIGHTS_FILENAME to serve the optimized model
+# (run `python optimize.py` first to generate it).
+SERVING_WEIGHTS_FILENAME: str = BEST_WEIGHTS_FILENAME
+
+# How many validation documents to use when measuring accuracy/speed of each
+# optimized variant (kept small so optimization runs quickly on CPU).
+OPTIMIZATION_EVAL_SAMPLE: int = 400
+OPTIMIZATION_METRICS_PATH: str = os.path.join(REPORTS_DIR, "optimization_metrics.json")

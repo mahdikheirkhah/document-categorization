@@ -49,9 +49,9 @@ ones are actually implemented in this codebase versus understood in theory.
 Large corpora can exceed memory; chunking/streaming keeps a memory-safe flow from
 source into the pipeline so the system scales with dataset size.
 
-> **In this project: ❌ Concept only.** The corpus (~11k English docs + translations)
-> loads fully into a DataFrame via `datasets.load_dataset(...).to_pandas()` in
-> [utils/data_loader.py](utils/data_loader.py). Chunking/streaming wasn't needed at
+> **In this project: ❌ Concept only.** The MASSIVE corpus (34,542 native docs across
+> en/sv/fi) loads fully into a DataFrame via `datasets.load_dataset(...).to_pandas()`
+> in [utils/data_loader.py](utils/data_loader.py). Chunking/streaming wasn't needed at
 > this scale and isn't implemented.
 
 ### 1.2 Statistical Challenges in NLP
@@ -140,8 +140,8 @@ A baseline justifies the cost of deep learning. Bag-of-Words baselines capture
 frequency but not order/meaning; deep models learn dense contextual embeddings.
 
 > **In this project: ✅ Implemented.** `BaselineClassifier` (TF-IDF + Logistic
-> Regression) vs `DistilBertClassifier`; the deep model beats the baseline by ~30
-> points (well past the ≥5% requirement).
+> Regression, ~85% accuracy) vs `DistilBertClassifier` (~90%); the deep model beats the
+> baseline by ~5 points (meeting the ≥5% requirement).
 
 ### 3.2 Transfer Learning and Fine-Tuning
 Pre-trained models avoid learning language from scratch. DistilBERT is chosen over
@@ -201,18 +201,33 @@ Robust pipelines combine statistical predictions with deterministic logic.
 **Quantization** lowers weight precision (e.g. fp32 → int8) for faster math and less
 RAM; **pruning** removes near-zero connections to create a sparse, cheaper model.
 
-> **In this project: ❌ Concept only.** Neither pruning nor quantization is
-> implemented. The ≥100 docs/sec target was met another way — a GPU plus an efficient
-> direct-call **batched `predict`** (~314 docs/sec). Quantization/pruning remain the
-> obvious next optimization if CPU-only latency ever becomes the constraint.
+> **In this project: ✅ Implemented.** Both, via an OOP `BaseModelOptimizer` hierarchy
+> in [models/optimization.py](models/optimization.py), using **core TensorFlow** rather
+> than the `tensorflow_model_optimization` toolkit — tfmot's pruning needs prune-aware
+> re-training and does not cleanly wrap Hugging Face's custom transformer layers, so a
+> dependency-free, GPU-free approach was chosen:
+> - **Magnitude pruning** (`MagnitudePruningOptimizer`) zeros the smallest 30% of
+>   weights in the large 2-D kernels/embeddings (~40.6M weights) with **no accuracy
+>   loss** (~0.90 retained). Pruned weights reload into the *same* architecture, so the
+>   serving pipeline needs no new code.
+> - **Float16 quantization** (`Float16Quantizer`): 32→16-bit weights, **541 MB → 200 MB
+>   (−63%)**, accuracy unchanged.
+> - **Dynamic-range int8** (`TFLiteDynamicRangeQuantizer`, TFLite): **541 MB → 137 MB
+>   (−75%)** with faster CPU inference.
+>
+> Run with `python optimize.py`; measurements land in
+> [reports/optimization_metrics.json](reports/optimization_metrics.json). The served
+> variant is selectable via `SERVING_WEIGHTS_FILENAME` in
+> [utils/config.py](utils/config.py).
 
 ### 5.2 Latency vs Accuracy Tradeoffs
 Heavier models are more accurate but slower; the design must stay fast enough
 (≥100 docs/sec) while staying accurate enough (≥85% / 0.80 macro-F1).
 
-> **In this project: ✅ Implemented.** Addressed by **model choice** (DistilBERT over
-> BERT) and verified by the benchmark — the system clears both bars simultaneously
-> (314 docs/sec, 85% accuracy).
+> **In this project: ✅ Implemented.** Addressed first by **model choice** (DistilBERT
+> over BERT) and verified by the benchmark (~305 docs/sec on GPU at ~90% accuracy),
+> then **further** by the pruning/quantization in [§5.1](#51-model-optimization-pruning-and-quantization)
+> for CPU-bound serving (a ~4× smaller int8 model).
 
 ### 5.3 Batched and Asynchronous Pipelines
 Batching exploits GPU parallelism (higher throughput at slight per-item latency);

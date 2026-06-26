@@ -16,6 +16,7 @@ Three tabs:
 Heavy resources (the trained model, corpus, metrics) are cached so the app stays
 responsive; the model is loaded lazily on first analysis.
 """
+
 import os
 
 # Keep transformers TensorFlow-only (the classifier is TF/Keras).
@@ -69,6 +70,9 @@ def get_corpus() -> pd.DataFrame:
 def render_live_analysis() -> None:
     """Renders the interactive categorization + tagging panel."""
     st.subheader("Live Categorization & Tagging")
+    st.caption(
+        f"Serving model: `{config.SERVING_WEIGHTS_FILENAME}` (set in utils/config.py)"
+    )
     text = st.text_area(
         "Paste a document",
         height=200,
@@ -93,15 +97,19 @@ def render_live_analysis() -> None:
 
                 if result["confidence"] < LOW_CONFIDENCE_THRESHOLD:
                     st.warning(
-                        "Low confidence — this document likely falls outside the 20 "
-                        "trained categories, so the predicted category is unreliable. "
+                        "Low confidence — this document likely falls outside the "
+                        "trained categories (MASSIVE is short voice-assistant "
+                        "commands), so the predicted category is unreliable. "
                         "The tags below describe its actual content."
                     )
 
                 st.markdown("**Why — top predictions**")
                 st.bar_chart(
                     pd.Series(
-                        {t["category"]: t["probability"] for t in result["top_categories"]}
+                        {
+                            t["category"]: t["probability"]
+                            for t in result["top_categories"]
+                        }
                     )
                 )
 
@@ -116,9 +124,12 @@ def render_live_analysis() -> None:
                         hide_index=True,
                     )
 
-                # Accumulate tag OCCURRENCES (each entity mention + each keyword) so
-                # the session chart shows meaningful frequencies, not a flat count.
-                occurrences = [e["tag"] for e in result["entities"]] + result.get("keywords", [])
+                # Tag OCCURRENCES for THIS document (entity mentions + keywords).
+                occurrences = [e["tag"] for e in result["entities"]] + result.get(
+                    "keywords", []
+                )
+                st.session_state["current_occurrences"] = occurrences
+                # Keep a cumulative history for the optional "tags over time" view.
                 st.session_state.setdefault("tag_history", []).extend(occurrences)
             except Exception as e:
                 logger.error(f"Live analysis failed: {e}")
@@ -127,14 +138,28 @@ def render_live_analysis() -> None:
                     "If the model is missing, train it first with `python train.py`."
                 )
 
+    # Current-document tag counts (reset every analysis — a Swedish document never
+    # shows tags left over from an earlier Finnish one).
+    if st.session_state.get("current_occurrences"):
+        st.markdown("**Tag counts (this document)**")
+        st.bar_chart(
+            pd.Series(Counter(st.session_state["current_occurrences"])).sort_values(
+                ascending=False
+            )
+        )
+
+    # Optional cumulative view across every document this session ("tags over
+    # time"), collapsed by default and clearable.
     if st.session_state.get("tag_history"):
-        header, clear = st.columns([4, 1])
-        header.markdown("**Tag counts (this session, by occurrence)**")
-        if clear.button("Clear history"):
-            st.session_state["tag_history"] = []
-            st.rerun()
-        counts = pd.Series(Counter(st.session_state["tag_history"])).sort_values(ascending=False)
-        st.bar_chart(counts)
+        with st.expander("Session tag history (all documents this session)"):
+            if st.button("Clear history"):
+                st.session_state["tag_history"] = []
+                st.rerun()
+            st.bar_chart(
+                pd.Series(Counter(st.session_state["tag_history"])).sort_values(
+                    ascending=False
+                )
+            )
 
 
 def render_performance() -> None:
@@ -142,7 +167,9 @@ def render_performance() -> None:
     st.subheader("Performance Metrics")
     metrics = get_metrics()
     if not metrics:
-        st.info("No metrics yet — run `python train.py` to generate reports/performance_metrics.json.")
+        st.info(
+            "No metrics yet — run `python train.py` to generate reports/performance_metrics.json."
+        )
         return
 
     accuracy = metrics["classification_accuracy"]

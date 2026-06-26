@@ -12,6 +12,7 @@ It reuses the trained checkpoint and the exact same OOP components as training
 ``NgramLanguageDetector``), so inference matches training. Heavy dependencies are
 injectable, which keeps the orchestration unit-testable without loading the model.
 """
+
 import os
 
 # Keep transformers TensorFlow-only (the classifier is TF/Keras).
@@ -61,14 +62,18 @@ class RealTimePipeline:
             self.sanitizers = {
                 lang: LanguageSpecificSanitizer(lang) for lang in self.languages
             }
-            self.tagger = tagger or MultilingualTagger(self.languages, detector=self.detector)
+            self.tagger = tagger or MultilingualTagger(
+                self.languages, detector=self.detector
+            )
             self.classifier = (
                 classifier
                 if classifier is not None
                 else DistilBertClassifier.from_checkpoint(checkpoint_dir)
             )
             self.label_map = (
-                label_map if label_map is not None else self._load_label_map(corpus_path)
+                label_map
+                if label_map is not None
+                else self._load_label_map(corpus_path)
             )
             logger.info("Initialized RealTimePipeline.")
         except Exception as e:
@@ -79,9 +84,16 @@ class RealTimePipeline:
         """Builds {label_id: category_name} from the corpus; numeric fallback if absent."""
         try:
             if corpus_path and os.path.exists(corpus_path):
-                frame = pd.read_csv(corpus_path, usecols=["label", "label_text"]).drop_duplicates()
-                return {int(row.label): str(row.label_text) for row in frame.itertuples(index=False)}
-            logger.warning(f"Corpus '{corpus_path}' not found; categories will be numeric.")
+                frame = pd.read_csv(
+                    corpus_path, usecols=["label", "label_text"]
+                ).drop_duplicates()
+                return {
+                    int(row.label): str(row.label_text)
+                    for row in frame.itertuples(index=False)
+                }
+            logger.warning(
+                f"Corpus '{corpus_path}' not found; categories will be numeric."
+            )
             return {}
         except Exception as e:
             logger.error(f"Failed to build label map: {e}")
@@ -96,10 +108,14 @@ class RealTimePipeline:
 
     def _clean(self, text: str, language: str) -> str:
         """Cleans a document with the language-specific sanitizer."""
-        sanitizer = self.sanitizers.get(language, self.sanitizers[config.DEFAULT_LANGUAGE])
+        sanitizer = self.sanitizers.get(
+            language, self.sanitizers[config.DEFAULT_LANGUAGE]
+        )
         return sanitizer.clean(str(text))
 
-    def process_batch(self, texts: list[str], languages: list[str] = None) -> list[dict]:
+    def process_batch(
+        self, texts: list[str], languages: list[str] = None
+    ) -> list[dict]:
         """
         Classifies and tags a batch of documents (one classifier call per batch).
 
@@ -194,8 +210,14 @@ class RealTimePipeline:
                 processed += len(texts[i : i + batch_size])
             elapsed = time.time() - start
             docs_per_sec = round(processed / max(1e-9, elapsed), 1)
-            logger.info(f"Benchmark: {processed} docs in {elapsed:.2f}s -> {docs_per_sec} docs/s.")
-            return {"documents": processed, "seconds": round(elapsed, 2), "docs_per_sec": docs_per_sec}
+            logger.info(
+                f"Benchmark: {processed} docs in {elapsed:.2f}s -> {docs_per_sec} docs/s."
+            )
+            return {
+                "documents": processed,
+                "seconds": round(elapsed, 2),
+                "docs_per_sec": docs_per_sec,
+            }
         except Exception as e:
             logger.error(f"benchmark failed: {e}")
             raise

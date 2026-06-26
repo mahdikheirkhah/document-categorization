@@ -1,0 +1,46 @@
+{
+  "original": {
+    "size_mb": 541.49,
+    "accuracy": 0.9033,
+    "docs_per_sec": 92.1
+  },
+  "pruning": {
+    "technique": "magnitude_pruning",
+    "target_sparsity": 0.3,
+    "achieved_sparsity": 0.3,
+    "params_total_pruned_tensors": 135276288,
+    "params_zeroed": 40582871,
+    "tensors_pruned": 40,
+    "artifact": "text_classifier_pruned.weights.h5",
+    "size_mb": 541.57,
+    "accuracy": 0.9133,
+    "accuracy_drop_vs_original": -0.01,
+    "docs_per_sec": 98.5
+  },
+  "quantization_fp16": {
+    "technique": "float16_quantization",
+    "artifact": "text_classifier_fp16.npz",
+    "size_mb": 200.29,
+    "params": 135338514,
+    "accuracy": 0.9133,
+    "accuracy_drop_vs_original": -0.01,
+    "size_reduction_vs_original_pct": 63.0
+  },
+  "quantization_int8_tflite": {
+    "technique": "tflite_dynamic_range_int8",
+    "status": "ok",
+    "artifact": "text_classifier_int8.tflite",
+    "size_mb": 136.52,
+    "size_reduction_vs_original_pct": 74.8
+  },
+  "summary": {
+    "eval_documents": 300,
+    "original_size_mb": 541.49,
+    "pruning_sparsity": 0.3,
+    "fp16_size_mb": 200.29,
+    "int8_tflite_size_mb": 136.52,
+    "accuracy_original": 0.9033,
+    "accuracy_after_pruning": 0.9133,
+    "accuracy_after_fp16": 0.9133
+  }
+}

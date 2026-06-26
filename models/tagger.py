@@ -20,6 +20,7 @@ statistical NER (per the project spec).
 OOP: BaseTagger (interface + tag() template) -> SpacyNerTagger (one language);
 MultilingualTagger routes by language, reusing NgramLanguageDetector.
 """
+
 from abc import ABC, abstractmethod
 from collections import Counter
 
@@ -109,7 +110,9 @@ class SpacyNerTagger(BaseTagger):
                 language, SPACY_MODELS[config.DEFAULT_LANGUAGE]
             )
             self.nlp = spacy.load(self.model_name)
-            logger.info(f"Initialized SpacyNerTagger '{self.model_name}' for '{language}'.")
+            logger.info(
+                f"Initialized SpacyNerTagger '{self.model_name}' for '{language}'."
+            )
         except OSError as ose:
             logger.error(
                 f"SpaCy model '{self.model_name}' not found. "
@@ -156,7 +159,9 @@ class SpacyNerTagger(BaseTagger):
                 and token.is_alpha
                 and len(token) > 2
             ]
-            keywords = [word for word, _ in Counter(lemmas).most_common(self.max_keywords)]
+            keywords = [
+                word for word, _ in Counter(lemmas).most_common(self.max_keywords)
+            ]
 
             return {"entities": entities, "keywords": keywords}
         except Exception as e:

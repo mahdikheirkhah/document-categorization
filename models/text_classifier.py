@@ -115,7 +115,9 @@ class BaselineClassifier(BaseTextClassifier):
             self.model = LogisticRegression(
                 max_iter=1000, random_state=config.SEED, class_weight="balanced"
             )
-            logger.info("Initialized BaselineClassifier (TF-IDF + Logistic Regression).")
+            logger.info(
+                "Initialized BaselineClassifier (TF-IDF + Logistic Regression)."
+            )
         except Exception as e:
             logger.error(f"Failed to initialize BaselineClassifier: {e}")
             raise
@@ -183,14 +185,18 @@ class DistilBertClassifier(BaseTextClassifier):
             self.checkpoint_dir = CHECKPOINT_DIR
             os.makedirs(self.checkpoint_dir, exist_ok=True)
 
-            logger.info(f"Loading tokenizer and pre-trained weights for {model_name}...")
+            logger.info(
+                f"Loading tokenizer and pre-trained weights for {model_name}..."
+            )
             self.tokenizer = AutoTokenizer.from_pretrained(model_name)
             self.model = TFAutoModelForSequenceClassification.from_pretrained(
                 model_name, num_labels=num_classes, use_safetensors=False
             )
 
             # Learning rate sits in the required 2e-5..5e-5 fine-tuning band.
-            optimizer = tf.keras.optimizers.legacy.Adam(learning_rate=config.LEARNING_RATE)
+            optimizer = tf.keras.optimizers.legacy.Adam(
+                learning_rate=config.LEARNING_RATE
+            )
             loss = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True)
             self.model.compile(optimizer=optimizer, loss=loss, metrics=["accuracy"])
             logger.info("DistilBertClassifier initialized and compiled.")
@@ -248,7 +254,9 @@ class DistilBertClassifier(BaseTextClassifier):
             val_ds = self._prepare_tf_dataset(X_val, y_val)
 
             # 1. Best-weights checkpoint (filename matches the validation spec).
-            checkpoint_path = os.path.join(self.checkpoint_dir, config.BEST_WEIGHTS_FILENAME)
+            checkpoint_path = os.path.join(
+                self.checkpoint_dir, config.BEST_WEIGHTS_FILENAME
+            )
             checkpoint_cb = tf.keras.callbacks.ModelCheckpoint(
                 filepath=checkpoint_path,
                 save_best_only=True,
@@ -269,7 +277,9 @@ class DistilBertClassifier(BaseTextClassifier):
             )
 
             # 3. Persist the configuration metadata.
-            config_path = os.path.join(self.checkpoint_dir, config.MODEL_CONFIG_FILENAME)
+            config_path = os.path.join(
+                self.checkpoint_dir, config.MODEL_CONFIG_FILENAME
+            )
             with open(config_path, "w") as f:
                 json.dump(
                     {
@@ -284,7 +294,9 @@ class DistilBertClassifier(BaseTextClassifier):
             logger.error(f"Fine-tuning failed: {e}")
             raise
 
-    def predict(self, X: list[str], batch_size: int = config.INFERENCE_BATCH_SIZE) -> np.ndarray:
+    def predict(
+        self, X: list[str], batch_size: int = config.INFERENCE_BATCH_SIZE
+    ) -> np.ndarray:
         """
         Returns softmax class probabilities for X.
 
@@ -328,7 +340,9 @@ class DistilBertClassifier(BaseTextClassifier):
                 ``<checkpoint_dir>/text_classifier_best.h5``.
         """
         try:
-            path = weights_path or os.path.join(self.checkpoint_dir, config.BEST_WEIGHTS_FILENAME)
+            path = weights_path or os.path.join(
+                self.checkpoint_dir, config.BEST_WEIGHTS_FILENAME
+            )
             self.model.load_weights(path)
             logger.info(f"Loaded fine-tuned weights from {path}.")
         except Exception as e:
@@ -336,13 +350,21 @@ class DistilBertClassifier(BaseTextClassifier):
             raise
 
     @classmethod
-    def from_checkpoint(cls, checkpoint_dir: str = CHECKPOINT_DIR) -> "DistilBertClassifier":
+    def from_checkpoint(
+        cls,
+        checkpoint_dir: str = CHECKPOINT_DIR,
+        weights_filename: str = None,
+    ) -> "DistilBertClassifier":
         """
         Rebuilds a ready-to-predict classifier from a saved checkpoint
-        (``config.json`` + ``text_classifier_best.h5``).
+        (``config.json`` + a weights file).
 
         Args:
             checkpoint_dir (str): Directory holding the config and weights.
+            weights_filename (str, optional): Which weights to load. Defaults to
+                ``config.SERVING_WEIGHTS_FILENAME`` (the original fp32 model, or the
+                pruned model if configured), so the served variant is selectable
+                from the central config.
 
         Returns:
             DistilBertClassifier: Classifier with the fine-tuned weights loaded.
@@ -355,9 +377,8 @@ class DistilBertClassifier(BaseTextClassifier):
                 model_name=saved_config["model_name"],
                 max_length=saved_config["max_length"],
             )
-            classifier.load_weights(
-                os.path.join(checkpoint_dir, config.BEST_WEIGHTS_FILENAME)
-            )
+            weights_filename = weights_filename or config.SERVING_WEIGHTS_FILENAME
+            classifier.load_weights(os.path.join(checkpoint_dir, weights_filename))
             return classifier
         except Exception as e:
             logger.error(f"Failed to load classifier from checkpoint: {e}")
