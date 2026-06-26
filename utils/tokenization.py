@@ -4,6 +4,8 @@ from abc import ABC, abstractmethod
 from transformers import AutoTokenizer
 from loguru import logger
 
+from utils import config
+
 
 class BaseTokenizer(ABC):
     """
@@ -43,7 +45,9 @@ class SpacyTokenizer(BaseTokenizer):
             self.nlp = spacy.load(model_name, exclude=["ner", "parser"])
             logger.info(f"Initialized SpacyTokenizer with model '{model_name}'.")
         except OSError as e:
-            logger.error(f"SpaCy model '{model_name}' not found. Did you run 'python -m spacy download'? Error: {e}")
+            logger.error(
+                f"SpaCy model '{model_name}' not found. Did you run 'python -m spacy download'? Error: {e}"
+            )
             raise
 
     def tokenize(self, text: str) -> list[str]:
@@ -54,7 +58,7 @@ class SpacyTokenizer(BaseTokenizer):
             # Safe NaN Handling
             if pd.isna(text) or text is None:
                 raise ValueError("Encountered NaN or None value during tokenization.")
-            
+
             text_str = str(text).strip()
             if not text_str:
                 return []
@@ -62,7 +66,7 @@ class SpacyTokenizer(BaseTokenizer):
             # Encapsulated processing prevents data leakage across calls
             doc = self.nlp(text_str)
             return [token.text for token in doc if not token.is_space]
-        
+
         except ValueError as ve:
             logger.error(f"Validation error in SpacyTokenizer: {ve}")
             raise
@@ -77,7 +81,7 @@ class FinnishSubwordTokenizer(BaseTokenizer):
     Crucial for Finno-Ugric languages to prevent vocabulary explosion from agglutination.
     """
 
-    def __init__(self, model_name: str = "distilbert-base-multilingual-cased") -> None:
+    def __init__(self, model_name: str = config.FINNISH_SUBWORD_MODEL) -> None:
         """
         Initializes the Hugging Face sub-word tokenizer.
         """
@@ -96,14 +100,14 @@ class FinnishSubwordTokenizer(BaseTokenizer):
             # Safe NaN Handling
             if pd.isna(text) or text is None:
                 raise ValueError("Encountered NaN or None value during tokenization.")
-            
+
             text_str = str(text).strip()
             if not text_str:
                 return []
 
             # Returns sub-words (e.g., 'taloissani' -> ['talo', '##issa', '##ni'])
             return self.tokenizer.tokenize(text_str)
-            
+
         except ValueError as ve:
             logger.error(f"Validation error in FinnishSubwordTokenizer: {ve}")
             raise
@@ -122,9 +126,9 @@ class TokenizerFactory:
         Instantiates all required tokenizers on startup.
         """
         self.tokenizers: dict[str, BaseTokenizer] = {
-            "en": SpacyTokenizer("en_core_web_sm"),
-            "sv": SpacyTokenizer("sv_core_news_sm"),
-            "fi": FinnishSubwordTokenizer()
+            "en": SpacyTokenizer(config.SPACY_MODELS["en"]),
+            "sv": SpacyTokenizer(config.SPACY_MODELS["sv"]),
+            "fi": FinnishSubwordTokenizer(),
         }
 
     def get_tokenizer(self, lang_code: str) -> BaseTokenizer:
@@ -132,6 +136,9 @@ class TokenizerFactory:
         Retrieves the appropriate tokenizer, defaulting to English.
         """
         if lang_code not in self.tokenizers:
-            logger.warning(f"No specific tokenizer for '{lang_code}'. Defaulting to 'en'.")
-            return self.tokenizers["en"]
+            logger.warning(
+                f"No specific tokenizer for '{lang_code}'. "
+                f"Defaulting to '{config.DEFAULT_LANGUAGE}'."
+            )
+            return self.tokenizers[config.DEFAULT_LANGUAGE]
         return self.tokenizers[lang_code]

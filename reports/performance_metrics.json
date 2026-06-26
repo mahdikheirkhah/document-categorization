@@ -1,17 +1,17 @@
 {
-  "classification_accuracy": 0.85,
-  "f1_score_macro": 0.8481,
-  "processing_speed_docs_per_sec": 313.9,
+  "classification_accuracy": 0.9026,
+  "f1_score_macro": 0.8937,
+  "processing_speed_docs_per_sec": 305.3,
   "languages_supported": [
     "en",
     "fi",
     "sv"
   ],
   "per_language_accuracy": {
-    "en": 0.8382,
-    "fi": 0.8471,
-    "sv": 0.8705
+    "en": 0.9262,
+    "fi": 0.8928,
+    "sv": 0.8891
   },
-  "baseline_accuracy": 0.548,
-  "baseline_f1_macro": 0.5514
+  "baseline_accuracy": 0.8506,
+  "baseline_f1_macro": 0.8423
 }

@@ -12,6 +12,7 @@ It reuses the trained checkpoint and the exact same OOP components as training
 ``NgramLanguageDetector``), so inference matches training. Heavy dependencies are
 injectable, which keeps the orchestration unit-testable without loading the model.
 """
+
 import os
 
 # Keep transformers TensorFlow-only (the classifier is TF/Keras).
@@ -23,12 +24,13 @@ import numpy as np
 import pandas as pd
 from loguru import logger
 
+from utils import config
 from utils.language_detector import NgramLanguageDetector
 from utils.text_cleaning import LanguageSpecificSanitizer
 from models.text_classifier import DistilBertClassifier, CHECKPOINT_DIR
 from models.tagger import MultilingualTagger
 
-DEFAULT_CORPUS = "data/processed_data/multilingual_corpus.csv"
+DEFAULT_CORPUS = config.CORPUS_PATH
 
 
 class RealTimePipeline:
@@ -55,19 +57,23 @@ class RealTimePipeline:
         label_map: dict[int, str] = None,
     ) -> None:
         try:
-            self.languages = languages or ["en", "sv", "fi"]
+            self.languages = languages or config.SUPPORTED_LANGUAGES
             self.detector = detector or NgramLanguageDetector(self.languages)
             self.sanitizers = {
                 lang: LanguageSpecificSanitizer(lang) for lang in self.languages
             }
-            self.tagger = tagger or MultilingualTagger(self.languages, detector=self.detector)
+            self.tagger = tagger or MultilingualTagger(
+                self.languages, detector=self.detector
+            )
             self.classifier = (
                 classifier
                 if classifier is not None
                 else DistilBertClassifier.from_checkpoint(checkpoint_dir)
             )
             self.label_map = (
-                label_map if label_map is not None else self._load_label_map(corpus_path)
+                label_map
+                if label_map is not None
+                else self._load_label_map(corpus_path)
             )
             logger.info("Initialized RealTimePipeline.")
         except Exception as e:
@@ -78,9 +84,16 @@ class RealTimePipeline:
         """Builds {label_id: category_name} from the corpus; numeric fallback if absent."""
         try:
             if corpus_path and os.path.exists(corpus_path):
-                frame = pd.read_csv(corpus_path, usecols=["label", "label_text"]).drop_duplicates()
-                return {int(row.label): str(row.label_text) for row in frame.itertuples(index=False)}
-            logger.warning(f"Corpus '{corpus_path}' not found; categories will be numeric.")
+                frame = pd.read_csv(
+                    corpus_path, usecols=["label", "label_text"]
+                ).drop_duplicates()
+                return {
+                    int(row.label): str(row.label_text)
+                    for row in frame.itertuples(index=False)
+                }
+            logger.warning(
+                f"Corpus '{corpus_path}' not found; categories will be numeric."
+            )
             return {}
         except Exception as e:
             logger.error(f"Failed to build label map: {e}")
@@ -91,14 +104,18 @@ class RealTimePipeline:
         try:
             return self.detector.detect_language(text)
         except Exception:
-            return "en"
+            return config.DEFAULT_LANGUAGE
 
     def _clean(self, text: str, language: str) -> str:
         """Cleans a document with the language-specific sanitizer."""
-        sanitizer = self.sanitizers.get(language, self.sanitizers["en"])
+        sanitizer = self.sanitizers.get(
+            language, self.sanitizers[config.DEFAULT_LANGUAGE]
+        )
         return sanitizer.clean(str(text))
 
-    def process_batch(self, texts: list[str], languages: list[str] = None) -> list[dict]:
+    def process_batch(
+        self, texts: list[str], languages: list[str] = None
+    ) -> list[dict]:
         """
         Classifies and tags a batch of documents (one classifier call per batch).
 
@@ -128,10 +145,22 @@ class RealTimePipeline:
                 # classification.
                 try:
                     tag_result = self.tagger.tag(cleaned[i], language=langs[i])
-                    tags, entities = tag_result["tags"], tag_result["entities"]
+                    tags = tag_result["tags"]
+                    entities = tag_result["entities"]
+                    keywords = tag_result.get("keywords", [])
                 except Exception as te:
                     logger.warning(f"Tagging failed (doc {i}, '{langs[i]}'): {te}")
-                    tags, entities = [], []
+                    tags, entities, keywords = [], [], []
+
+                # Top-3 predictions for interpretability ("why this category?").
+                top_idx = np.argsort(probabilities[i])[::-1][:3]
+                top_categories = [
+                    {
+                        "category": self.label_map.get(int(j), str(int(j))),
+                        "probability": round(float(probabilities[i][j]), 4),
+                    }
+                    for j in top_idx
+                ]
 
                 results.append(
                     {
@@ -140,7 +169,9 @@ class RealTimePipeline:
                         "category_id": label,
                         "confidence": round(float(confidences[i]), 4),
                         "tags": tags,
+                        "keywords": keywords,
                         "entities": entities,
+                        "top_categories": top_categories,
                     }
                 )
 
@@ -179,8 +210,14 @@ class RealTimePipeline:
                 processed += len(texts[i : i + batch_size])
             elapsed = time.time() - start
             docs_per_sec = round(processed / max(1e-9, elapsed), 1)
-            logger.info(f"Benchmark: {processed} docs in {elapsed:.2f}s -> {docs_per_sec} docs/s.")
-            return {"documents": processed, "seconds": round(elapsed, 2), "docs_per_sec": docs_per_sec}
+            logger.info(
+                f"Benchmark: {processed} docs in {elapsed:.2f}s -> {docs_per_sec} docs/s."
+            )
+            return {
+                "documents": processed,
+                "seconds": round(elapsed, 2),
+                "docs_per_sec": docs_per_sec,
+            }
         except Exception as e:
             logger.error(f"benchmark failed: {e}")
             raise

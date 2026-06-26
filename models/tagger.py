@@ -1,128 +1,88 @@
 """
 models/tagger.py
 
-Context-aware, multi-language document tagging (SpaCy NER + rule-based heuristics).
+Context-aware, multi-language document tagging — fully model-driven via SpaCy.
 
-Design (OOP):
-    * Abstraction  -> BaseTagger defines the tagging interface + the shared
-      tag() template (merge NER entities with rule-based topical tags).
-    * Inheritance  -> SpacyNerTagger implements entity extraction via SpaCy.
-    * Encapsulation -> models are lazily loaded and cached; helpers are private.
-    * Polymorphism -> MultilingualTagger routes to any BaseTagger by language.
+For each document the SpaCy pipeline (NER + POS tagger + lemmatizer) dynamically
+produces:
+    * Named entities (people, organizations, locations, dates, ...), whose
+      model-specific labels are normalized to one standardized scheme.
+    * Salient content keywords — the most frequent lemmatized nouns / proper nouns.
+      These are extracted by the model, NOT from any hard-coded vocabulary, so the
+      same code works across English, Swedish, and Finnish (the lemmatizer handles
+      inflection / agglutination, e.g. Finnish "pankissa" -> "pankki").
 
-Classification answers "which category?"; tagging answers "what/who is in it?".
-NER supplies the statistical signal (people, organizations, locations, dates),
-which we normalize into standardized tags and combine with a small rule-based
-topical vocabulary, per the project spec.
+The document's *topic* comes from the trained classifier (see models/pipeline.py),
+so this module deliberately keeps NO hard-coded topic keyword lists. The keyword
+extraction is the deterministic, rule-based heuristic that complements the
+statistical NER (per the project spec).
+
+OOP: BaseTagger (interface + tag() template) -> SpacyNerTagger (one language);
+MultilingualTagger routes by language, reusing NgramLanguageDetector.
 """
 
 from abc import ABC, abstractmethod
+from collections import Counter
 
 import spacy
 from loguru import logger
 
+from utils import config
 from utils.language_detector import NgramLanguageDetector
 
-# Full SpaCy pipelines per language (these include the NER component).
-SPACY_MODELS: dict[str, str] = {
-    "en": "en_core_web_sm",
-    "sv": "sv_core_news_sm",
-    "fi": "fi_core_news_sm",
-}
-
-# Normalize heterogeneous SpaCy entity labels into standardized, language-agnostic
-# tags. English uses the OntoNotes scheme (PERSON/ORG/GPE/...); the Swedish and
-# Finnish models use the simpler PER/LOC/ORG/MISC scheme — both map here.
-ENTITY_LABEL_TO_TAG: dict[str, str] = {
-    "PERSON": "person", "PER": "person",
-    "ORG": "organization",
-    "GPE": "location", "LOC": "location", "FAC": "location",
-    "NORP": "group",
-    "DATE": "date", "TIME": "date",
-    "MONEY": "money", "PERCENT": "metric", "QUANTITY": "metric",
-    "CARDINAL": "number", "ORDINAL": "number",
-    "PRODUCT": "product", "EVENT": "event", "WORK_OF_ART": "work",
-    "LAW": "law", "LANGUAGE": "language", "MISC": "misc",
-}
-
-# Rule-based topical tags (keyword -> topic). Merged with the NER tags so the
-# system blends statistical NER with simple rule-based heuristics. Currently
-# English-oriented; extend with per-language vocabularies as needed.
-RULE_TOPIC_KEYWORDS: dict[str, list[str]] = {
-    "politics": ["government", "election", "president", "policy", "senate", "minister", "vote"],
-    "sports": ["game", "team", "season", "player", "hockey", "baseball", "score", "league"],
-    "technology": ["software", "computer", "hardware", "graphics", "windows", "encryption", "driver"],
-    "science": ["space", "research", "study", "scientist", "experiment", "orbit", "medicine"],
-    "religion": ["god", "church", "faith", "belief", "christian", "atheism", "bible"],
-    "finance": ["market", "price", "sale", "money", "buy", "sell", "cost"],
-}
+# All tagger constants live in the central config; re-exported here as module-level
+# names for callers/tests. SpaCy label schemes (en/fi OntoNotes, sv SUC) are
+# normalized to one tag scheme by config.ENTITY_LABEL_TO_TAG.
+SPACY_MODELS: dict[str, str] = config.SPACY_MODELS
+ENTITY_LABEL_TO_TAG: dict[str, str] = config.ENTITY_LABEL_TO_TAG
+KEYWORD_POS: set[str] = config.KEYWORD_POS
+MAX_KEYWORDS: int = config.MAX_KEYWORDS
 
 
 class BaseTagger(ABC):
     """Abstract interface for context-aware document taggers."""
 
     @abstractmethod
-    def extract_entities(self, text: str) -> list[dict]:
+    def _analyze(self, text: str) -> dict:
         """
-        Extracts named entities from the text.
+        Runs the underlying model and returns its dynamic signals.
 
         Returns:
-            list[dict]: One dict per entity: {'text', 'label', 'tag'} where 'tag'
-            is the normalized (standardized) category.
+            dict: {'entities': list[dict], 'keywords': list[str]}.
         """
         pass
 
-    def _rule_based_topics(self, text: str) -> list[str]:
-        """
-        Derives topical tags from a keyword vocabulary (rule-based heuristic).
-
-        Args:
-            text (str): The document text.
-
-        Returns:
-            list[str]: Sorted, unique topical tags whose keywords appear in the text.
-        """
-        try:
-            lowered = text.lower()
-            topics = [
-                topic
-                for topic, keywords in RULE_TOPIC_KEYWORDS.items()
-                if any(keyword in lowered for keyword in keywords)
-            ]
-            return sorted(set(topics))
-        except Exception as e:
-            logger.error(f"Rule-based topic tagging failed: {e}")
-            raise
-
     def tag(self, text: str) -> dict:
         """
-        Produces context-aware tags by merging NER (statistical) with rule-based
-        topical tags. Template method shared by all concrete taggers.
+        Produces context-aware tags by merging NER entity-type tags with the
+        dynamically-extracted content keywords (no hard-coded vocabulary).
 
         Args:
             text (str): The document to tag.
 
         Returns:
-            dict: {entities, entity_tags, topic_tags, tags, language}.
+            dict: {entities, entity_tags, keywords, tags, language}.
         """
         try:
             if not text or not str(text).strip():
                 raise ValueError("Cannot tag an empty document.")
 
-            entities = self.extract_entities(str(text))
+            language = getattr(self, "language", None)
+            analysis = self._analyze(str(text))
+            entities = analysis["entities"]
+            keywords = analysis["keywords"]
             entity_tags = sorted({entity["tag"] for entity in entities})
-            topic_tags = self._rule_based_topics(str(text))
-            all_tags = sorted(set(entity_tags) | set(topic_tags))
+            tags = sorted(set(entity_tags) | set(keywords))
 
-            if not all_tags:
-                logger.warning("No tags produced (no entities or keywords matched).")
+            if not tags:
+                logger.warning("No tags produced (no entities or keywords found).")
 
             return {
                 "entities": entities,
                 "entity_tags": entity_tags,
-                "topic_tags": topic_tags,
-                "tags": all_tags,
-                "language": getattr(self, "language", None),
+                "keywords": keywords,
+                "tags": tags,
+                "language": language,
             }
         except ValueError:
             raise
@@ -132,21 +92,27 @@ class BaseTagger(ABC):
 
 
 class SpacyNerTagger(BaseTagger):
-    """Single-language tagger backed by a SpaCy NER pipeline."""
+    """Single-language tagger backed by a SpaCy pipeline (NER + POS + lemmatizer)."""
 
-    def __init__(self, language: str, model_name: str = None) -> None:
+    def __init__(
+        self, language: str, model_name: str = None, max_keywords: int = MAX_KEYWORDS
+    ) -> None:
         """
         Args:
             language (str): ISO 639-1 code ('en', 'sv', 'fi').
-            model_name (str, optional): SpaCy model override. Defaults to the
-                mapping in ``SPACY_MODELS``.
+            model_name (str, optional): SpaCy model override (defaults per language).
+            max_keywords (int): Number of content keywords to extract per document.
         """
         try:
             self.language = language
-            self.model_name = model_name or SPACY_MODELS.get(language, SPACY_MODELS["en"])
-            # Keep the NER component (the tokenizer pipeline excludes it; we need it).
+            self.max_keywords = max_keywords
+            self.model_name = model_name or SPACY_MODELS.get(
+                language, SPACY_MODELS[config.DEFAULT_LANGUAGE]
+            )
             self.nlp = spacy.load(self.model_name)
-            logger.info(f"Initialized SpacyNerTagger '{self.model_name}' for '{language}'.")
+            logger.info(
+                f"Initialized SpacyNerTagger '{self.model_name}' for '{language}'."
+            )
         except OSError as ose:
             logger.error(
                 f"SpaCy model '{self.model_name}' not found. "
@@ -157,28 +123,57 @@ class SpacyNerTagger(BaseTagger):
             logger.error(f"Failed to initialize SpacyNerTagger: {e}")
             raise
 
-    def extract_entities(self, text: str) -> list[dict]:
-        """Runs SpaCy NER and normalizes the entity labels into standardized tags."""
+    def _analyze(self, text: str) -> dict:
+        """Processes the text once: extract NER entities + salient content keywords."""
         try:
-            document = self.nlp(str(text))
-            return [
-                {
-                    "text": ent.text,
-                    "label": ent.label_,
-                    "tag": ENTITY_LABEL_TO_TAG.get(ent.label_, "misc"),
-                }
-                for ent in document.ents
+            doc = self.nlp(str(text))
+
+            # Deduplicate entities by surface form: keep the MAJORITY label across
+            # its mentions and a mention COUNT. So "Iran" becomes one row (count=9),
+            # not nine rows, and a name labelled inconsistently across mentions
+            # collapses to its most common label.
+            mentions: dict[str, list[str]] = {}
+            for ent in doc.ents:
+                mentions.setdefault(ent.text, []).append(ent.label_)
+            entities = []
+            for surface, labels in mentions.items():
+                label = Counter(labels).most_common(1)[0][0]
+                entities.append(
+                    {
+                        "text": surface,
+                        "label": label,
+                        "tag": ENTITY_LABEL_TO_TAG.get(label, "misc"),
+                        "count": len(labels),
+                    }
+                )
+            entities.sort(key=lambda entity: entity["count"], reverse=True)
+
+            # Dynamic keywords: most frequent content-word lemmas (model-driven; the
+            # lemmatizer normalizes inflection, so no per-language vocabulary needed).
+            lemmas = [
+                token.lemma_.lower()
+                for token in doc
+                if token.pos_ in KEYWORD_POS
+                and not token.ent_type_  # already captured as a named entity
+                and not token.is_stop
+                and token.is_alpha
+                and len(token) > 2
             ]
+            keywords = [
+                word for word, _ in Counter(lemmas).most_common(self.max_keywords)
+            ]
+
+            return {"entities": entities, "keywords": keywords}
         except Exception as e:
-            logger.error(f"Entity extraction failed ({self.language}): {e}")
+            logger.error(f"Analysis failed ({self.language}): {e}")
             raise
 
 
 class MultilingualTagger:
     """
     Routes documents to the correct language-specific SpaCy tagger, detecting the
-    language when it isn't supplied (inference-time routing). Depends only on the
-    ``BaseTagger`` interface, so new languages plug in without changing this class.
+    language when it isn't supplied. Depends only on the ``BaseTagger`` interface,
+    so new languages plug in without changing this class.
     """
 
     def __init__(
@@ -189,11 +184,10 @@ class MultilingualTagger:
         """
         Args:
             languages (list[str], optional): Supported languages. Defaults to en/sv/fi.
-            detector (NgramLanguageDetector, optional): Language detector. Defaults
-                to a fresh ``NgramLanguageDetector`` over ``languages``.
+            detector (NgramLanguageDetector, optional): Detector for language routing.
         """
         try:
-            self.languages = languages or ["en", "sv", "fi"]
+            self.languages = languages or config.SUPPORTED_LANGUAGES
             self.detector = detector or NgramLanguageDetector(self.languages)
             self.taggers: dict[str, BaseTagger] = {}  # lazily loaded per language
             logger.info(f"Initialized MultilingualTagger for {self.languages}.")
@@ -204,7 +198,7 @@ class MultilingualTagger:
     def _get_tagger(self, language: str) -> BaseTagger:
         """Lazily loads and caches the SpaCy tagger for a language (fallback to en)."""
         try:
-            lang = language if language in self.languages else "en"
+            lang = language if language in self.languages else config.DEFAULT_LANGUAGE
             if lang not in self.taggers:
                 self.taggers[lang] = SpacyNerTagger(lang)
             return self.taggers[lang]
